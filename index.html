@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,6 +118,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Event Records</h1>
     <ul id="event-list"></ul>
@@ -187,7 +189,7 @@
             eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
             eventDescription.textContent = event.sa_description;
 
-            if (event.statuscode === 126380001) {
+            if (event.statuscode === 126380003) {
                 registerNowLink.href = event.sa_registrationlink;
                 registerNowLink.style.display = "block";
             } else {
@@ -196,11 +198,17 @@
 
             overlay.style.display = "block";
             popup.style.display = "block";
+        };
+        $('#close-popup').click(function () {
+            const overlay = document.getElementById("overlay");
+            const popup = document.getElementById("popup");
+            overlay.style.display = "none";
+            popup.style.display = "none";
         }
-
+        );
         // Initialize the page
         displayEventList();
     </script>
 </body>
-</html>
 
+</html>
