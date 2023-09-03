@@ -202,15 +202,12 @@
 
             overlay.style.display = "block";
             popup.style.display = "block";
-        };
-        $(document).ready(function () {
-            $('#close-popup').click(function () {
-                const overlay = document.getElementById("overlay");
-                const popup = document.getElementById("popup");
+            // close popup
+            document.getElementById("close-popup").addEventListener("click", () => {
                 overlay.style.display = "none";
                 popup.style.display = "none";
             });
-        });
+        };
 
         // Initialize the page
         displayEventList();
