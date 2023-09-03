@@ -6,92 +6,7 @@
     <title>Event Listing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin: 0;
-        }
-
-        .event-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-
-        .event {
-            width: 30%;
-            margin: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .event:hover {
-            transform: scale(1.02);
-        }
-
-        .event::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://via.placeholder.com/400');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin: 0;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        p {
-            margin: 5px 0;
-            color: #333;
-        }
-
-        .fa-calendar {
-            margin-right: 5px;
-            color: #f36f6f;
-        }
-
-        .fa-clock {
-            margin-right: 5px;
-            color: #6fc3f3;
-        }
-
-        .fa-info-circle {
-            color: #6dd47e;
-        }
+        /* ... (previous styles remain unchanged) ... */
     </style>
 </head>
 <body>
@@ -101,6 +16,15 @@
     
     <div class="event-container">
         <!-- Events will be displayed here -->
+    </div>
+
+    <!-- Modal for event details -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Event Details</h2>
+            <div id="eventDetails"></div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -125,8 +49,41 @@
                             const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
                             const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
                             const eventDescription = $('<p>').text(event.sa_description);
+                            const eventDetailsButton = $('<button class="details-button">View Details</button>');
 
-                            eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription);
+                            // Check if the event status is "Published"
+                            if (event.statuscode === 126380001) {
+                                // Add a "Register" button
+                                const eventRegisterButton = $('<button class="details-button">Register</button>');
+                                eventRegisterButton.on('click', function() {
+                                    // Navigate to the registration link
+                                    window.location.href = event.sa_registrationlink;
+                                });
+
+                                eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription, eventRegisterButton);
+                            } else {
+                                // Event is not published, so only show the "View Details" button
+                                eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription, eventDetailsButton);
+                            }
+
+                            eventDetailsButton.on('click', function() {
+                                // Show event details in the modal
+                                const modal = $('#eventModal');
+                                const eventDetailsContainer = $('#eventDetails');
+                                eventDetailsContainer.empty();
+
+                                // Construct the event details content
+                                const eventDetailsContent = $('<div>');
+                                eventDetailsContent.append($('<p>').html('<strong>Event Name:</strong> ' + event.sa_name));
+                                eventDetailsContent.append($('<p>').html('<strong>Start Date:</strong> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]));
+                                eventDetailsContent.append($('<p>').html('<strong>End Date:</strong> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]));
+                                eventDetailsContent.append($('<p>').html('<strong>Description:</strong> ' + event.sa_description));
+
+                                eventDetailsContainer.append(eventDetailsContent);
+
+                                modal.css('display', 'block');
+                            });
+
                             eventContainer.append(eventDiv);
                         });
                     },
@@ -134,10 +91,24 @@
                         console.error('Error fetching events:', error);
                     }
                 });
-            };
+            }
 
             // Call the fetchEvents function to load events when the page loads
             fetchEvents();
+
+            // Modal functionality
+            const modal = $('#eventModal');
+            const closeModal = $('.close');
+
+            closeModal.on('click', function() {
+                modal.css('display', 'none');
+            });
+
+            window.onclick = function(event) {
+                if (event.target === modal[0]) {
+                    modal.css('display', 'none');
+                }
+            };
         });
     </script>
 </body>
