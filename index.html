@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaheer Ahmad | Event Listing</title>
+    <title>Event Listing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -26,25 +26,52 @@
             margin: 0;
         }
 
-        .event-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
         }
 
-        .event-item {
+        .event {
+            width: 30%;
+            margin: 20px;
+            padding: 20px;
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
-            margin: 10px 0;
-            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .event:hover {
+            transform: scale(1.02);
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://via.placeholder.com/400');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
 
         h2 {
             font-size: 24px;
             margin: 0;
-            color: #333;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
         }
 
         p {
@@ -62,58 +89,8 @@
             color: #6fc3f3;
         }
 
-        .fa-check-circle {
-            margin-right: 5px;
+        .fa-info-circle {
             color: #6dd47e;
-        }
-
-        .event-description {
-            display: none;
-        }
-
-        .view-details-button {
-            background-color: #6dd47e;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .view-details-button:hover {
-            background-color: #5aa568;
-        }
-
-        /* Event Details Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            border-radius: 10px;
-            margin: 10% auto;
-            padding: 20px;
-            max-width: 600px;
-            position: relative;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -122,19 +99,8 @@
         <h1>Upcoming Events</h1>
     </header>
     
-    <ul class="event-list">
+    <div class="event-container">
         <!-- Events will be displayed here -->
-    </ul>
-
-    <!-- Event Details Modal -->
-    <div class="modal" id="eventModal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2 id="modalEventTitle"></h2>
-            <p id="modalEventStartDate"></p>
-            <p id="modalEventEndDate"></p>
-            <p id="modalEventDescription"></p>
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -147,32 +113,21 @@
                     method: 'GET',
                     dataType: 'json',
                     success: function(events) {
-                        const eventList = $('.event-list');
+                        const eventContainer = $('.event-container');
 
                         // Clear existing content
-                        eventList.empty();
+                        eventContainer.empty();
 
                         // Loop through the events and display them
                         $.each(events, function(index, event) {
-                            const eventItem = $('<li class="event-item">');
+                            const eventDiv = $('<div class="event">');
                             const eventTitle = $('<h2>').text(event.sa_name);
                             const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
                             const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
-                            const eventDescription = $('<p class="event-description">').text(event.sa_description);
-                            const eventStatus = $('<p>').html('<i class="fas fa-check-circle"></i> Status: ' + event["statuscode@OData.Community.Display.V1.FormattedValue"]);
-                            const viewDetailsButton = $('<button class="view-details-button">View Details</button>');
+                            const eventDescription = $('<p>').text(event.sa_description);
 
-                            eventItem.append(eventTitle, eventStart, eventEnd, eventDescription, eventStatus, viewDetailsButton);
-                            eventList.append(eventItem);
-
-                            // View Details button click
-                            viewDetailsButton.on('click', function() {
-                                $('#modalEventTitle').text(event.sa_name);
-                                $('#modalEventStartDate').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
-                                $('#modalEventEndDate').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
-                                $('#modalEventDescription').text(event.sa_description);
-                                $('#eventModal').css('display', 'block');
-                            });
+                            eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription);
+                            eventContainer.append(eventDiv);
                         });
                     },
                     error: function(error) {
@@ -180,11 +135,6 @@
                     }
                 });
             };
-
-            // Close modal
-            $('#closeModal').on('click', function() {
-                $('#eventModal').css('display', 'none');
-            });
 
             // Call the fetchEvents function to load events when the page loads
             fetchEvents();
