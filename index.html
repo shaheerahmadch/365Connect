@@ -198,14 +198,15 @@
 
             overlay.style.display = "block";
             popup.style.display = "block";
-        };
-        $('#close-popup').click(function () {
+            $('#close-popup').click(function () {
             const overlay = document.getElementById("overlay");
             const popup = document.getElementById("popup");
             overlay.style.display = "none";
             popup.style.display = "none";
-        }
+            }
         );
+        };
+        
         // Initialize the page
         displayEventList();
     </script>
