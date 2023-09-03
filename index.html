@@ -30,7 +30,6 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding: 20px;
         }
 
         .event {
@@ -42,55 +41,21 @@
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
         }
 
         .event:hover {
             transform: scale(1.02);
         }
 
-        .event::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://via.placeholder.com/400');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
         h2 {
             font-size: 24px;
             margin: 0;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            color: #333;
         }
 
         p {
             margin: 5px 0;
-            color: #333;
-        }
-
-        .fa-calendar {
-            margin-right: 5px;
-            color: #f36f6f;
-        }
-
-        .fa-clock {
-            margin-right: 5px;
-            color: #6fc3f3;
-        }
-
-        .fa-info-circle {
-            color: #6dd47e;
+            color: #555;
         }
     </style>
 </head>
@@ -110,7 +75,7 @@
             function fetchEvents() {
                 $.ajax({
                     url: 'https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk',
-                    method: 'GET',
+                    method: 'POST',
                     dataType: 'json',
                     success: function(events) {
                         const eventContainer = $('.event-container');
@@ -122,8 +87,8 @@
                         $.each(events, function(index, event) {
                             const eventDiv = $('<div class="event">');
                             const eventTitle = $('<h2>').text(event.sa_name);
-                            const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
-                            const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
+                            const eventStart = $('<p>').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
+                            const eventEnd = $('<p>').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
                             const eventDescription = $('<p>').text(event.sa_description);
 
                             eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription);
@@ -134,7 +99,7 @@
                         console.error('Error fetching events:', error);
                     }
                 });
-            };
+            }
 
             // Call the fetchEvents function to load events when the page loads
             fetchEvents();
