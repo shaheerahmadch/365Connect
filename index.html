@@ -4,14 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Listing</title>
-    <link rel="stylesheet" href="styles.css"> <!-- You can create a separate CSS file for styling -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .event {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event:hover {
+            transform: scale(1.02);
+        }
+
+        .event img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Upcoming Event</h1>
+        <h1>Upcoming Events</h1>
     </header>
     
     <main>
+
         <section class="event">
             <img src="event1.jpg" alt="Event 1 Image">
             <h2>Event Title 1</h2>
