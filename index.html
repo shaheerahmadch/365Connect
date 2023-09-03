@@ -83,7 +83,7 @@
         // Function to fetch and display events
         function fetchEvents() {
             fetch('https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk', {
-                method: 'POST'
+                method: 'GET'
             })
                 .then(response => response.json())
                 .then(events => {
