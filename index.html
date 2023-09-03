@@ -47,13 +47,6 @@
             transform: scale(1.02);
         }
 
-        .event img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
         h2 {
             font-size: 24px;
             margin: 0;
@@ -74,34 +67,61 @@
     </style>
 </head>
 <body>
-
     <header>
         <h1>Upcoming Events</h1>
     </header>
     
     <main>
-
-        <section class="event">
-            <img src="event1.jpg" alt="Event 1 Image">
-            <h2>Event Title 1</h2>
-            <p>Date: June 15, 2023</p>
-            <p>Location: Venue 1</p>
-            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </section>
-        
-        <section class="event">
-            <img src="event2.jpg" alt="Event 2 Image">
-            <h2>Event Title 2</h2>
-            <p>Date: July 20, 2023</p>
-            <p>Location: Venue 2</p>
-            <p>Description: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </section>
-
-        <!-- Add more event sections as needed -->
+        <!-- Events will be displayed here -->
     </main>
 
     <footer>
         <p>&copy; 2023 Your Event Listing</p>
     </footer>
+
+    <script>
+        // Function to fetch and display events
+        function fetchEvents() {
+            fetch('https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk', {
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(events => {
+                    const main = document.querySelector('main');
+                    
+                    // Clear existing content
+                    main.innerHTML = '';
+
+                    // Loop through the events and display them
+                    events.forEach(event => {
+                        const eventSection = document.createElement('section');
+                        eventSection.classList.add('event');
+
+                        const eventTitle = document.createElement('h2');
+                        eventTitle.textContent = event.sa_name;
+
+                        const eventStart = document.createElement('p');
+                        eventStart.textContent = `Start Date: ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}`;
+
+                        const eventEnd = document.createElement('p');
+                        eventEnd.textContent = `End Date: ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}`;
+
+                        const eventDescription = document.createElement('p');
+                        eventDescription.textContent = event.sa_description;
+
+                        eventSection.appendChild(eventTitle);
+                        eventSection.appendChild(eventStart);
+                        eventSection.appendChild(eventEnd);
+                        eventSection.appendChild(eventDescription);
+
+                        main.appendChild(eventSection);
+                    });
+                })
+                .catch(error => console.error('Error fetching events:', error));
+        }
+
+        // Call the fetchEvents function to load events when the page loads
+        window.addEventListener('load', fetchEvents);
+    </script>
 </body>
 </html>
