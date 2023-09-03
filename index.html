@@ -41,7 +41,7 @@
         }
 
         .event-item strong {
-            font-size: 20px;
+            font-size: 15px;
             color: #333;
         }
 
@@ -163,7 +163,7 @@
             events.forEach(event => {
                 const listItem = document.createElement("li");
                 listItem.className = "event-item";
-                listItem.innerHTML = `<strong>${event.sa_name}</strong>
+                listItem.innerHTML = `<h2>${event.sa_name}</h2>
                     <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
                     <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
                     <button class="view-details">View Details</button>
