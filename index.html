@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Listing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -25,18 +26,17 @@
             margin: 0;
         }
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
 
         .event {
-            margin-bottom: 20px;
+            width: 30%;
+            margin: 20px;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -57,13 +57,6 @@
             margin: 5px 0;
             color: #555;
         }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #333;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -71,57 +64,46 @@
         <h1>Upcoming Events</h1>
     </header>
     
-    <main>
+    <div class="event-container">
         <!-- Events will be displayed here -->
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; 2023 Your Event Listing</p>
-    </footer>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Function to fetch and display events
-        function fetchEvents() {
-            fetch('https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk', {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(events => {
-                    const main = document.querySelector('main');
-                    
-                    // Clear existing content
-                    main.innerHTML = '';
+        $(document).ready(function() {
+            // Function to fetch and display events
+            function fetchEvents() {
+                $.ajax({
+                    url: 'https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk',
+                    method: 'POST',
+                    dataType: 'json',
+                    success: function(events) {
+                        const eventContainer = $('.event-container');
 
-                    // Loop through the events and display them
-                    events.forEach(event => {
-                        const eventSection = document.createElement('section');
-                        eventSection.classList.add('event');
+                        // Clear existing content
+                        eventContainer.empty();
 
-                        const eventTitle = document.createElement('h2');
-                        eventTitle.textContent = event.sa_name;
+                        // Loop through the events and display them
+                        $.each(events, function(index, event) {
+                            const eventDiv = $('<div class="event">');
+                            const eventTitle = $('<h2>').text(event.sa_name);
+                            const eventStart = $('<p>').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
+                            const eventEnd = $('<p>').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
+                            const eventDescription = $('<p>').text(event.sa_description);
 
-                        const eventStart = document.createElement('p');
-                        eventStart.textContent = `Start Date: ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}`;
+                            eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription);
+                            eventContainer.append(eventDiv);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching events:', error);
+                    }
+                });
+            }
 
-                        const eventEnd = document.createElement('p');
-                        eventEnd.textContent = `End Date: ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}`;
-
-                        const eventDescription = document.createElement('p');
-                        eventDescription.textContent = event.sa_description;
-
-                        eventSection.appendChild(eventTitle);
-                        eventSection.appendChild(eventStart);
-                        eventSection.appendChild(eventEnd);
-                        eventSection.appendChild(eventDescription);
-
-                        main.appendChild(eventSection);
-                    });
-                })
-                .catch(error => console.error('Error fetching events:', error));
-        }
-
-        // Call the fetchEvents function to load events when the page loads
-        window.addEventListener('load', fetchEvents);
+            // Call the fetchEvents function to load events when the page loads
+            fetchEvents();
+        });
     </script>
 </body>
 </html>
