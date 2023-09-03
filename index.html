@@ -29,13 +29,13 @@
         .event-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
             padding: 20px;
         }
 
         .event {
             width: 30%;
-            margin: 20px;
+            margin: 10px 0;
             padding: 20px;
             background-color: #fff;
             border: 1px solid #ddd;
@@ -88,8 +88,65 @@
             color: #6fc3f3;
         }
 
-        .fa-info-circle {
+        .fa-check-circle {
+            margin-right: 5px;
             color: #6dd47e;
+        }
+
+        .event-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .event.show-details .event-description {
+            max-height: 200px; /* Set an appropriate max-height for the description */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 70%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .register-button {
+            background-color: #6dd47e;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background-color: #5aa568;
         }
     </style>
 </head>
@@ -100,6 +157,18 @@
     
     <div class="event-container">
         <!-- Events will be displayed here -->
+    </div>
+
+    <!-- Event Details Modal -->
+    <div class="modal" id="eventModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="eventTitle"></h2>
+            <p id="eventStartDate"></p>
+            <p id="eventEndDate"></p>
+            <p id="eventDescription"></p>
+            <button class="register-button" id="registerButton">Register</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -123,11 +192,34 @@
                             const eventTitle = $('<h2>').text(event.sa_name);
                             const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
                             const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
-                            const eventDescription = $('<p>').text(event.sa_description);
-                            const eventDetails = $('<p>').html('<i class="fas fa-info-circle"></i> More Info');
+                            const eventStatus = $('<p>').html('<i class="fas fa-check-circle"></i> Status: ' + event["statuscode@OData.Community.Display.V1.FormattedValue"]);
+                            const eventDescription = $('<p class="event-description">').text(event.sa_description);
+                            const eventDetailsButton = $('<button>').text('View Details');
 
-                            eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription, eventDetails);
+                            eventDiv.append(eventTitle, eventStart, eventEnd, eventStatus, eventDetailsButton);
                             eventContainer.append(eventDiv);
+
+                            // Event details modal
+                            eventDetailsButton.on('click', function() {
+                                $('#eventTitle').text(event.sa_name);
+                                $('#eventStartDate').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
+                                $('#eventEndDate').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
+                                $('#eventDescription').text(event.sa_description);
+
+                                // Show the modal
+                                $('#eventModal').css('display', 'block');
+                            });
+
+                            // Close the modal
+                            $('#closeModal').on('click', function() {
+                                $('#eventModal').css('display', 'none');
+                            });
+
+                            // Register button (only visible for events with "Published" status)
+                            if (event["statuscode@OData.Community.Display.V1.FormattedValue"] === "Published") {
+                                const registerButton = $('<button class="register-button">').text('Register');
+                                eventDiv.append(registerButton);
+                            }
                         });
                     },
                     error: function(error) {
