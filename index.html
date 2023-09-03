@@ -3,142 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaheer Ahmad |Event Listing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Event Records</title>
     <style>
+        /* Stylish CSS for the event list and popup */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
         }
 
         h1 {
-            font-size: 36px;
-            margin: 0;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
         }
 
-        .event-container {
+        #event-list {
+            list-style-type: none;
+            padding: 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
+            justify-content: center;
         }
 
-        .event {
-            width: 30%;
-            margin: 20px;
-            padding: 20px;
-            background-color: #fff;
+        .event-item {
+            background-color: white;
             border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
         }
 
-        .event:hover {
-            transform: scale(1.02);
+        .event-item strong {
+            font-size: 20px;
+            color: #333;
         }
 
-        .event::before {
-            content: '';
-            position: absolute;
+        .event-item p {
+            margin: 10px 0;
+        }
+
+        .view-details {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-details:hover {
+            background-color: #555;
+        }
+
+        .register-now {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .register-now:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for the popup and overlay */
+        .overlay {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://via.placeholder.com/400');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin: 0;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            z-index: 999;
         }
 
-        p {
-            margin: 5px 0;
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: left;
+        }
+
+        /* Styling for the close button */
+        .close-button {
+            background-color: #ccc;
             color: #333;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
         }
 
-        .fa-calendar {
-            margin-right: 5px;
-            color: #f36f6f;
-        }
-
-        .fa-clock {
-            margin-right: 5px;
-            color: #6fc3f3;
-        }
-
-        .fa-info-circle {
-            color: #6dd47e;
+        .close-button:hover {
+            background-color: #999;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Upcoming Events</h1>
-    </header>
-    
-    <div class="event-container">
-        <!-- Events will be displayed here -->
+    <h1>Event Records</h1>
+    <ul id="event-list"></ul>
+
+    <!-- Popup and overlay for event details -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <button class="close-button" id="close-popup">Close</button>
+        <h2>Event Details</h2>
+        <p><strong>Name:</strong> <span id="event-name"></span></p>
+        <p><strong>Start Date:</strong> <span id="event-start"></span></p>
+        <p><strong>End Date:</strong> <span id="event-end"></span></p>
+        <p><strong>Description:</strong> <span id="event-description"></span></p>
+        <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Function to fetch and display events
-            function fetchEvents() {
-                $.ajax({
-                    url: 'https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(events) {
-                        const eventContainer = $('.event-container');
+        // Replace with your API endpoint URL
+        const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
 
-                        // Clear existing content
-                        eventContainer.empty();
+        // Function to fetch event data from the API
+        async function fetchEventData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                return [];
+            }
+        }
 
-                        // Loop through the events and display them
-                        $.each(events, function(index, event) {
-                            const eventDiv = $('<div class="event">');
-                            const eventTitle = $('<h2>').text(event.sa_name);
-                            const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
-                            const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
-                            const eventDescription = $('<p>').text(event.sa_description);
-                            const eventDetails = $('<p>').html('<i class="fas fa-info-circle"></i> More Info');
+        // Function to create and display the event list
+        async function displayEventList() {
+            const eventList = document.getElementById("event-list");
+            const events = await fetchEventData();
 
-                            eventDiv.append(eventTitle, eventStart, eventEnd, eventDescription, eventDetails);
-                            eventContainer.append(eventDiv);
-                        });
-                    },
-                    error: function(error) {
-                        console.error('Error fetching events:', error);
-                    }
-                });
+            events.forEach(event => {
+                const listItem = document.createElement("li");
+                listItem.className = "event-item";
+                listItem.innerHTML = `
+                    <strong>${event.sa_name}</strong>
+                    <p><strong>Start Date:</strong> ${event.sa_start@OData.Community.Display.V1.FormattedValue}</p>
+                    <p><strong>End Date:</strong> ${event.sa_end@OData.Community.Display.V1.FormattedValue}</p>
+                    <button class="view-details">View Details</button>
+                `;
+
+                if (event.statuscode === 126380001) {
+                    listItem.innerHTML += `<a href="${event.sa_registrationlink}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                }
+
+                listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
+                eventList.appendChild(listItem);
+            });
+        }
+
+        // Function to open the popup with event details
+        function openPopup(event) {
+            const overlay = document.getElementById("overlay");
+            const popup = document.getElementById("popup");
+            const eventName = document.getElementById("event-name");
+            const eventStart = document.getElementById("event-start");
+            const eventEnd = document.getElementById("event-end");
+            const eventDescription = document.getElementById("event-description");
+            const registerNowLink = document.getElementById("register-now-link");
+
+            eventName.textContent = event.sa_name;
+            eventStart.textContent = event.sa_start@OData.Community.Display.V1.FormattedValue;
+            eventEnd.textContent = event.sa_end@OData.Community.Display.V1.FormattedValue;
+            eventDescription.textContent = event.sa_description;
+
+            if (event.statuscode === 126380001) {
+                registerNowLink.href = event.sa_registrationlink;
+                registerNowLink.style.display = "block";
+            } else {
+                registerNowLink.style.display = "none";
             }
 
-            // Call the fetchEvents function to load events when the page loads
-            fetchEvents();
-        });
+            overlay.style.display = "block";
+            popup.style.display = "block";
+        }
+
+        // Initialize the page
+        displayEventList();
     </script>
 </body>
 </html>
+
