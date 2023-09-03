@@ -157,10 +157,9 @@
             events.forEach(event => {
                 const listItem = document.createElement("li");
                 listItem.className = "event-item";
-                listItem.innerHTML = `
-                    <strong>${event.sa_name}</strong>
-                    <p><strong>Start Date:</strong> ${event.sa_start@OData.Community.Display.V1.FormattedValue}</p>
-                    <p><strong>End Date:</strong> ${event.sa_end@OData.Community.Display.V1.FormattedValue}</p>
+                listItem.innerHTML = `<strong>${event.sa_name}</strong>
+                    <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
+                    <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
                     <button class="view-details">View Details</button>
                 `;
 
@@ -184,8 +183,8 @@
             const registerNowLink = document.getElementById("register-now-link");
 
             eventName.textContent = event.sa_name;
-            eventStart.textContent = event.sa_start@OData.Community.Display.V1.FormattedValue;
-            eventEnd.textContent = event.sa_end@OData.Community.Display.V1.FormattedValue;
+            eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
+            eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
             eventDescription.textContent = event.sa_description;
 
             if (event.statuscode === 126380001) {
