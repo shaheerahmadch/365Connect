@@ -38,6 +38,7 @@
             border-radius: 10px;
             margin: 10px 0;
             padding: 20px;
+            position: relative;
         }
 
         h2 {
@@ -77,12 +78,43 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            display: inline-block;
-            margin-top: 10px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
         }
 
         .register-button:hover {
             background-color: #5aa568;
+        }
+
+        /* Event Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 10% auto;
+            padding: 20px;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -99,11 +131,10 @@
     <div class="modal" id="eventModal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <h2 id="eventTitle"></h2>
-            <p id="eventStartDate"></p>
-            <p id="eventEndDate"></p>
-            <p id="eventDescription"></p>
-            <button class="register-button" id="registerButton">Register</button>
+            <h2 id="modalEventTitle"></h2>
+            <p id="modalEventStartDate"></p>
+            <p id="modalEventEndDate"></p>
+            <p id="modalEventDescription"></p>
         </div>
     </div>
 
@@ -131,36 +162,32 @@
                             const eventStatus = $('<p>').html('<i class="fas fa-check-circle"></i> Status: ' + event["statuscode@OData.Community.Display.V1.FormattedValue"]);
                             const eventDescription = $('<p class="event-description">').text(event.sa_description);
                             const eventDetailsButton = $('<button>').text('View Details');
+                            const registerButton = $('<button class="register-button">').text('Register');
 
-                            eventItem.append(eventTitle, eventStart, eventEnd, eventStatus, eventDescription, eventDetailsButton);
+                            eventItem.append(eventTitle, eventStart, eventEnd, eventStatus, eventDescription, eventDetailsButton, registerButton);
                             eventList.append(eventItem);
 
                             // Event details modal
                             eventDetailsButton.on('click', function() {
-                                $('#eventTitle').text(event.sa_name);
-                                $('#eventStartDate').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
-                                $('#eventEndDate').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
-                                $('#eventDescription').text(event.sa_description);
-
-                                // Show the modal
+                                $('#modalEventTitle').text(event.sa_name);
+                                $('#modalEventStartDate').text('Start Date: ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
+                                $('#modalEventEndDate').text('End Date: ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
+                                $('#modalEventDescription').text(event.sa_description);
                                 $('#eventModal').css('display', 'block');
                             });
 
-                            // Close the modal
+                            // Close modal
                             $('#closeModal').on('click', function() {
                                 $('#eventModal').css('display', 'none');
                             });
 
-                            // Register button (only visible for events with "Published" status)
-                            if (event["statuscode@OData.Community.Display.V1.FormattedValue"] === "Published") {
-                                const registerButton = $('<button class="register-button">').text('Register');
-                                eventItem.append(registerButton);
-
-                                registerButton.on('click', function(event) {
+                            // Register button click
+                            registerButton.on('click', function(event) {
+                                if (event["statuscode@OData.Community.Display.V1.FormattedValue"] === "Published") {
                                     // Add your registration logic here
                                     alert('Registration logic goes here.');
-                                });
-                            }
+                                }
+                            });
                         });
                     },
                     error: function(error) {
