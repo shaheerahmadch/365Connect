@@ -137,12 +137,16 @@
 
     <script>
         // Replace with your API endpoint URL
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
         const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
 
         // Function to fetch event data from the API
         async function fetchEventData() {
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl, requestOptions);
                 const data = await response.json();
                 return data;
             } catch (error) {
