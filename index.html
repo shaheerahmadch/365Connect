@@ -26,51 +26,24 @@
             margin: 0;
         }
 
-        .event-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 20px;
+        .event-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .event {
-            width: 30%;
-            margin: 10px 0;
-            padding: 20px;
+        .event-item {
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event:hover {
-            transform: scale(1.02);
-        }
-
-        .event::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://via.placeholder.com/400');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
+            margin: 10px 0;
+            padding: 20px;
         }
 
         h2 {
             font-size: 24px;
             margin: 0;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            color: #333;
         }
 
         p {
@@ -94,46 +67,12 @@
         }
 
         .event-description {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-        }
-
-        .event.show-details .event-description {
-            max-height: 200px; /* Set an appropriate max-height for the description */
-        }
-
-        .modal {
             display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
         }
 
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 70%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: black;
+        .event-item:hover .event-description {
+            display: block;
+            margin-top: 10px;
         }
 
         .register-button {
@@ -143,6 +82,8 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
         }
 
         .register-button:hover {
@@ -155,9 +96,9 @@
         <h1>Upcoming Events</h1>
     </header>
     
-    <div class="event-container">
+    <ul class="event-list">
         <!-- Events will be displayed here -->
-    </div>
+    </ul>
 
     <!-- Event Details Modal -->
     <div class="modal" id="eventModal">
@@ -181,14 +122,14 @@
                     method: 'GET',
                     dataType: 'json',
                     success: function(events) {
-                        const eventContainer = $('.event-container');
+                        const eventList = $('.event-list');
 
                         // Clear existing content
-                        eventContainer.empty();
+                        eventList.empty();
 
                         // Loop through the events and display them
                         $.each(events, function(index, event) {
-                            const eventDiv = $('<div class="event">');
+                            const eventItem = $('<li class="event-item">');
                             const eventTitle = $('<h2>').text(event.sa_name);
                             const eventStart = $('<p>').html('<i class="fas fa-calendar"></i> ' + event["sa_start@OData.Community.Display.V1.FormattedValue"]);
                             const eventEnd = $('<p>').html('<i class="fas fa-clock"></i> ' + event["sa_end@OData.Community.Display.V1.FormattedValue"]);
@@ -196,8 +137,8 @@
                             const eventDescription = $('<p class="event-description">').text(event.sa_description);
                             const eventDetailsButton = $('<button>').text('View Details');
 
-                            eventDiv.append(eventTitle, eventStart, eventEnd, eventStatus, eventDetailsButton);
-                            eventContainer.append(eventDiv);
+                            eventItem.append(eventTitle, eventStart, eventEnd, eventStatus, eventDescription, eventDetailsButton);
+                            eventList.append(eventItem);
 
                             // Event details modal
                             eventDetailsButton.on('click', function() {
@@ -218,7 +159,12 @@
                             // Register button (only visible for events with "Published" status)
                             if (event["statuscode@OData.Community.Display.V1.FormattedValue"] === "Published") {
                                 const registerButton = $('<button class="register-button">').text('Register');
-                                eventDiv.append(registerButton);
+                                eventItem.append(registerButton);
+
+                                registerButton.on('click', function(event) {
+                                    // Add your registration logic here
+                                    alert('Registration logic goes here.');
+                                });
                             }
                         });
                     },
