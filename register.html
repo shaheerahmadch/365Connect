@@ -253,8 +253,10 @@
                 listItem.className = "event-item";
                 listItem.innerHTML = `<h1>${event.sa_name}</h1>
             <p> ${event.sa_description}</p><br>
+            <p><strong>Duration:</strong> ${hoursToDays(event.sa_duration)}</p>
             <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
+            <p><strong>Registration Open:</strong> ${event["sa_registrationopen@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>`;
                 fragment.appendChild(listItem); // Append to the fragment
 
@@ -372,6 +374,18 @@
             messagetext.classList.add("alert-" + alertType)
             messagetext.textContent = alert;
             message.appendChild(messagetext);
+        }
+        function hoursToDays(hours) {
+            if (hours >= 24) {
+                const days = Math.floor(hours / 24); // Calculate the whole number of days
+                const remainingHours = hours % 24;  // Calculate the remaining hours
+                if(remainingHours != 0)
+                return `${days} days and ${remainingHours} hours`;
+                else
+                return `${days} days`;
+            } else {
+                return `${hours} hours`; // Less than 24 hours, return hours only
+            }
         }
 
 

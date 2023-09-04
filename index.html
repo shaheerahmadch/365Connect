@@ -72,6 +72,7 @@
             <button class="close-button" id="close-popup">Close</button>
             <h2>Event Details</h2><br>
             <p><strong>Name:</strong> <span id="event-name"></span></p>
+            <p><strong>Duration:</strong> <span id="event-duration"></span></p>
             <p><strong>Start Date:</strong> <span id="event-start"></span></p>
             <p><strong>End Date:</strong> <span id="event-end"></span></p>
             <p><strong>Status:</strong> <span id="event-status"></span></p>
@@ -204,8 +205,7 @@
                     listItem.innerHTML = `<h1>${event.sa_name}</h1>
                 <p> ${event.sa_description}</p><br>
                 <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
-                <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
-                <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p>
+                <p><strong>Duration:</strong> ${hoursToDays(event.sa_duration)}</p>
                 <p><strong>Registration Open:</strong> ${event["sa_registrationopen@OData.Community.Display.V1.FormattedValue"]}</p><br><br>
                 <button class="view-details">View Details</button>
             `;
@@ -224,7 +224,18 @@
             }
         }
         ////////////////////
-
+        function hoursToDays(hours) {
+            if (hours >= 24) {
+                const days = Math.floor(hours / 24); // Calculate the whole number of days
+                const remainingHours = hours % 24;  // Calculate the remaining hours
+                if(remainingHours != 0)
+                return `${days} days and ${remainingHours} hours`;
+                else
+                return `${days} days`;
+            } else {
+                return `${hours} hours`; // Less than 24 hours, return hours only
+            }
+        }
         ////////////////////
 
         // Function to open the popup with event details
@@ -238,6 +249,7 @@
             const eventStatus = document.getElementById("event-status");
             const registerNowLink = document.getElementById("register-now-link");
             const eventType = document.getElementById("event-type");
+            const eventDuration = document.getElementById("event-duration");
 
             eventName.textContent = event.sa_name;
             eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
@@ -245,6 +257,7 @@
             eventDescription.textContent = event.sa_description;
             eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
             eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
+            eventDuration.textContent = hoursToDays(event.sa_duration);
 
             if (event.statuscode === 126380003 && event.sa_registrationopen) {
                 registerNowLink.href = "./register.html?id=" + event.sa_eventid;
