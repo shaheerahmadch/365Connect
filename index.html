@@ -202,7 +202,7 @@ function openPopup(event) {
     eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
 
     if (event.statuscode === 126380003) {
-        registerNowLink.href = event.sa_registrationlink;
+        registerNowLink.href = "./register.html?id="+ event.sa_eventid;
         registerNowLink.style.display = "block";
     } else {
         registerNowLink.style.display = "none";
@@ -239,7 +239,7 @@ async function displayEventList1() {
         `;
 
         if (comp_event.statuscode === 126380003) {
-            comp_listItem.innerHTML += `<a href="${window.location.href +'/?id='+ comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+            comp_listItem.innerHTML += `<a href="${'./register.html?id='+ comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
         }
 
         comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
