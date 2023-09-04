@@ -21,11 +21,24 @@
         h1 {
             text-align: center;
             padding: 20px;
-            background-color: #333;
+            background-color: #1ab394;
             color: white;
+        }
+        h2 {
+            text-align: center;
+            padding: 20px;
+            color: black;
+            font-weight:600;
         }
 
         #event-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #event-list1 {
             list-style-type: none;
             padding: 0;
             display: flex;
@@ -38,7 +51,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+            margin: 30px;
             padding: 20px;
             width: 70%;
             text-align: center;
@@ -54,7 +67,7 @@
         }
 
         .view-details {
-            background-color: #333;
+            background-color: #1ab394;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -234,8 +247,8 @@ a{
 }
 .author{
   display:inline-block;
-  width:50px;
-  height:50px;
+  width:150px;
+  height:150px;
   border-radius:50%;
   background:url(https://media.licdn.com/dms/image/D4D03AQHL2owyX9q5Kg/profile-displayphoto-shrink_400_400/0/1686897884481?e=1699488000&v=beta&t=_WLnMaFYHSpMNPaWfwj1GnK0jkSVM4CfOzcYPsTF3KU) center no-repeat;
   background-size:cover;
@@ -269,10 +282,295 @@ a{
 .twtr{
   margin-top:100px
 }.btn.twtr:after{content:"\1F426";padding-left:5px}
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
     </style>
 </head>
 
 <body>
+    <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header">
         <div class="sides">
           <a href="#" class="logo">Events</a>
@@ -280,35 +578,98 @@ a{
         <div class="sides"> <a href="#" class="menu"> </a></div>
         <div class="info">
         <h4><a href="#category">365Connect Community</a></h4>
-          <h2>Shaheer Ahmad</h2>
+          <h2 style="color:white !important;">Shaheer Ahmad</h2>
           <div class="meta">
             <a  href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
-            <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Microsoft Learn Student Ambassador</a>
+            <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA Beta | Power Platform & Dynamics 365 Enthusiast</a>
           </div>
         </div>
       </div>
       
 <section class="content">
-    <ul id="event-list"></ul>
+    <center><h2>Upcomming Events</h2><hr></center>
+    <ul id="event-list"></ul><br>
+    <center><h2>Past Events</h2><hr></center>
+    <ul id="event-list1"></ul>
 
     <!-- Popup and overlay for event details -->
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <button class="close-button" id="close-popup">Close</button>
-        <h2>Event Details</h2>
+        <h2>Event Details</h2><br>
         <p><strong>Name:</strong> <span id="event-name"></span></p>
         <p><strong>Start Date:</strong> <span id="event-start"></span></p>
         <p><strong>End Date:</strong> <span id="event-end"></span></p>
         <p><strong>Status:</strong> <span id="event-status"></span></p>
+        <p><strong>Type:</strong> <span id="event-type"></span></p>
         <p><strong>Description:</strong> <span id="event-description"></span></p>
         <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
     </div>
+    
+</section>
+      <!-- Site footer -->
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About</h6>
+              <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in helping others solve problems and have started sharing my learnings on my blog.</p>
+            </div>
+  
+  
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li><a href="http://scanfcode.com/about/">LinkedIn</a></li>
+                <li><a href="http://scanfcode.com/contact/">Blog</a></li>
+                <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
+                <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
+                <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+           <a href="#">Shaheer Ahmad</a>.
+              </p>
+            </div>
+  
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+              </ul>
+            </div>
+          </div>
+        </div>
+  </footer>
+  
 
     <script>
         // Replace with your API endpoint URL
+        var myHeaders1 = new Headers();
+        myHeaders1.append("type", "Past");
+
+        var requestOptions1 = {
+        method: 'GET',
+        headers: myHeaders1,
+        redirect: 'follow'
+        };
+        const apiUrl1 = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
+
+        var myHeaders = new Headers();
+        myHeaders.append("type", "UpComing");
+
         var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
         };
         const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
 
@@ -326,6 +687,7 @@ a{
 
         // Function to create and display the event list
         async function displayEventList() {
+            document.getElementById("loading").style.display = "block";
             const eventList = document.getElementById("event-list");
             const events = await fetchEventData();
 
@@ -336,7 +698,7 @@ a{
                     <p> ${event.sa_description}</p><br>
                     <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
                     <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
-                    <p><strong>End Date:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p>
+                    <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
                     <button class="view-details">View Details</button>
                 `;
 
@@ -347,7 +709,11 @@ a{
                 listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
                 eventList.appendChild(listItem);
             });
-        }
+            document.getElementById("loading").style.display = "none";
+        };
+        ////////////////////
+        
+        ////////////////////
 
         // Function to open the popup with event details
         function openPopup(event) {
@@ -359,12 +725,14 @@ a{
             const eventDescription = document.getElementById("event-description");
             const eventStatus = document.getElementById("event-status");
             const registerNowLink = document.getElementById("register-now-link");
+            const eventType = document.getElementById("event-type");
 
             eventName.textContent = event.sa_name;
             eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
             eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
             eventDescription.textContent = event.sa_description;
             eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
+            eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
 
             if (event.statuscode === 126380003) {
                 registerNowLink.href = event.sa_registrationlink;
@@ -381,12 +749,51 @@ a{
                 popup.style.display = "none";
             });
         };
-
         // Initialize the page
+        document.getElementById("loading").style.display = "none";
         displayEventList();
+
+        displayEventList1();
+
+        async function displayEventList1() {
+            document.getElementById("loading").style.display = "block";
+            const comp_eventList = document.getElementById("event-list1");
+            const comp_events = await fetchEventData1();
+
+            comp_events.forEach(comp_event => {
+                const comp_listItem = document.createElement("li");
+                comp_listItem.className = "event-item";
+                comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
+                    <p> ${comp_event.sa_description}</p><br>
+                    <p><strong>Start Date:</strong> ${comp_event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
+                    <p><strong>End Date:</strong> ${comp_event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
+                    <p><strong>Status:</strong> ${comp_event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+                    <button class="view-details">View Details</button>
+                `;
+
+                if (comp_event.statuscode === 126380003) {
+                    comp_listItem.innerHTML += `<a href="${comp_event.sa_registrationlink}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                }
+
+                comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
+                comp_eventList.appendChild(comp_listItem);
+                
+            });
+            document.getElementById("loading").style.display = "none";
+        };
+        
+        async function fetchEventData1() {
+            try {
+                const response1 = await fetch(apiUrl1, requestOptions1);
+                const data1 = await response1.json();
+                return data1;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                return [];
+            }
+        }
     </script>
     
-<section class="content">
 </body>
 
 </html>
