@@ -8,229 +8,264 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 </head>
 
 <body>
-    
+
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header">
-        
-          
+
+
         <div class="sides">
             <!-- search-->
             <div class="box">
                 <div class="container-2">
-                  <span class="icon">
-                    <i class="fa fa-search"></i>
-                  </span>
+                    <span class="icon">
+                        <i class="fa fa-search"></i>
+                    </span>
                     <input type="search" id="search" placeholder="Search...">
                 </div>
             </div>
             <!-- search end-->
-          <a href="#" class="logo" style="display: none;">Events</a>
+            <a href="#" class="logo" style="display: none;">Events</a>
         </div>
 
 
-        <div class="sides"> 
+        <div class="sides">
             <a href="#" class="menu" style=" display: none;"> </a>
 
-            
+
         </div>
         <div class="info">
-        <h4><a href="#category">365Connect Community</a></h4>
-          <h2>Shaheer Ahmad</h2>
-          <div class="meta">
-            <a  href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
-            <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA Beta | Power Platform & Dynamics 365 Enthusiast</a>
-          </div>
+            <h4><a href="#category">365Connect Community</a></h4>
+            <h2>Shaheer Ahmad</h2>
+            <div class="meta">
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA
+                    Beta | Power Platform & Dynamics 365 Enthusiast</a>
+            </div>
         </div>
-      </div>
-      
-<section class="content">
-    <center><h2 style="color: black !important;">Upcomming Events</h2><hr style=" border: 2px solid black; border-radius: 20px;"></center>
-    <ul id="event-list"></ul><br>
-    <center><h2 style="color: black !important;">Past Events</h2><hr style=" border: 2px solid black; border-radius: 20px;"></center>
-    <ul id="event-list1"></ul>
-
-    <!-- Popup and overlay for event details -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <button class="close-button" id="close-popup">Close</button>
-        <h2>Event Details</h2><br>
-        <p><strong>Name:</strong> <span id="event-name"></span></p>
-        <p><strong>Start Date:</strong> <span id="event-start"></span></p>
-        <p><strong>End Date:</strong> <span id="event-end"></span></p>
-        <p><strong>Status:</strong> <span id="event-status"></span></p>
-        <p><strong>Type:</strong> <span id="event-type"></span></p>
-        <p><strong>Description:</strong> <span id="event-description"></span></p>
-        <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
     </div>
-    
-</section>
-      <!-- Site footer -->
-      <footer class="site-footer">
+
+    <section class="content">
+        <center>
+            <h2 style="color: black !important;">Upcomming Events</h2>
+            <hr style=" border: 2px solid black; border-radius: 20px;">
+        </center>
+        <ul id="event-list"></ul><br>
+        <div class="message" id="message">
+        </div>
+        <center>
+            <h2 style="color: black !important;">Past Events</h2>
+            <hr style=" border: 2px solid black; border-radius: 20px;">
+        </center>
+        <ul id="event-list1"></ul>
+
+        <!-- Popup and overlay for event details -->
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <button class="close-button" id="close-popup">Close</button>
+            <h2>Event Details</h2><br>
+            <p><strong>Name:</strong> <span id="event-name"></span></p>
+            <p><strong>Start Date:</strong> <span id="event-start"></span></p>
+            <p><strong>End Date:</strong> <span id="event-end"></span></p>
+            <p><strong>Status:</strong> <span id="event-status"></span></p>
+            <p><strong>Type:</strong> <span id="event-type"></span></p>
+            <p><strong>Description:</strong> <span id="event-description"></span></p>
+            <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
+        </div>
+
+    </section>
+    <!-- Site footer -->
+    <footer class="site-footer">
         <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <h6>About</h6>
-              <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in helping others solve problems and have started sharing my learnings on my blog.</p>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
+                        Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
+                        Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a
+                        strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in
+                        helping others solve problems and have started sharing my learnings on my blog.</p>
+                </div>
+
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">Community</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
+                    </ul>
+                </div>
             </div>
-  
-  
-            <div class="col-xs-6 col-md-3">
-              <h6>Quick Links</h6>
-              <ul class="footer-links">
-                <li><a href="http://scanfcode.com/about/">Community</a></li>
-                <li><a href="http://scanfcode.com/contact/">Blog</a></li>
-                <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
-                <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
-                <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
-              </ul>
-            </div>
-          </div>
-          <hr>
+            <hr>
         </div>
         <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-              <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
-           <a href="#">Shaheer Ahmad</a>.
-              </p>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Shaheer Ahmad</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
+                                    class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
             </div>
-  
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <ul class="social-icons">
-                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i class="fa fa-linkedin"></i></a></li>   
-              </ul>
-            </div>
-          </div>
         </div>
-  </footer>
-<script>
+    </footer>
+    <script>
 
-document.getElementById("search").addEventListener("keypress", function onEvent(event) {
-    if (event.key === "Enter") {
-        // Do something better
-        find(document.getElementById("search").value)
-    }
-});
-// Replace with your API endpoint URL
-var myHeaders1 = new Headers();
-myHeaders1.append("type", "Past");
+        document.getElementById("search").addEventListener("keypress", function onEvent(event) {
+            if (event.key === "Enter") {
+                // Do something better
+                find(document.getElementById("search").value)
+            }
+        });
+        // Replace with your API endpoint URL
+        var myHeaders1 = new Headers();
+        myHeaders1.append("type", "Past");
 
-var requestOptions1 = {
-method: 'GET',
-headers: myHeaders1,
-redirect: 'follow'
-};
-const apiUrl1 = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
+        var requestOptions1 = {
+            method: 'GET',
+            headers: myHeaders1,
+            redirect: 'follow'
+        };
+        const apiUrl1 = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
 
-var myHeaders = new Headers();
-myHeaders.append("type", "UpComing");
+        var myHeaders = new Headers();
+        myHeaders.append("type", "UpComing");
 
-var requestOptions = {
-method: 'GET',
-headers: myHeaders,
-redirect: 'follow'
-};
-const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
 
-// Function to fetch event data from the API
-async function fetchEventData() {
-    try {
-        const response = await fetch(apiUrl, requestOptions);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
-}
+        // Function to fetch event data from the API
+        async function fetchEventData() {
+            try {
+                const response = await fetch(apiUrl, requestOptions);
 
-// Function to create and display the event list
-async function displayEventList() {
-    document.getElementById("loading").style.display = "block";
-    const eventList = document.getElementById("event-list");
-    const events = await fetchEventData();
-
-    events.forEach(event => {
-        const listItem = document.createElement("li");
-        listItem.className = "event-item";
-        listItem.innerHTML = `<h1>${event.sa_name}</h1>
-            <p> ${event.sa_description}</p><br>
-            <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
-            <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
-            <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
-            <button class="view-details">View Details</button>
-        `;
-
-        if (event.statuscode === 126380003) {
-            listItem.innerHTML += `<a href="${'./register.html?id='+ event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                if (response.status === 200) {
+                    const data = await response.json();
+                    return data;
+                } else {
+                    showEerror("No Upcoming Events","warning");
+                    return [];
+                }
+            } catch (error) {
+                showError("No Upcoming Events", "warning");
+                return [];
+            }
+        }
+        function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
         }
 
-        listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
-        eventList.appendChild(listItem);
-    });
-    document.getElementById("loading").style.display = "none";
-};
-////////////////////
+        // Function to create and display the event list
+        async function displayEventList() {
+            document.getElementById("loading").style.display = "block";
+            const eventList = document.getElementById("event-list");
 
-////////////////////
+            try {
+                const events = await fetchEventData();
 
-// Function to open the popup with event details
-function openPopup(event) {
-    const overlay = document.getElementById("overlay");
-    const popup = document.getElementById("popup");
-    const eventName = document.getElementById("event-name");
-    const eventStart = document.getElementById("event-start");
-    const eventEnd = document.getElementById("event-end");
-    const eventDescription = document.getElementById("event-description");
-    const eventStatus = document.getElementById("event-status");
-    const registerNowLink = document.getElementById("register-now-link");
-    const eventType = document.getElementById("event-type");
+                events.forEach(event => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "event-item";
+                    listItem.innerHTML = `<h1>${event.sa_name}</h1>
+                <p> ${event.sa_description}</p><br>
+                <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
+                <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
+                <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+                <button class="view-details">View Details</button>
+            `;
 
-    eventName.textContent = event.sa_name;
-    eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
-    eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
-    eventDescription.textContent = event.sa_description;
-    eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
-    eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
+                    if (event.statuscode === 126380003) {
+                        listItem.innerHTML += `<a href="${'./register.html?id=' + event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                    }
 
-    if (event.statuscode === 126380003) {
-        registerNowLink.href = "./register.html?id="+ event.sa_eventid;
-        registerNowLink.style.display = "block";
-    } else {
-        registerNowLink.style.display = "none";
-    }
+                    listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
+                    eventList.appendChild(listItem);
+                });
 
-    overlay.style.display = "block";
-    popup.style.display = "block";
-    // close popup
-    document.getElementById("close-popup").addEventListener("click", () => {
-        overlay.style.display = "none";
-        popup.style.display = "none";
-    });
-};
-// Initialize the page
-document.getElementById("loading").style.display = "none";
-displayEventList();
+                document.getElementById("loading").style.display = "none";
+            } catch (error) {
+                console.error("Error displaying event list:", error);
+            }
+        }
+        ////////////////////
 
-displayEventList1();
+        ////////////////////
 
-async function displayEventList1() {
-    document.getElementById("loading").style.display = "block";
-    const comp_eventList = document.getElementById("event-list1");
-    const comp_events = await fetchEventData1();
+        // Function to open the popup with event details
+        function openPopup(event) {
+            const overlay = document.getElementById("overlay");
+            const popup = document.getElementById("popup");
+            const eventName = document.getElementById("event-name");
+            const eventStart = document.getElementById("event-start");
+            const eventEnd = document.getElementById("event-end");
+            const eventDescription = document.getElementById("event-description");
+            const eventStatus = document.getElementById("event-status");
+            const registerNowLink = document.getElementById("register-now-link");
+            const eventType = document.getElementById("event-type");
 
-    comp_events.forEach(comp_event => {
-        const comp_listItem = document.createElement("li");
-        comp_listItem.className = "event-item";
-        comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
+            eventName.textContent = event.sa_name;
+            eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
+            eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
+            eventDescription.textContent = event.sa_description;
+            eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
+            eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
+
+            if (event.statuscode === 126380003) {
+                registerNowLink.href = "./register.html?id=" + event.sa_eventid;
+                registerNowLink.style.display = "block";
+            } else {
+                registerNowLink.style.display = "none";
+            }
+
+            overlay.style.display = "block";
+            popup.style.display = "block";
+            // close popup
+            document.getElementById("close-popup").addEventListener("click", () => {
+                overlay.style.display = "none";
+                popup.style.display = "none";
+            });
+        };
+        // Initialize the page
+        document.getElementById("loading").style.display = "none";
+        displayEventList();
+
+        displayEventList1();
+
+        async function displayEventList1() {
+            document.getElementById("loading").style.display = "block";
+            const comp_eventList = document.getElementById("event-list1");
+            const comp_events = await fetchEventData1();
+
+            comp_events.forEach(comp_event => {
+                const comp_listItem = document.createElement("li");
+                comp_listItem.className = "event-item";
+                comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
             <p> ${comp_event.sa_description}</p><br>
             <p><strong>Start Date:</strong> ${comp_event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>End Date:</strong> ${comp_event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
@@ -238,30 +273,35 @@ async function displayEventList1() {
             <button class="view-details">View Details</button>
         `;
 
-        if (comp_event.statuscode === 126380003) {
-            comp_listItem.innerHTML += `<a href="${'./register.html?id='+ comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                if (comp_event.statuscode === 126380003) {
+                    comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                }
+
+                comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
+                comp_eventList.appendChild(comp_listItem);
+
+            });
+            document.getElementById("loading").style.display = "none";
+        };
+
+        async function fetchEventData1() {
+            try {
+                const response1 = await fetch(apiUrl1, requestOptions1);
+                if (response1.status === 200) {
+                    const data1 = await response1.json();
+                    return data1;
+                } else {
+                    showEerror("No Past Events","warning");
+                    return [];
+                }
+            } catch (error) {
+                showError("No Past Events", "warning");
+                return [];
+            }
         }
+    </script>
 
-        comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
-        comp_eventList.appendChild(comp_listItem);
-        
-    });
-    document.getElementById("loading").style.display = "none";
-};
 
-async function fetchEventData1() {
-    try {
-        const response1 = await fetch(apiUrl1, requestOptions1);
-        const data1 = await response1.json();
-        return data1;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
-}
-</script>
-
-    
 </body>
 
 </html>
