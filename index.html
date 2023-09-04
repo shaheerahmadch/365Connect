@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- search end-->
-            <a href="#" class="logo" style="display: none;">Events</a>
+            <a href="./registrations.html" class="logo" style="margin-top: 0px !important; height: 50px;">View Your Events</a>
         </div>
 
 
@@ -63,9 +63,13 @@
             <h2 style="color: black !important;">Past Events</h2>
             <hr style=" border: 2px solid black; border-radius: 20px;">
         </center>
+        <!-- Inside your HTML file -->
         <ul id="event-list1"></ul>
-        <div class="message" id="message1"><br>
 
+        <div class="message" id="message1"><br>
+            
+            <div class="row"></div>
+              </div>
         <!-- Popup and overlay for event details -->
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">
@@ -289,19 +293,24 @@
             const comp_events = await fetchEventData1();
 
             comp_events.forEach(comp_event => {
-                const comp_listItem = document.createElement("li");
-                comp_listItem.className = "event-item";
-                comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
-            <p> ${comp_event.sa_description}</p><br>
-            <button class="view-details">View Details</button>
-        `;
+        //         const comp_listItem = document.createElement("li");
+        //         comp_listItem.className = "event-item";
+        //         comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
+        //     <p> ${comp_event.sa_description}</p><br>
+        //     <button class="view-details">View Details</button>
+        // `;
+        const parentElement = document.querySelector('.row');
 
-                if (comp_event.statuscode === 126380003 && comp_event.sa_registrationopen) {
-                    comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
-                }
+// Call the function to create the col-sm-6 and append it to the parent element
+const colSm6 = createColSm6(comp_event);
+parentElement.appendChild(colSm6);
 
-                comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
-                comp_eventList.appendChild(comp_listItem);
+                // if (comp_event.statuscode === 126380003 && comp_event.sa_registrationopen) {
+                //     comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
+                // }
+
+                // comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
+                // comp_eventList.appendChild(comp_listItem);
 
             });
             document.getElementById("loading").style.display = "none";
@@ -322,6 +331,66 @@
                 return [];
             }
         }
+
+
+
+
+
+        ///////////////////
+
+        // Function to create a col-sm-6 with nested items
+function createColSm6(thisevent) {
+    // Create a div element with the "col-sm-6" class
+    const colDiv = document.createElement('div');
+    colDiv.classList.add('col-sm-6');
+
+    // Create a div element with the "card" class
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+    cardDiv.style.minHeight = '350px';
+    cardDiv.style.margin = '10px';
+
+    // Create a div element with the "card-body" class
+    const cardBodyDiv = document.createElement('div');
+    cardBodyDiv.classList.add('card-body');
+
+    // Create a title element
+    const titleElement = document.createElement('h2');
+    titleElement.classList.add('card-title');
+    titleElement.textContent = thisevent.sa_name;
+
+    // Create a paragraph element for text
+    const textElement = document.createElement('p');
+    textElement.classList.add('card-text');
+    textElement.textContent = thisevent.sa_description;
+
+    // Create a button element
+    const buttonElement = document.createElement('p');
+buttonElement.classList.add('btn', 'btn-primary');
+buttonElement.textContent = 'View Event';
+
+// Add a click event listener to the button
+buttonElement.addEventListener("click", () => {
+    openPopup(thisevent);
+});
+
+// Append the button element to the card body
+cardBodyDiv.appendChild(buttonElement);
+
+    // Append elements to build the structure
+    cardBodyDiv.appendChild(titleElement);
+    cardBodyDiv.appendChild(textElement);
+    cardBodyDiv.appendChild(buttonElement);
+    cardDiv.appendChild(cardBodyDiv);
+    colDiv.appendChild(cardDiv);
+
+    // Return the created col-sm-6 element
+    return colDiv;
+}
+
+// Get the parent element where you want to append the col-sm-6
+
+
     </script>
 
 
