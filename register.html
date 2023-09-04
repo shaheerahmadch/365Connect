@@ -42,8 +42,9 @@
       </div>
       
 <section class="content">
+    
     <div class="event-detail"id="event-detail">
-
+        <ul id="event-list"></ul><br>
     </div>
     <div class="container">
 
@@ -188,6 +189,53 @@
     var url_string = window.location.href; 
     var url = new URL(url_string);
     var id = url.searchParams.get("id");
+    var myHeaders = new Headers();
+myHeaders.append("guid", id);
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+const apiUrl = "https://prod-54.southeastasia.logic.azure.com:443/workflows/ec084d3691234b458d24d5ec70f8e8b5/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GenJ5EF13FI94PR3kMFN5CcC3H9jDQYAw0i2sE5Idro";
+
+// Function to fetch event data from the API
+async function fetchEventData() {
+  try {
+    const response = await fetch(apiUrl, requestOptions); // Await the fetch call
+    const data = await response.json(); // Await parsing the response as JSON
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+// You should call this function within an async context, e.g., inside an async function
+async function fetchData() {
+    const eventList = document.getElementById("event-list");
+  const event = await fetchEventData();
+  console.log(event);
+  const listItem = document.createElement("li");
+        listItem.className = "event-item";
+        listItem.innerHTML = `<h1>${event.sa_name}</h1>
+            <p> ${event.sa_description}</p><br>
+            <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
+            <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
+            <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+        `;
+
+        eventList.appendChild(listItem);
+
+
+
+}
+
+// Call the fetchData function
+fetchData();
+
+
     var name = url.searchParams.get("eventName");
 
 
@@ -197,7 +245,7 @@
         var newHeading = document.createElement("h1");
 
         // Set the text content for the h1 element
-        newHeading.textContent = name;
+        newHeading.textContent = event.sa_name;
 
         // Append the h1 element to the existing div
         myDiv.appendChild(newHeading);
@@ -241,6 +289,10 @@ function submitForm(){
     }
     if(firstname != '' && lastname != '' && email != '' ){
     showError("Success. You have been registered. You'll recieve a confirmation email shortly","success")
+    document.getElementById("firstname").disabled = true;
+    document.getElementById("lastname").disabled = true;
+    document.getElementById("email").disabled = true;
+    document.getElementById("phone").disabled = true;
     document.getElementById("submit-button").style.display = "none";
     
     }

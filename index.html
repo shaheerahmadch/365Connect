@@ -170,7 +170,7 @@ async function displayEventList() {
         `;
 
         if (event.statuscode === 126380003) {
-            listItem.innerHTML += `<a href="${'./register.html?id='+ event.sa_eventid+'&eventName='+ event.sa_name}" target="_blank"><button class="register-now">Register Now</button></a>`;
+            listItem.innerHTML += `<a href="${'./register.html?id='+ event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
         }
 
         listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
@@ -239,7 +239,7 @@ async function displayEventList1() {
         `;
 
         if (comp_event.statuscode === 126380003) {
-            comp_listItem.innerHTML += `<a href="${window.location.href +'/?id='+ comp_event.sa_eventid+'&eventName='+ comp_event.sa_name}" target="_blank"><button class="register-now">Register Now</button></a>`;
+            comp_listItem.innerHTML += `<a href="${window.location.href +'/?id='+ comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
         }
 
         comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
