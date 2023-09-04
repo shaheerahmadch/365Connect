@@ -259,6 +259,10 @@
                 fragment.appendChild(listItem); // Append to the fragment
 
                 eventList.appendChild(fragment); // Append the fragment to the DOM
+                if(!event.sa_registrationopen){
+                    document.getElementById("container").style.display = "none";
+                    showError1("Registration Closed","warning")
+                }
             }
         }
 
