@@ -8,238 +8,254 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 </head>
 
 <body>
-    
+
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header">
-        
-          
+
+
         <div class="sides">
             <!-- search-->
             <!-- search end-->
-          <a href="#" class="logo" style="display: none;">Events</a>
+            <a href="#" class="logo" style="display: none;">Events</a>
         </div>
 
 
-        <div class="sides"> 
+        <div class="sides">
             <a href="#" class="menu" style=" display: none;"> </a>
 
-            
+
         </div>
         <div class="info">
-        <h4><a href="#category">365Connect Community</a></h4>
-          <h2>Shaheer Ahmad</h2>
-          <div class="meta">
-            <a  href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
-            <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA Beta | Power Platform & Dynamics 365 Enthusiast</a>
-          </div>
+            <h4><a href="#category">365Connect Community</a></h4>
+            <h2>Shaheer Ahmad</h2>
+            <div class="meta">
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA
+                    Beta | Power Platform & Dynamics 365 Enthusiast</a>
+            </div>
         </div>
-      </div>
-      
-<section class="content">
-    
-    <div class="event-detail"id="event-detail">
-        <ul id="event-list"></ul><br>
     </div>
-    <div class="container">
 
-        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-    <fieldset>
-    <center>
-        <br>
-    <h2>Register Now</h2>
-    <hr style=" border: 2px solid black; border-radius: 20px;">
-    <br>
-    </center>
-    <!-- Form Name -->
-    
-    
-    <!-- Text input-->
-    
-    <div class="form-group">
-      <label class="col-md-4 control-label" style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">First Name</label>  
-      <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
-      <div class="input-group"style="height: 50px !important; margin-bottom:10px !important;">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input  name="first_name" placeholder="" id="firstname" class="form-control"  type="text">
+    <section class="content" style="width: 100% !important;padding: 0px !important;">
+
+        <div class="event-detail" id="event-detail" style="width: 100% !important;">
+            <ul id="event-list" style="width: 100% !important;"></ul><br>
         </div>
-      </div>
-    </div>
-    
-    <!-- Text input-->
-    
-    <div class="form-group">
-      <label class="col-md-4 control-label" style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;" >Last Name</label> 
-        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
-        <div class="input-group"style="height: 50px !important; margin-bottom:10px !important;">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input name="last_name" placeholder="" id="lastname" class="form-control"  type="text">
+        <div class="container" style="width: 70% !important;">
+
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset>
+                    <center>
+                        <br>
+                        <h2>Register Now</h2>
+                        <hr style=" border: 2px solid black; border-radius: 20px;">
+                        <br>
+                    </center>
+                    <!-- Form Name -->
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">First
+                            Name</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" placeholder="" id="firstname" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Last
+                            Name</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="last_name" placeholder="" id="lastname" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">E-Mail</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" placeholder="" id="email" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Phone
+                            (Optional)</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" placeholder="" id="phone" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <br><br>
+                    <div class="message" id="message">
+                    </div>
+                    <!-- Success message -->
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <p class="btn btn-primary btn-lg" onclick="submitForm()" id="submit-button">Register <span
+                                    class="glyphicon glyphicon-send"></span></p>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
         </div>
-      </div>
-    </div>
-    
-    <!-- Text input-->
-           <div class="form-group">
-      <label class="col-md-4 control-label" style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">E-Mail</label>  
-        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
-        <div class="input-group"style="height: 50px !important; margin-bottom:10px !important;">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-      <input name="email" placeholder="" id="email" class="form-control"  type="text">
-        </div>
-      </div>
-    </div>
-    
-    
-    <!-- Text input-->
-           
-    <div class="form-group">
-      <label class="col-md-4 control-label" style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Phone</label>  
-        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
-        <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-      <input name="phone" placeholder="" id="phone" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-    
-    <!-- Text input-->
-          
-    <br><br>
-    <div class="message" id="message">
-    </div>
-    <!-- Success message -->
-    
-    <!-- Button -->
-    <div class="form-group">
-      <label class="col-md-4 control-label"></label>
-      <div class="col-md-4">
-        <p class="btn btn-primary btn-lg" onclick="submitForm()" id="submit-button">Register <span class="glyphicon glyphicon-send"></span></p>
-      </div>
-    </div>
-    
-    </fieldset>
-    </form>
-    </div>
+        <br><br><br>
         </div><!-- /.container -->
 
-    <!-- Popup and overlay for event details -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <button class="close-button" id="close-popup">Close</button>
-        <h2>Event Details</h2><br>
-        <p><strong>Name:</strong> <span id="event-name"></span></p>
-        <p><strong>Start Date:</strong> <span id="event-start"></span></p>
-        <p><strong>End Date:</strong> <span id="event-end"></span></p>
-        <p><strong>Status:</strong> <span id="event-status"></span></p>
-        <p><strong>Type:</strong> <span id="event-type"></span></p>
-        <p><strong>Description:</strong> <span id="event-description"></span></p>
-        <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
-    </div>
-    
-</section>
-      <!-- Site footer -->
-      <footer class="site-footer">
+        <!-- Popup and overlay for event details -->
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <button class="close-button" id="close-popup">Close</button>
+            <h2>Event Details</h2><br>
+            <p><strong>Name:</strong> <span id="event-name"></span></p>
+            <p><strong>Start Date:</strong> <span id="event-start"></span></p>
+            <p><strong>End Date:</strong> <span id="event-end"></span></p>
+            <p><strong>Status:</strong> <span id="event-status"></span></p>
+            <p><strong>Type:</strong> <span id="event-type"></span></p>
+            <p><strong>Description:</strong> <span id="event-description"></span></p>
+            <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
+        </div>
+
+    </section>
+    <!-- Site footer -->
+    <footer class="site-footer">
         <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <h6>About</h6>
-              <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in helping others solve problems and have started sharing my learnings on my blog.</p>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
+                        Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
+                        Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a
+                        strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in
+                        helping others solve problems and have started sharing my learnings on my blog.</p>
+                </div>
+
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">Community</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
+                    </ul>
+                </div>
             </div>
-  
-  
-            <div class="col-xs-6 col-md-3">
-              <h6>Quick Links</h6>
-              <ul class="footer-links">
-                <li><a href="http://scanfcode.com/about/">Community</a></li>
-                <li><a href="http://scanfcode.com/contact/">Blog</a></li>
-                <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
-                <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
-                <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
-              </ul>
-            </div>
-          </div>
-          <hr>
+            <hr>
         </div>
         <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-              <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
-           <a href="#">Shaheer Ahmad</a>.
-              </p>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Shaheer Ahmad</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
+                                    class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
             </div>
-  
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <ul class="social-icons">
-                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i class="fa fa-linkedin"></i></a></li>   
-              </ul>
-            </div>
-          </div>
         </div>
-  </footer>
-  
-<script>
-    document.getElementById("loading").style.display = "none";
-    var url_string = window.location.href; 
-    var url = new URL(url_string);
-    var id = url.searchParams.get("id");
-    var myHeaders = new Headers();
-myHeaders.append("guid", id);
+    </footer>
 
-var requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow'
-};
+    <script>
+        document.getElementById("loading").style.display = "none";
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+        var myHeaders = new Headers();
+        myHeaders.append("guid", id);
 
-const apiUrl = "https://prod-54.southeastasia.logic.azure.com:443/workflows/ec084d3691234b458d24d5ec70f8e8b5/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GenJ5EF13FI94PR3kMFN5CcC3H9jDQYAw0i2sE5Idro";
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-// Function to fetch event data from the API
-async function fetchEventData() {
-  try {
-    const response = await fetch(apiUrl, requestOptions); // Await the fetch call
-    const data = await response.json(); // Await parsing the response as JSON
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
-  }
-}
+        const apiUrl = "https://prod-54.southeastasia.logic.azure.com:443/workflows/ec084d3691234b458d24d5ec70f8e8b5/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GenJ5EF13FI94PR3kMFN5CcC3H9jDQYAw0i2sE5Idro";
 
-// You should call this function within an async context, e.g., inside an async function
-async function fetchData() {
-    const eventList = document.getElementById("event-list");
-  const event = await fetchEventData();
-  console.log(event);
-  const listItem = document.createElement("li");
-        listItem.className = "event-item";
-        listItem.innerHTML = `<h1>${event.sa_name}</h1>
+        // Function to fetch event data from the API
+        async function fetchEventData() {
+            try {
+                const response = await fetch(apiUrl, requestOptions); // Await the fetch call
+                const data = await response.json(); // Await parsing the response as JSON
+                return data;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                return [];
+            }
+        }
+
+        // You should call this function within an async context, e.g., inside an async function
+        async function fetchData() {
+            const eventList = document.getElementById("event-list");
+            const event = await fetchEventData();
+            console.log(event);
+            const listItem = document.createElement("li");
+            listItem.className = "event-item";
+            listItem.innerHTML = `<h1>${event.sa_name}</h1>
             <p> ${event.sa_description}</p><br>
             <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
         `;
 
-        eventList.appendChild(listItem);
+            eventList.appendChild(listItem);
 
 
 
-}
+        }
 
-// Call the fetchData function
-fetchData();
-
-
-    var name = url.searchParams.get("eventName");
+        // Call the fetchData function
+        fetchData();
 
 
-    var myDiv = document.getElementById("event-detail");
+        var name = url.searchParams.get("eventName");
+
+
+        var myDiv = document.getElementById("event-detail");
 
         // Create a new h1 element
         var newHeading = document.createElement("h1");
@@ -250,69 +266,69 @@ fetchData();
         // Append the h1 element to the existing div
         myDiv.appendChild(newHeading);
 
-    const comp_eventList = document.getElementById("event");
-    const comp_listItem = document.createElement("h1").innerHTML = `<h1>${name}</h1>`;
+        const comp_eventList = document.getElementById("event");
+        const comp_listItem = document.createElement("h1").innerHTML = `<h1>${name}</h1>`;
 
- ///// form
-function submitForm(){
-    document.getElementById("loading").style.display = "block";
-    var myDiv = document.getElementById("message");
-    var headingToDelete = document.querySelector(".alert");
-    if (headingToDelete) {
-        myDiv.removeChild(headingToDelete);
-    }
-    var myDiv = document.getElementById("message");
-    var headingToDelete = document.querySelector(".alert");
-    if (headingToDelete) {
-        myDiv.removeChild(headingToDelete);
-    }
-    var myDiv = document.getElementById("message");
-    var headingToDelete = document.querySelector(".alert");
-    if (headingToDelete) {
-        myDiv.removeChild(headingToDelete);
-    }
-    
-    var firstname = document.getElementById("firstname").value
-    var lastname = document.getElementById("lastname").value
-    var email = document.getElementById("email").value
-    var phone = document.getElementById("phone").value
+        ///// form
+        function submitForm() {
+            document.getElementById("loading").style.display = "block";
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
 
-    if(firstname == ''){
-        showError("Error. First Name is Required","danger")
-    }
-    if(lastname == ''){
-        let message = 
-        showError("Error. Last Name is Required","danger")
-    }
-    if(email == ''){
-        showError("Error. Email is Required","danger")
-    }
-    if(firstname != '' && lastname != '' && email != '' ){
-    showError("Success. You have been registered. You'll recieve a confirmation email shortly","success")
-    document.getElementById("firstname").disabled = true;
-    document.getElementById("lastname").disabled = true;
-    document.getElementById("email").disabled = true;
-    document.getElementById("phone").disabled = true;
-    document.getElementById("submit-button").style.display = "none";
-    
-    }
-    document.getElementById("loading").style.display = "none";
+            var firstname = document.getElementById("firstname").value
+            var lastname = document.getElementById("lastname").value
+            var email = document.getElementById("email").value
+            var phone = document.getElementById("phone").value
 
-    
-};
-function showError(alert,alertType){
-    var message = document.getElementById("message");
-    var messagetext = document.createElement("div");
-    messagetext.classList.add("alert")
-    messagetext.classList.add("alert-"+alertType)
-    messagetext.textContent = alert;
-    message.appendChild(messagetext);
-}
+            if (firstname == '') {
+                showError("Error. First Name is Required", "danger")
+            }
+            if (lastname == '') {
+                let message =
+                    showError("Error. Last Name is Required", "danger")
+            }
+            if (email == '') {
+                showError("Error. Email is Required", "danger")
+            }
+            if (firstname != '' && lastname != '' && email != '') {
+                showError("Success. You have been registered. You'll recieve a confirmation email shortly", "success")
+                document.getElementById("firstname").disabled = true;
+                document.getElementById("lastname").disabled = true;
+                document.getElementById("email").disabled = true;
+                document.getElementById("phone").disabled = true;
+                document.getElementById("submit-button").style.display = "none";
+
+            }
+            document.getElementById("loading").style.display = "none";
 
 
+        };
+        function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
 
-</script>
-    
+
+
+    </script>
+
 </body>
 
 </html>
