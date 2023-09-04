@@ -17,12 +17,12 @@
 <body>
 
     <div class="loading" id="loading">Loading&#8230;</div>
-    <div class="header">
+    <div class="header" style="height: 50vh !important;">
 
 
         <div class="sides">
             <!-- search-->
-            <a href="./index.html" class="logo" >&lt-- Back to Main</a>
+            <a href="./index.html" class="logo">🔙 </a>
             <!-- search end-->
             <a href="#" class="logo" style="display: none;">Events</a>
         </div>
@@ -33,7 +33,7 @@
 
 
         </div>
-        <div class="info">
+        <div class="info" style="padding: 0 !important;">
             <h4><a href="#category">365Connect Community</a></h4>
             <h2>Shaheer Ahmad</h2>
             <div class="meta">
@@ -48,8 +48,13 @@
 
         <div class="event-detail" id="event-detail" style="width: 100% !important;">
             <ul id="event-list" style="width: 100% !important;"></ul><br>
+            <center>
+                <div class="message" id="message1" style="width: 60% !important;"></div>
+            </center>
+
         </div>
-        <div class="container" style="width: 70% !important;">
+        </div>
+        <div class="container" style="width: 70% !important;" id="container">
 
             <form class="well form-horizontal" action=" " method="post" id="contact_form">
                 <fieldset>
@@ -206,50 +211,59 @@
         var url_string = window.location.href;
         var url = new URL(url_string);
         var id = url.searchParams.get("id");
-var myHeaders = new Headers();
-myHeaders.append("guid", id);
+        var myHeaders = new Headers();
+        myHeaders.append("guid", id);
 
-var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-};
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-const apiUrl = "https://prod-54.southeastasia.logic.azure.com:443/workflows/ec084d3691234b458d24d5ec70f8e8b5/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GenJ5EF13FI94PR3kMFN5CcC3H9jDQYAw0i2sE5Idro";
+        const apiUrl = "https://prod-54.southeastasia.logic.azure.com:443/workflows/ec084d3691234b458d24d5ec70f8e8b5/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GenJ5EF13FI94PR3kMFN5CcC3H9jDQYAw0i2sE5Idro";
 
-// Function to fetch event data from the API
-async function fetchEventData() {
-    try {
-        const response = await fetch(apiUrl, requestOptions); // Await the fetch call
-        return await response.json(); // Await parsing the response as JSON
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return null; // Return null on error
-    }
-}
+        // Function to fetch event data from the API
+        async function fetchEventData() {
+            try {
+                const response = await fetch(apiUrl, requestOptions); // Await the fetch call
+                if (response.status === 200) {
+                    const data = await response.json();
+                    return data;
+                } else {
+                    showError1("Event not found", "warning");
+                    document.getElementById("container").style.display = "none";
+                    return [];
+                }
+            } catch (error) {
+                showError1("Event not found", "warning");
 
-// You should call this function within an async context, e.g., inside an async function
-async function fetchData() {
-    const eventList = document.getElementById("event-list");
-    const event = await fetchEventData();
-    
-    if (event) {
-        const fragment = document.createDocumentFragment(); // Create a document fragment
-        const listItem = document.createElement("li");
-        listItem.className = "event-item";
-        listItem.innerHTML = `<h1>${event.sa_name}</h1>
+                document.getElementById("container").style.display = "none";
+                return [];
+            }
+        }
+
+        // You should call this function within an async context, e.g., inside an async function
+        async function fetchData() {
+            const eventList = document.getElementById("event-list");
+            const event = await fetchEventData();
+
+            if (event && event.length != 0) {
+                const fragment = document.createDocumentFragment(); // Create a document fragment
+                const listItem = document.createElement("li");
+                listItem.className = "event-item";
+                listItem.innerHTML = `<h1>${event.sa_name}</h1>
             <p> ${event.sa_description}</p><br>
             <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>Status:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>`;
-        fragment.appendChild(listItem); // Append to the fragment
+                fragment.appendChild(listItem); // Append to the fragment
 
-        eventList.appendChild(fragment); // Append the fragment to the DOM
-    }
-}
+                eventList.appendChild(fragment); // Append the fragment to the DOM
+            }
+        }
 
-// Call the fetchData function
-fetchData();
+        // Call the fetchData function
+        fetchData();
 
         ///// form
         function submitForm() {
@@ -276,16 +290,23 @@ fetchData();
             var phone = document.getElementById("phone").value
 
             if (firstname == '') {
-                showError("Error. First Name is Required", "danger")
+                showError("First Name is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
             }
             if (lastname == '') {
-                let message =
-                    showError("Error. Last Name is Required", "danger")
+                showError("Last Name is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
             }
             if (email == '') {
-                showError("Error. Email is Required", "danger")
+                showError("Email is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
             }
             if (firstname != '' && lastname != '' && email != '') {
+                document.getElementById("loading").style.display = "block";
+
                 var myHeaders = new Headers();
                 myHeaders.append("firstname", firstname);
                 myHeaders.append("lastname", lastname);
@@ -320,7 +341,7 @@ fetchData();
                     });
 
 
-                
+
                 document.getElementById("firstname").disabled = true;
                 document.getElementById("lastname").disabled = true;
                 document.getElementById("email").disabled = true;
@@ -328,12 +349,20 @@ fetchData();
                 document.getElementById("submit-button").style.display = "none";
 
             }
-            
+
 
 
         };
         function showError(alert, alertType) {
             var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+        function showError1(alert, alertType) {
+            var message = document.getElementById("message1");
             var messagetext = document.createElement("div");
             messagetext.classList.add("alert")
             messagetext.classList.add("alert-" + alertType)

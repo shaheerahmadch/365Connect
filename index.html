@@ -64,6 +64,7 @@
             <hr style=" border: 2px solid black; border-radius: 20px;">
         </center>
         <ul id="event-list1"></ul>
+        <div class="message" id="message1"><br>
 
         <!-- Popup and overlay for event details -->
         <div class="overlay" id="overlay"></div>
@@ -164,7 +165,7 @@
                     const data = await response.json();
                     return data;
                 } else {
-                    showEerror("No Upcoming Events","warning");
+                    showError("No Upcoming Events","warning");
                     return [];
                 }
             } catch (error) {
@@ -174,6 +175,14 @@
         }
         function showError(alert, alertType) {
             var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+        function showError1(alert, alertType) {
+            var message = document.getElementById("message1");
             var messagetext = document.createElement("div");
             messagetext.classList.add("alert")
             messagetext.classList.add("alert-" + alertType)
@@ -200,7 +209,7 @@
                 <button class="view-details">View Details</button>
             `;
 
-                    if (event.statuscode === 126380003) {
+                    if (event.sa_registrationopen && event.statuscode === 126380003) {
                         listItem.innerHTML += `<a href="${'./register.html?id=' + event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
                     }
 
@@ -236,7 +245,7 @@
             eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
             eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
 
-            if (event.statuscode === 126380003) {
+            if (event.statuscode === 126380003 && event.sa_registrationopen) {
                 registerNowLink.href = "./register.html?id=" + event.sa_eventid;
                 registerNowLink.style.display = "block";
             } else {
@@ -270,7 +279,7 @@
             <button class="view-details">View Details</button>
         `;
 
-                if (comp_event.statuscode === 126380003) {
+                if (comp_event.statuscode === 126380003 && comp_event.sa_registrationopen) {
                     comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
                 }
 
@@ -288,11 +297,11 @@
                     const data1 = await response1.json();
                     return data1;
                 } else {
-                    showEerror("No Past Events","warning");
+                    showError1("No Past Events","warning");
                     return [];
                 }
             } catch (error) {
-                showError("No Past Events", "warning");
+                showError1("No Past Events", "warning");
                 return [];
             }
         }
