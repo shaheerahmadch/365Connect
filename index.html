@@ -171,7 +171,7 @@ a{
   left:0;
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateZ(0); backface-visibility: hidden;
-  scale(1.0, 1.0);
+    scale(1.0, 1.0);
     transform: translateZ(0);
   background:#1B2030 url(https://images.unsplash.com/photo-1571993142257-eae0b44cf0f1?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ) 50% 0 no-repeat;
   background-size:100%;
@@ -299,6 +299,7 @@ a{
         <p><strong>Name:</strong> <span id="event-name"></span></p>
         <p><strong>Start Date:</strong> <span id="event-start"></span></p>
         <p><strong>End Date:</strong> <span id="event-end"></span></p>
+        <p><strong>Status:</strong> <span id="event-status"></span></p>
         <p><strong>Description:</strong> <span id="event-description"></span></p>
         <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
     </div>
@@ -335,6 +336,7 @@ a{
                     <p> ${event.sa_description}</p><br>
                     <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
                     <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
+                    <p><strong>End Date:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p>
                     <button class="view-details">View Details</button>
                 `;
 
@@ -355,12 +357,14 @@ a{
             const eventStart = document.getElementById("event-start");
             const eventEnd = document.getElementById("event-end");
             const eventDescription = document.getElementById("event-description");
+            const eventStatus = document.getElementById("event-status");
             const registerNowLink = document.getElementById("register-now-link");
 
             eventName.textContent = event.sa_name;
             eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
             eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
             eventDescription.textContent = event.sa_description;
+            eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
 
             if (event.statuscode === 126380003) {
                 registerNowLink.href = event.sa_registrationlink;
