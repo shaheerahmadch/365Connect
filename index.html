@@ -76,6 +76,7 @@
             <button class="close-button" id="close-popup">Close</button>
             <h2>Event Details</h2><br>
             <p><strong>Name:</strong> <span id="event-name"></span></p>
+            <p><strong>Host:</strong> <span id="event-host"></span></p>
             <p><strong>Duration:</strong> <span id="event-duration"></span></p>
             <p><strong>Start Date:</strong> <span id="event-start"></span></p>
             <p><strong>End Date:</strong> <span id="event-end"></span></p>
@@ -209,6 +210,7 @@
                     listItem.className = "event-item";
                     listItem.innerHTML = `<h1>${event.sa_name}</h1>
                 <p> ${event.sa_description}</p><br>
+                <p><strong>Host:</strong> ${event["_sa_host_value@OData.Community.Display.V1.FormattedValue"]}</p>
                 <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
                 <p><strong>Duration:</strong> ${hoursToDays(event.sa_duration)}</p>
                 <p><strong>Registration Open:</strong> ${event["sa_registrationopen@OData.Community.Display.V1.FormattedValue"]}</p><br><br>
@@ -256,6 +258,7 @@
             const eventType = document.getElementById("event-type");
             const eventDuration = document.getElementById("event-duration");
             const eventreistration = document.getElementById("event-registration");
+            const eventHost = document.getElementById("event-host");
 
             eventName.textContent = event.sa_name;
             eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
@@ -265,6 +268,7 @@
             eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
             eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
             eventDuration.textContent = hoursToDays(event.sa_duration);
+            eventHost.textContent = event["_sa_host_value@OData.Community.Display.V1.FormattedValue"]
 
             if (event.statuscode === 126380003 && event.sa_registrationopen) {
                 registerNowLink.href = "./register.html?id=" + event.sa_eventid;

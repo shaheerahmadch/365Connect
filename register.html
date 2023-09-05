@@ -253,6 +253,7 @@
                 listItem.className = "event-item";
                 listItem.innerHTML = `<h1>${event.sa_name}</h1>
             <p> ${event.sa_description}</p><br>
+            <p><strong>Host:</strong> ${event["_sa_host_value@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>Duration:</strong> ${hoursToDays(event.sa_duration)}</p>
             <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
             <p><strong>End Date:</strong> ${event["sa_end@OData.Community.Display.V1.FormattedValue"]}</p>
