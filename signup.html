@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaheer Ahmad Events</title>
@@ -67,18 +68,55 @@
             height: 40px;
             width: 100px;
         }
+        .alert{
+            background-color: coral;
+            width: 100%;
+            padding: 10px;
+            margin-left:-10px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Signup with Email</h2><hr><br>
-        <input class="in-put" type="text" placeholder="First Name" >
-        <input class="in-put" type="text" placeholder="Last Name" >
-        <input class="in-put" type="text" placeholder="Email" >
-        <input class="in-put" type="password" placeholder="Password" >
-        <input class="in-put" type="password" placeholder="Confirm Password" ><br><br><br>
-        <button class="bntn">Continue</button>
-        <p>Already have an account? <a href="#">Sign In</a></p>
+        <h2>Complete Account</h2><hr><br>
+        <input class="in-put" type="text" placeholder="First Name" id="email">
+        <input class="in-put" type="text" placeholder="Last Name" id="email">
+        <input class="in-put" type="password" placeholder="Password" id="password">
+        <input class="in-put" type="password" placeholder="Confirm Password" id="password"><br><br><br>
+
+        <button class="bntn" onclick="submit()">Continue</button>
+        <div class="message" id="message">
+        </div>        
     </div>
 </body>
+<script>
+    function submit(){
+        var myDiv = document.getElementById("message");
+        var headingToDelete = document.querySelector(".alert");
+        if (headingToDelete) {
+            myDiv.removeChild(headingToDelete);
+        }
+        var myDiv = document.getElementById("message");
+        var headingToDelete = document.querySelector(".alert");
+        if (headingToDelete) {
+            myDiv.removeChild(headingToDelete);
+        }
+        if(document.getElementById("email").value == '')
+        showError("Email is required")
+        if(document.getElementById("password").value == '')
+        showError("Email is required")
+
+        //window.location.replace("./registrations.html?email="+document.getElementById("email").value)
+    }
+    function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+</script>
 </html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaheer Ahmad | Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="loading" id="loading">Loading&#8230;</div>
+    <div class="header" style="height: 50vh !important;">
+
+
+        <div class="sides">
+            <!-- search-->
+            <a href="./index.html" class="logo">🔙 </a>
+            <!-- search end-->
+            <a href="#" class="logo" style="display: none;">Events</a>
+        </div>
+
+
+        <div class="sides">
+            <a href="#" class="menu" style=" display: none;"> </a>
+
+
+        </div>
+        <div class="info"id="info">
+            <h4><a href="#category"></a></h4>
+        </div>
+    </div>
+
+    <section class="content">
+        <center>
+            <h2 style="color: black !important;">Your Registrations</h2>
+            <hr style=" border: 2px solid black; border-radius: 20px;">
+        </center>
+        <ul id="event-list"></ul><br>
+        <div class="message" id="message">
+        </div>
+
+        <!-- Popup and overlay for event details -->
+
+
+    </section>
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
+                        Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
+                        Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a
+                        strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in
+                        helping others solve problems and have started sharing my learnings on my blog.</p>
+                </div>
+
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">Community</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Shaheer Ahmad</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
+                                    class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Wrap your code in an async function
+async function fetchDataAndDisplay() {
+  const url_string = window.location.href;
+  const url = new URL(url_string);
+  const email = url.searchParams.get("email");
+  const fullname = url.searchParams.get("name");
+  const heading = document.getElementById("info");
+  const text = document.createElement("h2");
+  text.textContent = "Welcome, " + fullname;
+  heading.appendChild(text);
+  // Create headers with the email value
+  const myHeaders = new Headers();
+  myHeaders.append("email", email);
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  const apiUrl = "https://prod-10.southeastasia.logic.azure.com:443/workflows/252f1afb2e2943abb0e38c820d33274b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8YhfmzychMhNg8o8e1nZpIIpgFHljJoY1LlqNXP9BjM";
+
+  try {
+    const events = await fetchEventData(apiUrl, requestOptions);
+
+    // Display event list
+    displayEventList(events);
+  } catch (error) {
+    console.log(error)
+  } finally {
+    document.getElementById("loading").style.display = "none";
+  }
+
+  // Function to fetch event data from the API
+  async function fetchEventData(apiUrl, requestOptions) {
+    try {
+      const response = await fetch(apiUrl, requestOptions);
+
+      if (response.status === 200) {
+        const data = await response.json();
+        return data;
+      } else {
+        showError("No Events Registered","danger");
+      }
+    } catch (error) {
+        showError("No Events Registered","danger");
+    }
+  }
+
+
+  // Function to create and display the event list
+  function displayEventList(events) {
+    const eventList = document.getElementById("event-list");
+
+    events.forEach(event => {
+      const listItem = document.createElement("li");
+      listItem.className = "event-item";
+      listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
+      <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
+      <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
+      <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+      <a href="./register.html?id=${event._sa_event_value}" class="view-details" style="text-decoration: none !important;">View Details</a>
+    `;
+
+      eventList.appendChild(listItem);
+    });
+  }
+
+  // Function to convert hours to days
+  function hoursToDays(hours) {
+    if (hours >= 24) {
+      const days = Math.floor(hours / 24);
+      const remainingHours = hours % 24;
+      if (remainingHours !== 0) {
+        return `${days} days and ${remainingHours} hours`;
+      } else {
+        return `${days} days`;
+      }
+    } else {
+      return `${hours} hours`;
+    }
+  }
+}
+function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+
+// Call the async function to initiate the asynchronous operation
+fetchDataAndDisplay();
+
+    </script>
+
+
+</body>
+
+</html>
