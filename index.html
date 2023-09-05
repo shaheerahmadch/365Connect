@@ -359,11 +359,13 @@ function createColSm6(thisevent) {
     titleElement.classList.add('card-title');
     titleElement.style.backgroundColor = "#1ab394";
     titleElement.style.color = "white";
+    titleElement.style.height = "170px";
     titleElement.textContent = thisevent.sa_name;
 
     // Create a paragraph element for text
     const textElement = document.createElement('p');
     textElement.classList.add('card-text');
+    textElement.style.height = "150px";
     textElement.textContent = thisevent.sa_description;
 
     // Create a button element
