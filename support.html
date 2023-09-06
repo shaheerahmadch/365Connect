@@ -137,6 +137,8 @@
         </div>
         <br><br><br>
         </div><!-- /.container -->
+        <div class="message" id="message">
+        </div>
 
     </section>
     <!-- Site footer -->
@@ -256,25 +258,31 @@
                     redirect: 'follow'
                 };
 
-                fetch("https://prod-32.southeastasia.logic.azure.com:443/workflows/277068ad549a4568a4b8ab73f3eddd4f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ngiAZ6qtk3lG-ozSR9Gj-lva22Bl3nLAo5gzWURUS9w", requestOptions)
+                fetch("https://prod-47.southeastasia.logic.azure.com:443/workflows/46b0074054a84e919e0c6ed8c656aa76/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dx3YJpOrWCsYEZp_53p8uUFz1xZjLf4wz4DKGzwiH1o", requestOptions)
                     .then(response => {
                         if (response.status === 200) {
                             // Registration was successful
-                            showError("Success. You have been registered. You'll recieve a confirmation email shortly", "success")
+                            alert("Success. Your request has been sent. You'll recieve an email shortly");
+                            showError("Success. Your request has been sent. You'll recieve an email shortly", "success");
                             document.getElementById("loading").style.display = "none";
                         } else {
                             // Handle other response codes (e.g., display an error message)
-                            showError("Error. Already Registered.", "danger")
+                            alert("Error.")
+                            showError("Error.", "danger")
                             document.getElementById("loading").style.display = "none";
                         }
                     })
                     .then(result => {
+                            alert("Success. Your request has been sent. You'll recieve an email shortly");
+                        showError("Success. Your request has been sent. You'll recieve an email shortly", "success");
                         // Do something with the result (e.g., display a success message)
                         console.log('Registration Successful:', result);
                     })
                     .catch(error => {
                         // Handle errors here (e.g., display an error message)
+                            alert("Error.")
                         console.error('Error:', error.message);
+                        showError("Error.", "danger");
                     });
 
 
