@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaheer Ahmad Events</title>
@@ -84,9 +84,10 @@
 </head>
 
 <body>
+    <div class="loading" id="loading">Loading&#8230;</div>
     <div class="login-container">
-        <div  id="login-container"></div>
-        <input class="in-put" type="text" placeholder="Varification Code" id="email"><br><br><br>
+        <div id="login-container"></div>
+        <input class="in-put" type="text" placeholder="Varification Code" id="code"><br><br><br>
         <button class="bntn" onclick="submit()">Continue</button>
         <div class="message" id="message">
         </div>
@@ -94,26 +95,27 @@
 </body>
 <script>
     const url_string = window.location.href;
-  const url = new URL(url_string);
-  const email = url.searchParams.get("email");
-  const fullname = url.searchParams.get("name");
-  const heading = document.getElementById("login-container");
-  const text = document.createElement("input");
-  const hr = document.createElement("hr");
-  const text2 = document.createElement("h2");
-  const text3 = document.createElement("p");
-  text3.innerText = "Varification code has been sent to your email."
-  text.classList.add("in-put");
-  text.placeholder = "Email";
-  text.type = "text";
-  text.value = email;
-  text.disabled = true;
-  text2.textContent = "Welcome, " + fullname;
-  heading.appendChild(text2);
-  heading.appendChild(hr);
-  heading.appendChild(text3)
-  heading.appendChild(text);
-
+    const url = new URL(url_string);
+    const email = url.searchParams.get("email");
+    const fullname = url.searchParams.get("name");
+    const heading = document.getElementById("login-container");
+    const text = document.createElement("input");
+    text.id = "email"
+    const hr = document.createElement("hr");
+    const text2 = document.createElement("h2");
+    const text3 = document.createElement("p");
+    text3.innerText = "Varification code has been sent to your email."
+    text.classList.add("in-put");
+    text.placeholder = "Email";
+    text.type = "text";
+    text.value = email;
+    text.disabled = true;
+    text2.textContent = "Welcome, " + fullname;
+    heading.appendChild(text2);
+    heading.appendChild(hr);
+    heading.appendChild(text3)
+    heading.appendChild(text);
+    document.getElementById("loading").style.display = "none";
     function submit() {
         var myDiv = document.getElementById("message");
         var headingToDelete = document.querySelector(".alert");
@@ -125,58 +127,55 @@
         if (headingToDelete) {
             myDiv.removeChild(headingToDelete);
         }
-        if (document.getElementById("email").value == '')
-            showError("Email is required")
-        if (document.getElementById("email").value != '') {
+        if (document.getElementById("code").value == '')
+            showError("Code is required")
+        if (document.getElementById("code").value != '') {
+            document.getElementById("loading").style.display = "block";
             var myHeaders = new Headers();
             myHeaders.append("email", document.getElementById("email").value);
+            myHeaders.append("code", document.getElementById("code").value);
 
             var requestOptions = {
-                method: 'GET',
+                method: 'POST',
                 headers: myHeaders,
                 redirect: 'follow'
             };
 
-            fetch("https://prod-51.southeastasia.logic.azure.com:443/workflows/4ec99569bce8405997dfbf65e7c8332c/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0YInkgvREn7KdFoUwWU9RNovgiX3cGnu24AQ0Ho-GT0", requestOptions)
+            fetch("https://prod-23.southeastasia.logic.azure.com:443/workflows/eceae0b4ffee413687edf494b289f51e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JDu_0tsKqEq-Nqa2cOCT4p_Q1G6W7JN0fOeKgwpQ6-Q", requestOptions)
                 .then(response => {
                     if (response.status === 200) {
-                        // Parse the response body as JSON
-                        return response.json();
-                    } else {
-                        // Handle other response statuses or errors here
-                        showError("Account not found");
-                        return null;
-                    }
-                })
-                .then(data => {
-                    // Check if data is not null
-                    if (data !== null) {
-                        // Extract the necessary information from the data
-                        const email = data.emailaddress1;
-                        const name = data.fullname;
-
-                        // Construct the URL with query parameters
-                        const url = `./my-registrations.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
+                        // Construct the URL to navigate to
+                        const url = "./my-registrations.html?email="+document.getElementById("email").value+"&name="+fullname;
 
                         // Navigate to the desired URL
                         window.location.href = url;
+                    } else {
+                        // Handle other response statuses or errors here
+                        showError("Code incorrect or expired");
+                        document.getElementById("loading").style.display = "none";
                     }
                 })
                 .catch(error => {
-                    showError("Account not found");
+                    // Handle other errors here
+                    showError("Code incorrect or expired");
+                    document.getElementById("loading").style.display = "none";
                 });
 
-            }
-            //window.location.replace("./registrations.html?email="+document.getElementById("email").value)
+
+
+
+
         }
-        function showError(alert, alertType) {
-            var message = document.getElementById("message");
-            var messagetext = document.createElement("div");
-            messagetext.classList.add("alert")
-            messagetext.classList.add("alert-" + alertType)
-            messagetext.textContent = alert;
-            message.appendChild(messagetext);
-        }
+        //window.location.replace("./registrations.html?email="+document.getElementById("email").value)
+    }
+    function showError(alert, alertType) {
+        var message = document.getElementById("message");
+        var messagetext = document.createElement("div");
+        messagetext.classList.add("alert")
+        messagetext.classList.add("alert-" + alertType)
+        messagetext.textContent = alert;
+        message.appendChild(messagetext);
+    }
 </script>
 
 </html>
