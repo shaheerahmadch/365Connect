@@ -31,7 +31,6 @@
                 </div>
             </div>
             <!-- search end-->
-            <a href="./login.html" class="logo" style="margin-top: 0px !important; height: 50px;">View Your Events</a>
         </div>
 
 
@@ -67,9 +66,9 @@
         <ul id="event-list1"></ul>
 
         <div class="message" id="message1"><br>
-            
+
             <div class="row"></div>
-              </div>
+        </div>
         <!-- Popup and overlay for event details -->
         <div class="overlay" id="overlay"></div>
         <div class="popup" id="popup">
@@ -135,6 +134,44 @@
         </div>
     </footer>
     <script>
+        const email = sessionStorage.getItem("email");
+        const fullname = sessionStorage.getItem("name");
+        const sidesDiv = document.querySelector(".sides");
+
+        // Create a new anchor element
+        const anchorElement = document.createElement("a");
+
+        // Set the anchor's attributes
+        anchorElement.href = "./login.html";
+        anchorElement.className = "logo";
+        anchorElement.style.marginTop = "0px";
+        anchorElement.style.height = "50px";
+        const anchorElement1 = document.createElement("a");
+
+        // Set the anchor's attributes
+        anchorElement1.href = "./login.html";
+        anchorElement1.className = "logo";
+        anchorElement1.style.marginTop = "0px";
+        anchorElement1.style.height = "50px";
+        anchorElement1.textContent = "Sign Out";
+        anchorElement1.addEventListener("click", function (event) {
+            event.preventDefault();
+            sessionStorage.setItem("name", null);
+            sessionStorage.setItem("email", null);
+        });
+        if (sessionStorage.getItem("name") == null && sessionStorage.getItem("email") == null) {
+            anchorElement.textContent = "Sign In to View Your Registrations";
+        }
+        else {
+            anchorElement.textContent = fullname.split(' ')[0] + ", View Your Registrations";
+            
+        }
+
+
+
+        // Append the anchor to the parent element
+        sidesDiv.appendChild(anchorElement);
+        sidesDiv.appendChild(anchorElement1)
 
         document.getElementById("search").addEventListener("keypress", function onEvent(event) {
             if (event.key === "Enter") {
@@ -172,7 +209,7 @@
                     const data = await response.json();
                     return data;
                 } else {
-                    showError("No Upcoming Events","warning");
+                    showError("No Upcoming Events", "warning");
                     return [];
                 }
             } catch (error) {
@@ -235,10 +272,10 @@
             if (hours >= 24) {
                 const days = Math.floor(hours / 24); // Calculate the whole number of days
                 const remainingHours = hours % 24;  // Calculate the remaining hours
-                if(remainingHours != 0)
-                return `${days} days and ${remainingHours} hours`;
+                if (remainingHours != 0)
+                    return `${days} days and ${remainingHours} hours`;
                 else
-                return `${days} days`;
+                    return `${days} days`;
             } else {
                 return `${hours} hours`; // Less than 24 hours, return hours only
             }
@@ -297,17 +334,17 @@
             const comp_events = await fetchEventData1();
 
             comp_events.forEach(comp_event => {
-        //         const comp_listItem = document.createElement("li");
-        //         comp_listItem.className = "event-item";
-        //         comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
-        //     <p> ${comp_event.sa_description}</p><br>
-        //     <button class="view-details">View Details</button>
-        // `;
-        const parentElement = document.querySelector('.row');
+                //         const comp_listItem = document.createElement("li");
+                //         comp_listItem.className = "event-item";
+                //         comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
+                //     <p> ${comp_event.sa_description}</p><br>
+                //     <button class="view-details">View Details</button>
+                // `;
+                const parentElement = document.querySelector('.row');
 
-// Call the function to create the col-sm-6 and append it to the parent element
-const colSm6 = createColSm6(comp_event);
-parentElement.appendChild(colSm6);
+                // Call the function to create the col-sm-6 and append it to the parent element
+                const colSm6 = createColSm6(comp_event);
+                parentElement.appendChild(colSm6);
 
                 // if (comp_event.statuscode === 126380003 && comp_event.sa_registrationopen) {
                 //     comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
@@ -327,7 +364,7 @@ parentElement.appendChild(colSm6);
                     const data1 = await response1.json();
                     return data1;
                 } else {
-                    showError1("No Past Events","warning");
+                    showError1("No Past Events", "warning");
                     return [];
                 }
             } catch (error) {
@@ -343,60 +380,60 @@ parentElement.appendChild(colSm6);
         ///////////////////
 
         // Function to create a col-sm-6 with nested items
-function createColSm6(thisevent) {
-    // Create a div element with the "col-sm-6" class
-    const colDiv = document.createElement('div');
-    colDiv.classList.add('col-sm-6');
+        function createColSm6(thisevent) {
+            // Create a div element with the "col-sm-6" class
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-sm-6');
 
-    // Create a div element with the "card" class
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card','d-flex','flex-column');
-    cardDiv.style.minHeight = '350px';
-    cardDiv.style.margin = '10px';
+            // Create a div element with the "card" class
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card', 'd-flex', 'flex-column');
+            cardDiv.style.minHeight = '350px';
+            cardDiv.style.margin = '10px';
 
-    // Create a div element with the "card-body" class
-    const cardBodyDiv = document.createElement('div');
-    cardBodyDiv.classList.add('card-body');
+            // Create a div element with the "card-body" class
+            const cardBodyDiv = document.createElement('div');
+            cardBodyDiv.classList.add('card-body');
 
-    // Create a title element
-    const titleElement = document.createElement('h2');
-    titleElement.classList.add('card-title');
-    titleElement.style.backgroundColor = "#1ab394";
-    titleElement.style.color = "white";
-    titleElement.style.height = "170px";
-    titleElement.textContent = thisevent.sa_name;
+            // Create a title element
+            const titleElement = document.createElement('h2');
+            titleElement.classList.add('card-title');
+            titleElement.style.backgroundColor = "#1ab394";
+            titleElement.style.color = "white";
+            titleElement.style.height = "170px";
+            titleElement.textContent = thisevent.sa_name;
 
-    // Create a paragraph element for text
-    const textElement = document.createElement('p');
-    textElement.classList.add('card-text');
-    textElement.style.height = "150px";
-    textElement.textContent = thisevent.sa_description;
+            // Create a paragraph element for text
+            const textElement = document.createElement('p');
+            textElement.classList.add('card-text');
+            textElement.style.height = "150px";
+            textElement.textContent = thisevent.sa_description;
 
-    // Create a button element
-    const buttonElement = document.createElement('p');
-buttonElement.classList.add('view-details');
-buttonElement.style.backgroundColor = "#343a40";
-buttonElement.style.textAlign = "center"
-buttonElement.textContent = 'View Event';
+            // Create a button element
+            const buttonElement = document.createElement('p');
+            buttonElement.classList.add('view-details');
+            buttonElement.style.backgroundColor = "#343a40";
+            buttonElement.style.textAlign = "center"
+            buttonElement.textContent = 'View Event';
 
-// Add a click event listener to the button
-buttonElement.addEventListener("click", () => {
-    openPopup(thisevent);
-});
+            // Add a click event listener to the button
+            buttonElement.addEventListener("click", () => {
+                openPopup(thisevent);
+            });
 
-// Append the button element to the card body
-cardBodyDiv.appendChild(buttonElement);
+            // Append the button element to the card body
+            cardBodyDiv.appendChild(buttonElement);
 
-    // Append elements to build the structure
-    cardBodyDiv.appendChild(titleElement);
-    cardBodyDiv.appendChild(textElement);
-    cardBodyDiv.appendChild(buttonElement);
-    cardDiv.appendChild(cardBodyDiv);
-    colDiv.appendChild(cardDiv);
+            // Append elements to build the structure
+            cardBodyDiv.appendChild(titleElement);
+            cardBodyDiv.appendChild(textElement);
+            cardBodyDiv.appendChild(buttonElement);
+            cardDiv.appendChild(cardBodyDiv);
+            colDiv.appendChild(cardDiv);
 
-    // Return the created col-sm-6 element
-    return colDiv;
-}
+            // Return the created col-sm-6 element
+            return colDiv;
+        }
 
 // Get the parent element where you want to append the col-sm-6
 

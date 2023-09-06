@@ -24,7 +24,7 @@
             <!-- search-->
             <a href="./index.html" class="logo">🔙 </a>
             <!-- search end-->
-            <a href="./support.html" class="logo" >Support Request</a>
+            <a href="./support.html" class="logo">Support Request</a>
         </div>
 
 
@@ -40,13 +40,20 @@
 
     <section class="content">
         <center>
-            <h2 style="color: black !important;">Your Registrations</h2>
+            <h2 style="color: black !important;">Upcoming Event Registrations</h2>
             <hr style=" border: 2px solid black; border-radius: 20px;">
         </center>
         <ul id="event-list"></ul><br>
         <div class="message" id="message">
         </div>
-
+        <br>
+        <center>
+            <h2 style="color: black !important;">Past Event Registrations</h2>
+            <hr style=" border: 2px solid black; border-radius: 20px;">
+        </center>
+        <ul id="event-list1"></ul><br>
+        <div class="message" id="message1">
+        </div>
         <!-- Popup and overlay for event details -->
 
 
@@ -156,19 +163,40 @@
             // Function to create and display the event list
             function displayEventList(events) {
                 const eventList = document.getElementById("event-list");
+                const eventList1 = document.getElementById("event-list1");
 
                 events.forEach(event => {
                     const listItem = document.createElement("li");
                     listItem.className = "event-item";
-                    listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
+                    if (event["statuscode@OData.Community.Display.V1.FormattedValue"] != 'Pending') {
+                        listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
       <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
       <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
       <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
       <a href="./register.html?id=${event._sa_event_value}&reg=false" class="view-details" style="text-decoration: none !important;">View Details</a>
     `;
+                        eventList1.appendChild(listItem);
+                    } else {
+                        listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
+      <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
+      <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
+      <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+      <a href="./register.html?id=${event._sa_event_value}&reg=false" class="view-details" style="text-decoration: none !important;">View Details</a>
+    `;
+                        eventList.appendChild(listItem);
+                    }
 
-                    eventList.appendChild(listItem);
+
+
                 });
+                const pendingEvents = events.filter(event => event["statuscode@OData.Community.Display.V1.FormattedValue"] === "Pending");
+                const pendingEventCount = pendingEvents.length;
+                const pendingEvents1 = events.filter(event => event["statuscode@OData.Community.Display.V1.FormattedValue"] != "Pending");
+                const pendingEventCount1 = pendingEvents1.length;
+                if(pendingEventCount == 0)
+                showError("No Upcoming Events Registered","warning");
+                if(pendingEventCount1 == 0)
+                showError1("No Past Events Registered","warning");
             }
 
             // Function to convert hours to days
@@ -188,6 +216,14 @@
         }
         function showError(alert, alertType) {
             var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+        function showError1(alert, alertType) {
+            var message = document.getElementById("message1");
             var messagetext = document.createElement("div");
             messagetext.classList.add("alert")
             messagetext.classList.add("alert-" + alertType)
