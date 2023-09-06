@@ -85,15 +85,35 @@
 
 <body>
     <div class="login-container">
-        <h2>Continue with Email</h2>
-        <hr><br>
-        <input class="in-put" type="text" placeholder="Email" id="email"><br><br><br>
+        <div  id="login-container"></div>
+        <input class="in-put" type="text" placeholder="Varification Code" id="email"><br><br><br>
         <button class="bntn" onclick="submit()">Continue</button>
         <div class="message" id="message">
         </div>
     </div>
 </body>
 <script>
+    const url_string = window.location.href;
+  const url = new URL(url_string);
+  const email = url.searchParams.get("email");
+  const fullname = url.searchParams.get("name");
+  const heading = document.getElementById("login-container");
+  const text = document.createElement("input");
+  const hr = document.createElement("hr");
+  const text2 = document.createElement("h2");
+  const text3 = document.createElement("p");
+  text3.innerText = "Varification code has been sent to your email."
+  text.classList.add("in-put");
+  text.placeholder = "Email";
+  text.type = "text";
+  text.value = email;
+  text.disabled = true;
+  text2.textContent = "Welcome, " + fullname;
+  heading.appendChild(text2);
+  heading.appendChild(hr);
+  heading.appendChild(text3)
+  heading.appendChild(text);
+
     function submit() {
         var myDiv = document.getElementById("message");
         var headingToDelete = document.querySelector(".alert");
@@ -136,7 +156,7 @@
                         const name = data.fullname;
 
                         // Construct the URL with query parameters
-                        const url = `./login-varify.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
+                        const url = `./my-registrations.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
 
                         // Navigate to the desired URL
                         window.location.href = url;
