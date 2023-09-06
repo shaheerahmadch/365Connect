@@ -98,7 +98,10 @@
 <script>
     const email = sessionStorage.getItem("email");
     const fullname = sessionStorage.getItem("name");
-    if(email != '' && fullname != '' && email !=  null && fullname != null ){
+    if(sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null'|| sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == ''){
+        console.log("not signed in")
+    }
+    else{
         let url = "./my-registrations.html";
         window.location.href = url;
     }

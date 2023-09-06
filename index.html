@@ -158,20 +158,23 @@
             event.preventDefault();
             sessionStorage.setItem("name", null);
             sessionStorage.setItem("email", null);
+            window.location.href = "./index.html";
         });
-        if (sessionStorage.getItem("name") == null && sessionStorage.getItem("email") == null) {
+        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null'|| sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
             anchorElement.textContent = "Sign In to View Your Registrations";
+            sidesDiv.appendChild(anchorElement);
+            
         }
         else {
             anchorElement.textContent = fullname.split(' ')[0] + ", View Your Registrations";
-            
+            sidesDiv.appendChild(anchorElement);
+            sidesDiv.appendChild(anchorElement1)
         }
 
 
 
         // Append the anchor to the parent element
-        sidesDiv.appendChild(anchorElement);
-        sidesDiv.appendChild(anchorElement1)
+        
 
         document.getElementById("search").addEventListener("keypress", function onEvent(event) {
             if (event.key === "Enter") {
