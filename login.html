@@ -96,6 +96,12 @@
     </div>
 </body>
 <script>
+    const email = sessionStorage.getItem("email");
+    const fullname = sessionStorage.getItem("name");
+    if(email != '' && fullname != '' && email !=  null && fullname != null ){
+        let url = "./my-registrations.html";
+        window.location.href = url;
+    }
     document.getElementById("loading").style.display = "none";
     function submit() {
         

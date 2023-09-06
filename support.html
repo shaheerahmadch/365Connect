@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaheer Ahmad | Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="loading" id="loading">Loading&#8230;</div>
+    <div class="header" style="height: 50vh !important;">
+
+
+        <div class="sides">
+            <!-- search-->
+            <a href="./index.html" class="logo">🔙 </a>
+            <!-- search end-->
+            <a href="#" class="logo" style="display: none;">Events</a>
+        </div>
+
+
+        <div class="sides">
+            <a href="#" class="menu" style=" display: none;"> </a>
+
+
+        </div>
+        <div class="info" style="padding: 0 !important;">
+            <h4><a href="#category">365Connect Community</a></h4>
+            <h2>Shaheer Ahmad</h2>
+            <div class="meta">
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author"></a><br>
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b">Techno-Functional Consultant | MLSA
+                    Beta | Power Platform & Dynamics 365 Enthusiast</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="content" style="width: 100% !important;padding: 0px !important;">
+
+        <div class="event-detail" id="event-detail" style="width: 100% !important;">
+            <ul id="event-list" style="width: 100% !important;"></ul><br>
+
+        </div>
+        </div>
+        <div class="container" style="width: 70% !important;" id="container">
+
+            <form class="well form-horizontal" action=" " method="post" id="contact_form">
+                <fieldset>
+                    <center>
+                        <br>
+                        <h2>Support Request</h2>
+                        <hr style=" border: 2px solid black; border-radius: 20px;">
+                        <br>
+                    </center>
+                    <!-- Form Name -->
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Full
+                            Name</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" placeholder="" id="name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">E-Mail</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" placeholder="" id="email" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Subject</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" placeholder="" id="subject" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: 150px !important;">
+                        <label class="col-md-4 control-label"
+                            style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;">Support Message</label>
+                        <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
+                            <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <textarea name="phone" placeholder="" id="message" style="height: 150px !important;" class="form-control" type="text"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <br><br>
+                    <div class="message" id="message">
+                    </div>
+                    <!-- Success message -->
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <p class="btn btn-primary btn-lg" onclick="submitForm()" id="submit-button">Submit <span
+                                    class="glyphicon glyphicon-send"></span></p>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <br><br><br>
+        </div><!-- /.container -->
+
+    </section>
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
+                        Ambassador, I currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
+                        Surge. My dedication lies in delivering practical and user-friendly solutions, and I have a
+                        strong enthusiasm for learning and sharing knowledge. Active in the community, I find joy in
+                        helping others solve problems and have started sharing my learnings on my blog.</p>
+                </div>
+
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">Community</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Shaheer Ahmad</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
+                                    class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const email = sessionStorage.getItem("email");
+        const fullname = sessionStorage.getItem("name");
+        document.getElementById("email").value = email;
+        document.getElementById("name").value = fullname;
+        if (email != '' && fullname != '') {
+            document.getElementById("email").disabled = true;
+            document.getElementById("name").disabled = true;
+        }
+        document.getElementById("loading").style.display = "none";
+
+        ///// form
+        function submitForm() {
+            document.getElementById("loading").style.display = "block";
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
+            var myDiv = document.getElementById("message");
+            var headingToDelete = document.querySelector(".alert");
+            if (headingToDelete) {
+                myDiv.removeChild(headingToDelete);
+            }
+
+            var name = document.getElementById("name").value
+            var email = document.getElementById("email").value
+            var subject = document.getElementById("subject").value
+            var message = document.getElementById("message").value
+
+            if (name == '') {
+                showError("Name is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (email == '') {
+                showError("Email is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (subject == '') {
+                showError("Subject is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (message == '') {
+                showError("Message is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (name != '' && email != '' && message != '' && subject != '') {
+                document.getElementById("loading").style.display = "block";
+
+                var myHeaders = new Headers();
+                myHeaders.append("name", name);
+                myHeaders.append("email", email);
+                myHeaders.append("subject", subject);
+                myHeaders.append("message", message);
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                fetch("https://prod-32.southeastasia.logic.azure.com:443/workflows/277068ad549a4568a4b8ab73f3eddd4f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ngiAZ6qtk3lG-ozSR9Gj-lva22Bl3nLAo5gzWURUS9w", requestOptions)
+                    .then(response => {
+                        if (response.status === 200) {
+                            // Registration was successful
+                            showError("Success. You have been registered. You'll recieve a confirmation email shortly", "success")
+                            document.getElementById("loading").style.display = "none";
+                        } else {
+                            // Handle other response codes (e.g., display an error message)
+                            showError("Error. Already Registered.", "danger")
+                            document.getElementById("loading").style.display = "none";
+                        }
+                    })
+                    .then(result => {
+                        // Do something with the result (e.g., display a success message)
+                        console.log('Registration Successful:', result);
+                    })
+                    .catch(error => {
+                        // Handle errors here (e.g., display an error message)
+                        console.error('Error:', error.message);
+                    });
+
+
+
+                document.getElementById("name").disabled = true;
+                document.getElementById("email").disabled = true;
+                document.getElementById("subject").disabled = true;
+                document.getElementById("message").disabled = true;
+                document.getElementById("submit-button").style.display = "none";
+
+            }
+
+
+
+        };
+        function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
