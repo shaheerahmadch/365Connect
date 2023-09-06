@@ -207,10 +207,12 @@
     </footer>
 
     <script>
+        
         document.getElementById("loading").style.display = "none";
         var url_string = window.location.href;
         var url = new URL(url_string);
         var id = url.searchParams.get("id");
+        var showReg = url.searchParams.get("reg");
         var myHeaders = new Headers();
         myHeaders.append("guid", id);
 
@@ -265,6 +267,10 @@
                 if(!event.sa_registrationopen){
                     document.getElementById("container").style.display = "none";
                     showError1("Registration Closed","warning")
+                }
+                if( showReg == 'false'){
+                    document.getElementById("container").style.display = "none";
+                    showError1("Alrady Registered","success")
                 }
             }
         }

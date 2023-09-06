@@ -96,8 +96,10 @@
 <script>
     const url_string = window.location.href;
     const url = new URL(url_string);
-    const email = url.searchParams.get("email");
-    const fullname = url.searchParams.get("name");
+    //const email = url.searchParams.get("email");
+    //const fullname = url.searchParams.get("name");
+    const email = sessionStorage.getItem("email");
+    const fullname = sessionStorage.getItem("name");
     const heading = document.getElementById("login-container");
     const text = document.createElement("input");
     text.id = "email"
@@ -145,7 +147,7 @@
                 .then(response => {
                     if (response.status === 200) {
                         // Construct the URL to navigate to
-                        const url = "./my-registrations.html?email="+document.getElementById("email").value+"&name="+fullname;
+                        const url = "./my-registrations.html";
 
                         // Navigate to the desired URL
                         window.location.href = url;

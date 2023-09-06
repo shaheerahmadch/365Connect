@@ -142,8 +142,9 @@
                         const name = data.fullname;
 
                         // Construct the URL with query parameters
-                        const url = `./login-varify.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
-
+                        const url = `./login-varify.html`;
+                        sessionStorage.setItem("email", email);
+                        sessionStorage.setItem("name",name);
                         // Navigate to the desired URL
                         window.location.href = url;
                     }

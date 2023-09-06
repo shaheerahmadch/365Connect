@@ -33,7 +33,7 @@
 
 
         </div>
-        <div class="info"id="info">
+        <div class="info" id="info">
             <h4><a href="#category"></a></h4>
         </div>
     </div>
@@ -99,89 +99,94 @@
     </footer>
     <script>
         // Wrap your code in an async function
-async function fetchDataAndDisplay() {
-  const url_string = window.location.href;
-  const url = new URL(url_string);
-  const email = url.searchParams.get("email");
-  const fullname = url.searchParams.get("name");
-  const heading = document.getElementById("info");
-  const text = document.createElement("h2");
-  text.textContent = "Welcome, " + fullname;
-  heading.appendChild(text);
-  // Create headers with the email value
-  const myHeaders = new Headers();
-  myHeaders.append("email", email);
+        async function fetchDataAndDisplay() {
+            const url_string = window.location.href;
+            const url = new URL(url_string);
+            //   const email = url.searchParams.get("email");
+            //   const fullname = url.searchParams.get("name");
+            const email = sessionStorage.getItem("email");
+            const fullname = sessionStorage.getItem("name");
+            const heading = document.getElementById("info");
+            const text = document.createElement("h2");
+            const textsds = document.createElement("p");
+            text.textContent = "Welcome, " + fullname;
+            textsds.textContent = email;
+            heading.appendChild(text);
+            heading.appendChild(textsds);
+            // Create headers with the email value
+            const myHeaders = new Headers();
+            myHeaders.append("email", email);
 
-  const requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-  };
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
 
-  const apiUrl = "https://prod-10.southeastasia.logic.azure.com:443/workflows/252f1afb2e2943abb0e38c820d33274b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8YhfmzychMhNg8o8e1nZpIIpgFHljJoY1LlqNXP9BjM";
+            const apiUrl = "https://prod-10.southeastasia.logic.azure.com:443/workflows/252f1afb2e2943abb0e38c820d33274b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8YhfmzychMhNg8o8e1nZpIIpgFHljJoY1LlqNXP9BjM";
 
-  try {
-    const events = await fetchEventData(apiUrl, requestOptions);
+            try {
+                const events = await fetchEventData(apiUrl, requestOptions);
 
-    // Display event list
-    displayEventList(events);
-  } catch (error) {
-    console.log(error)
-  } finally {
-    document.getElementById("loading").style.display = "none";
-  }
+                // Display event list
+                displayEventList(events);
+            } catch (error) {
+                console.log(error)
+            } finally {
+                document.getElementById("loading").style.display = "none";
+            }
 
-  // Function to fetch event data from the API
-  async function fetchEventData(apiUrl, requestOptions) {
-    try {
-      const response = await fetch(apiUrl, requestOptions);
+            // Function to fetch event data from the API
+            async function fetchEventData(apiUrl, requestOptions) {
+                try {
+                    const response = await fetch(apiUrl, requestOptions);
 
-      if (response.status === 200) {
-        const data = await response.json();
-        return data;
-      } else {
-        showError("No Events Registered","danger");
-      }
-    } catch (error) {
-        showError("No Events Registered","danger");
-    }
-  }
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        return data;
+                    } else {
+                        showError("No Events Registered", "danger");
+                    }
+                } catch (error) {
+                    showError("No Events Registered", "danger");
+                }
+            }
 
 
-  // Function to create and display the event list
-  function displayEventList(events) {
-    const eventList = document.getElementById("event-list");
+            // Function to create and display the event list
+            function displayEventList(events) {
+                const eventList = document.getElementById("event-list");
 
-    events.forEach(event => {
-      const listItem = document.createElement("li");
-      listItem.className = "event-item";
-      listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
+                events.forEach(event => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "event-item";
+                    listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
       <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
       <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
       <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
-      <a href="./register.html?id=${event._sa_event_value}" class="view-details" style="text-decoration: none !important;">View Details</a>
+      <a href="./register.html?id=${event._sa_event_value}&reg=false" class="view-details" style="text-decoration: none !important;">View Details</a>
     `;
 
-      eventList.appendChild(listItem);
-    });
-  }
+                    eventList.appendChild(listItem);
+                });
+            }
 
-  // Function to convert hours to days
-  function hoursToDays(hours) {
-    if (hours >= 24) {
-      const days = Math.floor(hours / 24);
-      const remainingHours = hours % 24;
-      if (remainingHours !== 0) {
-        return `${days} days and ${remainingHours} hours`;
-      } else {
-        return `${days} days`;
-      }
-    } else {
-      return `${hours} hours`;
-    }
-  }
-}
-function showError(alert, alertType) {
+            // Function to convert hours to days
+            function hoursToDays(hours) {
+                if (hours >= 24) {
+                    const days = Math.floor(hours / 24);
+                    const remainingHours = hours % 24;
+                    if (remainingHours !== 0) {
+                        return `${days} days and ${remainingHours} hours`;
+                    } else {
+                        return `${days} days`;
+                    }
+                } else {
+                    return `${hours} hours`;
+                }
+            }
+        }
+        function showError(alert, alertType) {
             var message = document.getElementById("message");
             var messagetext = document.createElement("div");
             messagetext.classList.add("alert")
@@ -190,8 +195,8 @@ function showError(alert, alertType) {
             message.appendChild(messagetext);
         }
 
-// Call the async function to initiate the asynchronous operation
-fetchDataAndDisplay();
+        // Call the async function to initiate the asynchronous operation
+        fetchDataAndDisplay();
 
     </script>
 
