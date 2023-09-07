@@ -191,11 +191,12 @@
     <script>
         const email = sessionStorage.getItem("email");
         const fullname = sessionStorage.getItem("name");
-        document.getElementById("email").value = email;
-        document.getElementById("name").value = fullname;
+        
         if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null'|| sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
             console.log("notsignedin")
         }else{
+            document.getElementById("email").value = email;
+            document.getElementById("name").value = fullname;
             document.getElementById("email").disabled = true;
             document.getElementById("name").disabled = true;
         }
