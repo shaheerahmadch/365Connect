@@ -262,24 +262,24 @@
             titleElement.classList.add('card-title');
             titleElement.style.backgroundColor = "#1ab394";
             titleElement.style.color = "white";
-            titleElement.style.height = "170px";
+            titleElement.style.height = "150px";
             titleElement.textContent = thisevent["_sa_event_value@OData.Community.Display.V1.FormattedValue"];
 
             // Create a paragraph element for text
             const textElement = document.createElement('p');
             textElement.classList.add('card-text');
             textElement.style.textAlign = "center";
-            textElement.textContent = "Registered On: "+ thisevent["createdon@OData.Community.Display.V1.FormattedValue"];
+            textElement.innerHTML = `<b>Registered On: </b>`+ thisevent["createdon@OData.Community.Display.V1.FormattedValue"];
 
             const textElement1 = document.createElement('p');
             textElement1.classList.add('card-text');
             textElement1.style.textAlign = "center";
-            textElement1.textContent = "Attendee Name: "+ thisevent["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"];
+            textElement1.innerHTML = `<b>Attendee Name: </b>`+ thisevent["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"];
 
             const textElement2 = document.createElement('p');
             textElement2.classList.add('card-text');
             textElement2.style.textAlign = "center";
-            textElement2.textContent = "Attendance: "+ thisevent["statuscode@OData.Community.Display.V1.FormattedValue"];
+            textElement2.innerHTML = `<b>Attendance: </b>`+ thisevent["statuscode@OData.Community.Display.V1.FormattedValue"];
 
             // Create a button element
             const buttonElement = document.createElement('p');
