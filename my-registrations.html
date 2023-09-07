@@ -52,6 +52,7 @@
             <hr style=" border: 2px solid black; border-radius: 20px;">
         </center>
         <ul id="event-list1"></ul><br>
+        <div class="row"></div>
         <div class="message" id="message1">
         </div>
         <!-- Popup and overlay for event details -->
@@ -169,13 +170,16 @@
                     const listItem = document.createElement("li");
                     listItem.className = "event-item";
                     if (event["statuscode@OData.Community.Display.V1.FormattedValue"] != 'Pending') {
-                        listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
-      <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
-      <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
-      <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
-      <a href="./register.html?id=${event._sa_event_value}&reg=false" class="view-details" style="text-decoration: none !important;">View Details</a>
-    `;
-                        eventList1.appendChild(listItem);
+    //                     listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
+    //   <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
+    //   <p><strong>Attendee Name:</strong> ${event["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"]}</p>
+    //   <p><strong>Attendance:</strong> ${event["statuscode@OData.Community.Display.V1.FormattedValue"]}</p><br>
+    //   <a href="./register.html?id=${event._sa_event_value}&reg=false" class="view-details" style="text-decoration: none !important;">View Details</a>
+    // `;
+    //                     eventList1.appendChild(listItem);
+                        const parentElement = document.querySelector('.row');
+                        const colSm6 = createColSm6(event);
+                        parentElement.appendChild(colSm6);
                     } else {
                         listItem.innerHTML = `<h1>${event["_sa_event_value@OData.Community.Display.V1.FormattedValue"]}</h1>
       <p><strong>Registered On:</strong> ${event["createdon@OData.Community.Display.V1.FormattedValue"]}</p>
@@ -223,7 +227,7 @@
             message.appendChild(messagetext);
         }
         function showError1(alert, alertType) {
-            var message = document.getElementById("message1");
+            var message = document.querySelector('.row');
             var messagetext = document.createElement("div");
             messagetext.classList.add("alert")
             messagetext.classList.add("alert-" + alertType)
@@ -233,6 +237,77 @@
 
         // Call the async function to initiate the asynchronous operation
         fetchDataAndDisplay();
+
+
+        function createColSm6(thisevent) {
+            // Create a div element with the "col-sm-6" class
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col-sm-6');
+
+            // Create a div element with the "card" class
+            const cardDiv = document.createElement('div');
+            cardDiv.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+            cardDiv.classList.add('card', 'd-flex', 'flex-column');
+            cardDiv.style.minHeight = '350px';
+            cardDiv.style.margin = '10px';
+            cardDiv.style.marginBottom = "20px";
+            
+
+            // Create a div element with the "card-body" class
+            const cardBodyDiv = document.createElement('div');
+            cardBodyDiv.classList.add('card-body');
+
+            // Create a title element
+            const titleElement = document.createElement('h2');
+            titleElement.classList.add('card-title');
+            titleElement.style.backgroundColor = "#1ab394";
+            titleElement.style.color = "white";
+            titleElement.style.height = "170px";
+            titleElement.textContent = thisevent["_sa_event_value@OData.Community.Display.V1.FormattedValue"];
+
+            // Create a paragraph element for text
+            const textElement = document.createElement('p');
+            textElement.classList.add('card-text');
+            textElement.style.textAlign = "center";
+            textElement.textContent = "Registered On: "+ thisevent["createdon@OData.Community.Display.V1.FormattedValue"];
+
+            const textElement1 = document.createElement('p');
+            textElement1.classList.add('card-text');
+            textElement1.style.textAlign = "center";
+            textElement1.textContent = "Attendee Name: "+ thisevent["_sa_attendee_value@OData.Community.Display.V1.FormattedValue"];
+
+            const textElement2 = document.createElement('p');
+            textElement2.classList.add('card-text');
+            textElement2.style.textAlign = "center";
+            textElement2.textContent = "Attendance: "+ thisevent["statuscode@OData.Community.Display.V1.FormattedValue"];
+
+            // Create a button element
+            const buttonElement = document.createElement('p');
+            buttonElement.classList.add('view-details');
+            buttonElement.style.backgroundColor = "#343a40";
+            buttonElement.style.textAlign = "center"
+            buttonElement.textContent = 'View Event';
+
+            // Add a click event listener to the button
+            buttonElement.addEventListener("click", () => {
+                window.location.href = "./register.html?id="+thisevent._sa_event_value+"&reg=false";
+            });
+
+            // Append the button element to the card body
+            cardBodyDiv.appendChild(buttonElement);
+
+            // Append elements to build the structure
+            cardBodyDiv.appendChild(titleElement);
+            cardBodyDiv.appendChild(textElement);
+            cardBodyDiv.appendChild(textElement1);
+            cardBodyDiv.appendChild(textElement2);
+            cardBodyDiv.appendChild(buttonElement);
+            cardDiv.appendChild(cardBodyDiv);
+            colDiv.appendChild(cardDiv);
+
+            // Return the created col-sm-6 element
+            return colDiv;
+        }
 
     </script>
 
