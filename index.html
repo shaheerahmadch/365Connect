@@ -160,10 +160,10 @@
             sessionStorage.setItem("email", null);
             window.location.href = "./index.html";
         });
-        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null'|| sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
+        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
             anchorElement.textContent = "Sign In to View Your Registrations";
             sidesDiv.appendChild(anchorElement);
-            
+
         }
         else {
             anchorElement.textContent = fullname.split(' ')[0] + ", View Your Registrations";
@@ -174,7 +174,7 @@
 
 
         // Append the anchor to the parent element
-        
+
 
         document.getElementById("search").addEventListener("keypress", function onEvent(event) {
             if (event.key === "Enter") {
@@ -326,35 +326,21 @@
             });
         };
         // Initialize the page
-        document.getElementById("loading").style.display = "none";
-        displayEventList();
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loading").style.display = "none";
+            displayEventList();
 
-        displayEventList1();
-
+            displayEventList1();
+        })
         async function displayEventList1() {
             document.getElementById("loading").style.display = "block";
             const comp_eventList = document.getElementById("event-list1");
             const comp_events = await fetchEventData1();
 
             comp_events.forEach(comp_event => {
-                //         const comp_listItem = document.createElement("li");
-                //         comp_listItem.className = "event-item";
-                //         comp_listItem.innerHTML = `<h1>${comp_event.sa_name}</h1>
-                //     <p> ${comp_event.sa_description}</p><br>
-                //     <button class="view-details">View Details</button>
-                // `;
                 const parentElement = document.querySelector('.row');
-
-                // Call the function to create the col-sm-6 and append it to the parent element
                 const colSm6 = createColSm6(comp_event);
                 parentElement.appendChild(colSm6);
-
-                // if (comp_event.statuscode === 126380003 && comp_event.sa_registrationopen) {
-                //     comp_listItem.innerHTML += `<a href="${'./register.html?id=' + comp_event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
-                // }
-
-                // comp_listItem.querySelector(".view-details").addEventListener("click", () => openPopup(comp_event));
-                // comp_eventList.appendChild(comp_listItem);
 
             });
             document.getElementById("loading").style.display = "none";
@@ -390,9 +376,12 @@
 
             // Create a div element with the "card" class
             const cardDiv = document.createElement('div');
+            cardDiv.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
             cardDiv.classList.add('card', 'd-flex', 'flex-column');
             cardDiv.style.minHeight = '350px';
             cardDiv.style.margin = '10px';
+            cardDiv.style.marginBottom = "20px";
+            
 
             // Create a div element with the "card-body" class
             const cardBodyDiv = document.createElement('div');
