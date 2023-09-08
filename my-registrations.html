@@ -15,6 +15,17 @@
 </head>
 
 <body>
+    <!-- The file upload popup -->
+    <div id="file-fileUploadPopup" class="file-popup-overlay" style="display: none;">
+        <div class="file-popup-container">
+            <h2>Upload a File</h2>
+            <label class="file-label" for="file-fileInput">Select File</label>
+            <input type="file" id="file-fileInput" class="file-input" accept="image/jpeg, image/png, image/gif" />
+            <p id="file-selectedFileName"></p>
+            <button id="file-uploadButton" class="file-btn">Upload</button>
+            <button id="file-closePopup" class="file-btn cancel">Cancel</button>
+        </div>
+    </div>
 
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header" style="height: 50vh !important;">
@@ -35,7 +46,7 @@
         </div>
         <div class="info" id="info">
             <div class="meta" style="margin-top: -60px !important;">
-                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b" class="author1"></a><br>
+                <a href="" id="file-openPopup" target="_b" class="author1"></a><br>
             </div>
             <h4><a href="#category"></a></h4>
         </div>
@@ -109,6 +120,40 @@
         </div>
     </footer>
     <script>
+        var crmUrl = "https://dev-shaheer.crm5.dynamics.com/";
+        var imageurl = crmUrl + sessionStorage.getItem("image");
+        console.log(imageurl)
+        const authorElement = document.querySelector('.author1');
+        if(sessionStorage.getItem("image") == '' || sessionStorage.getItem("image") == null || sessionStorage.getItem("image") == 'null'){
+            authorElement.style.background = 'url(https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg) center no-repeat';
+        } 
+        else{
+            authorElement.style.background = 'url('+imageurl+') center no-repeat';
+        }
+        
+
+        // Change the background image URL
+        
+
+        // Optionally, you can also specify background size and box shadow here
+        authorElement.style.backgroundSize = 'cover';
+        authorElement.style.boxShadow = '0 2px 3px rgba(0, 0, 0, 0.3)';
+        const sidesDiv = document.querySelector(".sides");
+const anchorElement1 = document.createElement("a");
+
+// Set the anchor's attributes
+anchorElement1.href = "./login.html";
+anchorElement1.className = "logo";
+anchorElement1.style.marginTop = "0px";
+anchorElement1.style.height = "40px";
+anchorElement1.textContent = "Sign Out";
+anchorElement1.addEventListener("click", function (event) {
+    event.preventDefault();
+    sessionStorage.setItem("name", null);
+    sessionStorage.setItem("email", null);
+    window.location.href = "./index.html";
+});
+sidesDiv.appendChild(anchorElement1);
         // Wrap your code in an async function
         async function fetchDataAndDisplay() {
             const url_string = window.location.href;
@@ -312,6 +357,56 @@
             return colDiv;
         }
 
+
+        ////////
+        const fileOpenPopupButton = document.getElementById('file-openPopup');
+        const fileUploadPopup = document.getElementById('file-fileUploadPopup');
+        const fileInput = document.getElementById('file-fileInput');
+        const uploadButton = document.getElementById('file-uploadButton');
+        const closePopupButton = document.getElementById('file-closePopup');
+        const selectedFileName = document.getElementById('file-selectedFileName');
+
+        // Prevent default navigation behavior
+        fileOpenPopupButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            fileUploadPopup.style.display = 'flex';
+        });
+
+        closePopupButton.addEventListener('click', () => {
+            fileUploadPopup.style.display = 'none';
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                selectedFileName.textContent = `Selected File: ${fileInput.files[0].name}`;
+            } else {
+                selectedFileName.textContent = '';
+            }
+        });
+
+        uploadButton.addEventListener('click', () => {
+            const selectedFile = fileInput.files[0];
+            if (selectedFile) {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                // Replace 'your-api-endpoint' with the actual API endpoint
+                fetch('your-api-endpoint', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Response:', data);
+                    fileUploadPopup.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert('Please select a file to upload.');
+            }
+        });
     </script>
 
 

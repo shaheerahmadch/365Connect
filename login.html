@@ -149,11 +149,13 @@
                         // Extract the necessary information from the data
                         const email = data.emailaddress1;
                         const name = data.fullname;
+                        const image = data.entityimage_url;
 
                         // Construct the URL with query parameters
                         const url = `./login-varify.html`;
                         sessionStorage.setItem("email", email);
                         sessionStorage.setItem("name",name);
+                        sessionStorage.setItem("image",image);
                         // Navigate to the desired URL
                         window.location.href = url;
                     }
