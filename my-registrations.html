@@ -124,7 +124,7 @@
         var imageurl = crmUrl + sessionStorage.getItem("image");
         console.log(imageurl)
         const authorElement = document.querySelector('.author1');
-        if(sessionStorage.getItem("image") == '' || sessionStorage.getItem("image") == null || sessionStorage.getItem("image") == 'null'){
+        if(sessionStorage.getItem("image") == '' || sessionStorage.getItem("image") == null || sessionStorage.getItem("image") == 'null' || sessionStorage.getItem("image") == 'undefined'){
             authorElement.style.background = 'url(https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg) center no-repeat';
         } 
         else{
