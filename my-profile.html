@@ -15,6 +15,10 @@
 </head>
 
 <body>
+    <div id="imagePopup" class="image-popup">
+        <span class="image-close" onclick="closePopup()">&times;</span>
+        <img src="" alt="Profile Picture" id="previewImage">
+      </div>
     <!-- The file upload popup -->
     <div id="file-fileUploadPopup" class="file-popup-overlay" style="display: none;">
         <div class="file-popup-container">
@@ -46,7 +50,10 @@
         </div>
         <div class="info" id="info">
             <div class="meta" style="margin-top: -60px !important;">
-                <a href="" id="file-openPopup" target="_b" class="author1"></a><br>
+                <a href="" id="file-openPopup1" target="_b" class="author1"></a>
+                <div class="edit-icon">
+                    <i class="fa fa-pencil" id="file-openPopup"></i> <!-- You can replace this with the appropriate icon class or image -->
+                </div>
             </div>
             <h4><a href="#category"></a></h4>
         </div>
@@ -120,6 +127,33 @@
         </div>
     </footer>
     <script>
+        // Get the elements
+const openPopupButton = document.getElementById('file-openPopup1');
+const popup = document.getElementById('imagePopup');
+const previewImage = document.getElementById('previewImage');
+
+// Open the popup and display the image
+openPopupButton.addEventListener('click', function () {
+    event.preventDefault();
+  const backgroundImageURL = window.getComputedStyle(openPopupButton).backgroundImage;
+  const imageURL = backgroundImageURL.replace('url("', '').replace('")', '');
+
+  popup.style.display = 'block';
+  previewImage.src = imageURL;
+});
+
+// Close the popup
+function closePopup() {
+  popup.style.display = 'none';
+}
+
+// Close the popup when clicking outside of the image
+window.addEventListener('click', function (event) {
+  if (event.target === popup) {
+    closePopup();
+  }
+});
+
         var crmUrl = "https://dev-shaheer.crm5.dynamics.com/";
         const authorElement = document.querySelector('.author1');
         console.log(sessionStorage.getItem("image"))
@@ -167,6 +201,7 @@ sidesDiv.appendChild(anchorElement1);
             const textsds = document.createElement("p");
             text.textContent = "Welcome, " + fullname;
             textsds.textContent = email;
+            text.style.padding = "0px"
             heading.appendChild(text);
             heading.appendChild(textsds);
             // Create headers with the email value
