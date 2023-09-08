@@ -360,53 +360,73 @@ sidesDiv.appendChild(anchorElement1);
 
         ////////
         const fileOpenPopupButton = document.getElementById('file-openPopup');
-        const fileUploadPopup = document.getElementById('file-fileUploadPopup');
-        const fileInput = document.getElementById('file-fileInput');
-        const uploadButton = document.getElementById('file-uploadButton');
-        const closePopupButton = document.getElementById('file-closePopup');
-        const selectedFileName = document.getElementById('file-selectedFileName');
+const fileUploadPopup = document.getElementById('file-fileUploadPopup');
+const fileInput = document.getElementById('file-fileInput');
+const uploadButton = document.getElementById('file-uploadButton');
+const closePopupButton = document.getElementById('file-closePopup');
+const selectedFileName = document.getElementById('file-selectedFileName');
 
-        // Prevent default navigation behavior
-        fileOpenPopupButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            fileUploadPopup.style.display = 'flex';
-        });
+// Prevent default navigation behavior
+fileOpenPopupButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    fileUploadPopup.style.display = 'flex';
+});
 
-        closePopupButton.addEventListener('click', () => {
+closePopupButton.addEventListener('click', () => {
+    fileUploadPopup.style.display = 'none';
+});
+
+fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+        selectedFileName.textContent = `Selected File: ${fileInput.files[0].name}`;
+    } else {
+        selectedFileName.textContent = '';
+    }
+});
+
+uploadButton.addEventListener('click', () => {
+    document.getElementById("loading").style.display = "block";
+    const selectedFile = fileInput.files[0];
+    const userEmail = sessionStorage.getItem("email"); // Replace with the actual user's email
+
+    if (selectedFile) {
+        const formData = new FormData();
+        formData.append('contents', selectedFile);
+
+        const headers = new Headers();
+        headers.append('email', userEmail);
+        
+        // Add other headers as needed
+
+        // Replace 'your-api-endpoint' with the actual API endpoint
+        fetch('https://prod-26.southeastasia.logic.azure.com:443/workflows/6205a3aedd854dac93fe8b0c6f760ec8/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=jbGar-dsbKN5DJIqlT7V6-RplSxRkEpnkIG3abjQJaU', {
+            method: 'POST',
+            body: formData,
+            headers: headers
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+            document.getElementById("loading").style.display = "none";
+        })
+        .then(data => {
+            let newimage_url = crmUrl +data.body.entityimage_url;
+            sessionStorage.setItem("image",data.body.entityimage_url);
+            window.location.reload();
             fileUploadPopup.style.display = 'none';
+            document.getElementById("loading").style.display = "none";
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("loading").style.display = "none";
         });
-
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length > 0) {
-                selectedFileName.textContent = `Selected File: ${fileInput.files[0].name}`;
-            } else {
-                selectedFileName.textContent = '';
-            }
-        });
-
-        uploadButton.addEventListener('click', () => {
-            const selectedFile = fileInput.files[0];
-            if (selectedFile) {
-                const formData = new FormData();
-                formData.append('file', selectedFile);
-
-                // Replace 'your-api-endpoint' with the actual API endpoint
-                fetch('your-api-endpoint', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('API Response:', data);
-                    fileUploadPopup.style.display = 'none';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            } else {
-                alert('Please select a file to upload.');
-            }
-        });
+    } else {
+        alert('Please select a file to upload.');
+        document.getElementById("loading").style.display = "none";
+    }
+});
     </script>
 
 
