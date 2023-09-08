@@ -86,7 +86,9 @@
 <body>
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="login-container">
+        <a href="https://www.linkedin.com/company/365-connect-community" target="_b" class="author1" style="box-shadow:  rgba(0, 0, 0, 0.35) 0px 5px 15px !important;"></a>
         <div id="login-container"></div>
+        
         <input class="in-put" type="text" placeholder="Varification Code" id="code"><br><br><br>
         <button class="bntn" onclick="submit()">Continue</button>
         <div class="message" id="message">
@@ -94,6 +96,14 @@
     </div>
 </body>
 <script>
+    const authorElement = document.querySelector('.author1');
+        console.log(sessionStorage.getItem("image"))
+        if(sessionStorage.getItem("image") == '' || sessionStorage.getItem("image") == null || sessionStorage.getItem("image") == 'null' || sessionStorage.getItem("image") == 'undefined'){
+            authorElement.style.background = 'url(https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg) center no-repeat';
+        } 
+        else{
+            authorElement.style.background = `url(data:image/png;base64,${sessionStorage.getItem("image")}) center no-repeat`;
+        }
     const url_string = window.location.href;
     const url = new URL(url_string);
     //const email = url.searchParams.get("email");
