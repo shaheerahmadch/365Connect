@@ -311,7 +311,7 @@
      width: 150px;
      height: 150px;
      border-radius: 50%;
-     background: url(https://dev-shaheer.crm5.dynamics.com/Image/download.aspx?Entity=account&Attribute=entityimage&Id=ae174bda-503b-ee11-bdf4-002248595bba&Timestamp=638297565770860948) center no-repeat;
+     background: url(./favicon.ico) center no-repeat;
      background-size: cover;
      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
      margin-bottom: 3px
