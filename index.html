@@ -54,7 +54,6 @@ https://templatemo.com/tm-557-grad-school
         <li><a href="./events.html" class="external">Events</a></li>
         <li><a href="https://shaheer365.blogspot.com" class="external">Blog</a></li>
         <li><a href="#section6">Contact</a></li>
-        <li><a href="./login.html" class="external">Sign-In</a></li>
       </ul>
     </nav>
   </header>
@@ -528,6 +527,46 @@ https://templatemo.com/tm-557-grad-school
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
     <script>
+      const email = sessionStorage.getItem("email");
+        const fullname = sessionStorage.getItem("name");
+        const sidesDiv = document.querySelector(".main-menu");
+
+        // Create a new anchor element
+        const link = document.createElement("a");
+        link.style.textDecoration = "none";
+        var listItem = document.createElement("li");
+        
+        var listItem1     = document.createElement("li");
+        // Set the anchor's attributes
+        link.href = "./login.html";
+        link.className = "external";
+        const link1 = document.createElement("a");
+
+        // Set the anchor's attributes
+        link1.href = "./login.html";
+        link1.className = "external";
+        link1.style.textDecoration = "none";
+        link1.textContent = "Sign Out";
+        link1.addEventListener("click", function (event) {
+            event.preventDefault();
+            sessionStorage.setItem("name", null);
+            sessionStorage.setItem("email", null);
+            sessionStorage.setItem("image", null);
+            window.location.href = "./index.html";
+        });
+        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
+            link.textContent = "Sign-In";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
+
+        }
+        else {
+            link.textContent = fullname.split(' ')[0] + ", Profile";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
+            listItem1.appendChild(link1);
+            sidesDiv.appendChild(listItem1)
+        }
         //according to loftblog tut
         $('.nav li:first').addClass('active');
 

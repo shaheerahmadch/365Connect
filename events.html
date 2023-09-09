@@ -2,6 +2,22 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="365Connect is a community dedicated to promoting and advancing the adoption of Microsoft D365 and Power Platform technologies. Our primary goal is to foster a supportive environment where individuals can learn, teach, and collaborate on all things related to these powerful tools. Whether you're an experienced user or just starting out, we welcome members from any part of the globe to join us in our mission to promote and develop this community.">
+    <meta name="author" content="Shaheer Ahmad">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>365Connect Community</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>365Connect Community | Events</title>
@@ -15,6 +31,31 @@
 </head>
 
 <body>
+    <header class="main-header clearfix" role="header">
+        <div class="logo">
+          <a style="text-decoration: none !important;" href="#"><em>365</em>Connect Community</a>
+        </div>
+        <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+        <nav id="menu" class="main-nav" role="navigation">
+          <ul class="main-menu">
+            <li><a style="text-decoration: none !important;" href="#section1">Home</a></li>
+            <!--
+            <li class="has-submenu"><a href="#section2">About Us</a>
+              <ul class="sub-menu">
+                <li><a href="#section2">Who we are?</a></li>
+                <li><a href="#section3">What we do?</a></li>
+                <li><a href="#section3">How it works?</a></li>
+                <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
+              </ul>
+            </li>-->
+            <li><a style="text-decoration: none !important;" href="#section4">Courses</a></li>
+            <!-- <li><a href="#section5">Video</a></li> -->
+            <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
+            <li><a style="text-decoration: none !important;" href="https://shaheer365.blogspot.com" class="external">Blog</a></li>
+            <li><a style="text-decoration: none !important;" href="#section6">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
 
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header">
@@ -89,73 +130,39 @@
 
     </section>
     <!-- Site footer -->
-    <footer class="site-footer">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
-                        Ambassador, Shaheer Ahmad currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
-                        Surge. My dedication lies in delivering practical and user-friendly solutions, and He have a
-                        strong enthusiasm for learning and sharing knowledge. Active in the community, He find joy in
-                        helping others solve problems and have started sharing my learnings on my blog.</p>
-                </div>
-
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">Community</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
-                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
-                    </ul>
-                </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p><i class="fa fa-copyright"></i> Copyright 2023 by 365Connect Community
+              
+               | Design: <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" rel="sponsored" target="_parent">Shaheer Ahmad</a></p>
             </div>
-            <hr>
+          </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Shaheer Ahmad</a>.
-                    </p>
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
-                                    class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+      </footer>
     <script>
         const email = sessionStorage.getItem("email");
         const fullname = sessionStorage.getItem("name");
-        const sidesDiv = document.querySelector(".sides");
+        const sidesDiv = document.querySelector(".main-menu");
 
         // Create a new anchor element
-        const anchorElement = document.createElement("a");
+        const link = document.createElement("a");
+        link.style.textDecoration = "none";
+        var listItem = document.createElement("li");
+        
+        var listItem1     = document.createElement("li");
+        // Set the anchor's attributes
+        link.href = "./login.html";
+        link.className = "external";
+        const link1 = document.createElement("a");
 
         // Set the anchor's attributes
-        anchorElement.href = "./login.html";
-        anchorElement.className = "logo";
-        anchorElement.style.marginTop = "0px";
-        anchorElement.style.height = "50px";
-        const anchorElement1 = document.createElement("a");
-
-        // Set the anchor's attributes
-        anchorElement1.href = "./login.html";
-        anchorElement1.className = "logo";
-        anchorElement1.style.marginTop = "0px";
-        anchorElement1.style.height = "50px";
-        anchorElement1.textContent = "Sign Out";
-        anchorElement1.addEventListener("click", function (event) {
+        link1.href = "./login.html";
+        link1.className = "external";
+        link1.style.textDecoration = "none";
+        link1.textContent = "Sign Out";
+        link1.addEventListener("click", function (event) {
             event.preventDefault();
             sessionStorage.setItem("name", null);
             sessionStorage.setItem("email", null);
@@ -163,14 +170,17 @@
             window.location.href = "./index.html";
         });
         if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
-            anchorElement.textContent = "Sign-In";
-            sidesDiv.appendChild(anchorElement);
+            link.textContent = "Sign-In";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
 
         }
         else {
-            anchorElement.textContent = fullname.split(' ')[0] + ", Profile";
-            sidesDiv.appendChild(anchorElement);
-            sidesDiv.appendChild(anchorElement1)
+            link.textContent = fullname.split(' ')[0] + ", Profile";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
+            listItem1.appendChild(link1);
+            sidesDiv.appendChild(listItem1)
         }
 
 
