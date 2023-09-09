@@ -1,438 +1,580 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>365Connect Community | Events</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <head>
 
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>365Connect Community</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+<!--
+    
+TemplateMo 557 Grad School
+
+https://templatemo.com/tm-557-grad-school
+
+-->
+  </head>
 
 <body>
 
-    <div class="loading" id="loading">Loading&#8230;</div>
-    <div class="header">
-
-
-        <div class="sides">
-            <!-- search-->
-            <div class="box">
-                <div class="container-2">
-                    <span class="icon">
-                        <i class="fa fa-search"></i>
-                    </span>
-                    <input type="search" id="search" placeholder="Search...">
-                </div>
-            </div>
-            <!-- search-->
-        </div>
-
-
-        <div class="sides">
-            <a href="#" class="menu" style=" display: none;"> </a>
-
-
-        </div>
-        <div class="info">
-            <h4><a href="https://www.linkedin.com/in/shaheer-ahmad-ch/">Shaheer Ahmad</a></h4>
-            <h2>365Connect Community</h2>
-            <div class="meta">
-                <a href="https://www.linkedin.com/company/365-connect-community" target="_b" class="author"></a><br>
-                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b"></a>
-            </div>
-        </div>
+   
+  <!--header-->
+  <header class="main-header clearfix" role="header">
+    <div class="logo">
+      <a href="#"><em>365</em>Connect Community</a>
     </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+      <ul class="main-menu">
+        <li><a href="#section1">Home</a></li>
+        <li class="has-submenu"><a href="#section2">About Us</a>
+          <ul class="sub-menu">
+            <li><a href="#section2">Who we are?</a></li>
+            <li><a href="#section3">What we do?</a></li>
+            <li><a href="#section3">How it works?</a></li>
+            <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
+          </ul>
+        </li>
+        <li><a href="#section4">Courses</a></li>
+        <!-- <li><a href="#section5">Video</a></li> -->
+        <li><a href="./events.html" class="external">Events</a></li>
+        <li><a href="https://shaheer365.blogspot.com" class="external">Blog</a></li>
+        <li><a href="#section6">Contact</a></li>
+        <li><a href="./login.html" class="external">Sign-In</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="content">
-        <center>
-            <h2 style="color: black !important;">Upcomming Events</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
-        </center>
-        <ul id="event-list"></ul><br>
-        <div class="message" id="message">
-        </div>
-        <center>
-            <h2 style="color: black !important;">Past Events</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
-        </center>
-        <!-- Inside your HTML file -->
-        <ul id="event-list1"></ul>
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1">
+      <video autoplay muted loop id="bg-video">
+          <source src="assets/images/course-video.mp4" type="video/mp4" />
+      </video>
 
-        <div class="message" id="message1"><br>
+      <div class="video-overlay header-text">
+          <div class="caption">
+              <h6>365Connect Community</h6>
+              <h2> Building <em>Power</em> Users</h2>
+              <div class="main-button">
+                  <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- ***** Main Banner Area End ***** -->
 
-            <div class="row"></div>
-        </div>
-        <!-- Popup and overlay for event details -->
-        <div class="overlay" id="overlay"></div>
-        <div class="popup" id="popup">
-            <button class="close-button" id="close-popup">Close</button>
-            <h2>Event Details</h2><br>
-            <p><strong>Name:</strong> <span id="event-name"></span></p>
-            <p><strong>Speaker:</strong> <span id="event-host"></span></p>
-            <p><strong>Duration:</strong> <span id="event-duration"></span></p>
-            <p><strong>Start Date:</strong> <span id="event-start"></span></p>
-            <p><strong>End Date:</strong> <span id="event-end"></span></p>
-            <p><strong>Status:</strong> <span id="event-status"></span></p>
-            <p><strong>Registration Open:</strong> <span id="event-registration"></span></p>
-            <p><strong>Type:</strong> <span id="event-type"></span></p>
-            <p><strong>Description:</strong> <span id="event-description"></span></p>
-            <a href="#" id="register-now-link" target="_blank"><button class="register-now">Register Now</button></a>
-        </div>
-
-    </section>
-    <!-- Site footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">As a Microsoft Certified Professional and Microsoft Learn Student
-                        Ambassador, Shaheer Ahmad currently serve as a Power Platform & Dynamics 365 Associate Consultant at Cloud
-                        Surge. My dedication lies in delivering practical and user-friendly solutions, and He have a
-                        strong enthusiasm for learning and sharing knowledge. Active in the community, He find joy in
-                        helping others solve problems and have started sharing my learnings on my blog.</p>
-                </div>
-
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">Community</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Blog</a></li>
-                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Instagram</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Community</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">MLSA</a></li>
-                    </ul>
-                </div>
+<!--  <section class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <div class="features-post">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-pencil"></i>Events</h4>
+              </div>
+              <div class="content-hide">
+                <p>At 365Connect Community, we're passionate about bringing people together to explore the exciting world of Microsoft technologies. That's why we host a variety of engaging events designed to connect, educate, and inspire.</p>
+                <p class="hidden-sm"></p>
+                <div class="scroll-to-section"><a href="#section2">More Info.</a></div>
             </div>
-            <hr>
+            </div>
+          </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Shaheer Ahmad</a>.
-                    </p>
+        <div class="col-lg-4 col-12">
+          <div class="features-post second-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-graduation-cap"></i>Courses</h4>
+              </div>
+              <div class="content-hide">
+                <p>365Connect Community is your gateway to a world of learning opportunities focused on Microsoft technologies. Our courses are designed to empower you with the skills and knowledge you need to excel in today's technology-driven landscape.</p>
+                <p class="hidden-sm"></p>
+                <div class="scroll-to-section"><a href="#section3">Details</a></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="features-post third-features">
+            <div class="features-content">
+              <div class="content-show">
+                <h4><i class="fa fa-book"></i>Blogs</h4>
+              </div>
+              <div class="content-hide">
+                <p>we share insights, updates, and in-depth articles on all things related to Microsoft technologies. Our blog is your go-to resource for staying informed, inspired, and engaged in the world of Microsoft.
+                </p>
+                <p class="hidden-sm"></p>
+                <div class="scroll-to-section"><a href="#section4">Read More</a></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+  <section class="section why-us" data-section="section2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Why join 365Connect Community?</h2>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div id='tabs'>
+            <ul>
+              <li><a href='#tabs-1'>Events</a></li>
+              <li><a href='#tabs-2'>Courses</a></li>
+              <li><a href='#tabs-3'>Blogs</a></li>
+            </ul>
+            <section class='tabs-content'>
+              <article id='tabs-1'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-01.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Events</h4>
+                    <p>At 365Connect Community, we're passionate about bringing people together to explore the exciting world of Microsoft technologies. That's why we host a variety of engaging events designed to connect, educate, and inspire.</p>
+                  </div>
+                </div>
+              </article>
+              <article id='tabs-2'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-02.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Courses</h4>
+                    <p>365Connect Community is your gateway to a world of learning opportunities focused on Microsoft technologies. Our courses are designed to empower you with the skills and knowledge you need to excel in today's technology-driven landscape.</p> 
+                    
+                  </div>
+                </div>
+              </article>
+              <article id='tabs-3'>
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="assets/images/choose-us-image-03.png" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Blogs</h4>
+                    <p>We share insights, updates, and in-depth articles on all things related to Microsoft technologies. Our blog is your go-to resource for staying informed, inspired, and engaged in the world of Microsoft.                    </p>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section coming-soon" data-section="section3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 col-xs-12">
+          <div class="continer centerIt">
+            <div>
+              <h4>Take <em>any online Event</em> and get your certificate.</h4>
+              <!--
+              <div class="counter">
+
+                <div class="days">
+                  <div class="value">00</div>
+                  <span>Days</span>
                 </div>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="linkedin" href="https://www.linkedin.com/in/shaheer-ahmad-ch"><i
-                                    class="fa fa-linkedin"></i></a></li>
-                    </ul>
+                <div class="hours">
+                  <div class="value">00</div>
+                  <span>Hours</span>
                 </div>
+
+                <div class="minutes">
+                  <div class="value">00</div>
+                  <span>Minutes</span>
+                </div>
+
+                <div class="seconds">
+                  <div class="value">00</div>
+                  <span>Seconds</span>
+                </div>
+
+              </div>
+              -->
             </div>
+          </div>
         </div>
-    </footer>
+        <div class="col-md-5">
+          <div class="right-content">
+            <div class="top-content">
+              <h6>Register your free account and <em>get immediate</em> access to online courses</h6>
+            </div>
+            <form id="contact" action="" method="get">
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="First Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="name" type="text" class="form-control" id="name1" placeholder="Last Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="Your Phone Number" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="button">Get it now</button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section courses" data-section="section4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Choose Your Course</h2>
+          </div>
+        </div>
+        <!--
+        <div class="owl-carousel owl-theme">
+
+
+          <div class="item">
+            <img src="assets/images/courses-01.jpg" alt="Course #1">
+            <div class="down-content">
+              <h4>Digital Marketing</h4>
+              <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
+              <div class="author-image">
+                <img src="assets/images/author-01.png" alt="Author 1">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-02.jpg" alt="Course #2">
+            <div class="down-content">
+              <h4>Business World</h4>
+              <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
+              <div class="author-image">
+                <img src="assets/images/author-02.png" alt="Author 2">
+              </div>
+              <div class="text-button-free">
+                <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-03.jpg" alt="Course #3">
+            <div class="down-content">
+              <h4>Media Technology</h4>
+              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <div class="author-image">
+                <img src="assets/images/author-03.png" alt="Author 3">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-04.jpg" alt="Course #4">
+            <div class="down-content">
+              <h4>Communications</h4>
+              <p>Download free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
+              <div class="author-image">
+                <img src="assets/images/author-04.png" alt="Author 4">
+              </div>
+              <div class="text-button-free">
+                <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-05.jpg" alt="">
+            <div class="down-content">
+              <h4>Business Ethics</h4>
+              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <div class="author-image">
+                <img src="assets/images/author-05.png" alt="">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-01.jpg" alt="">
+            <div class="down-content">
+              <h4>Photography</h4>
+              <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
+              <div class="author-image">
+                <img src="assets/images/author-01.png" alt="">
+              </div>
+              <div class="text-button-free">
+                <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-02.jpg" alt="">
+            <div class="down-content">
+              <h4>Web Development</h4>
+              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <div class="author-image">
+                <img src="assets/images/author-02.png" alt="">
+              </div>
+              <div class="text-button-free">
+                <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-03.jpg" alt="">
+            <div class="down-content">
+              <h4>Learn HTML CSS</h4>
+              <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
+              <div class="author-image">
+                <img src="assets/images/author-03.png" alt="">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-04.jpg" alt="">
+            <div class="down-content">
+              <h4>Social Media</h4>
+              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <div class="author-image">
+                <img src="assets/images/author-04.png" alt="">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-05.jpg" alt="">
+            <div class="down-content">
+              <h4>Digital Arts</h4>
+              <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
+              <div class="author-image">
+                <img src="assets/images/author-05.png" alt="">
+              </div>
+              <div class="text-button-free">
+                <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="assets/images/courses-01.jpg" alt="">
+            <div class="down-content">
+              <h4>Media Streaming</h4>
+              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <div class="author-image">
+                <img src="assets/images/author-01.png" alt="">
+              </div>
+              <div class="text-button-pay">
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+        <center><h1 style="align-self: center !important; color: white !important; ">Comming Soon!</h1></center>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="section video" data-section="section5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 align-self-center">
+          <div class="left-content">
+            <span>our presentation is for you</span>
+            <h4>Watch the video to learn more <em>about 365Connect Community</em></h4>
+            <p>365Connect is a community dedicated to promoting and advancing the adoption of Microsoft D365 and Power Platform technologies. Our primary goal is to foster a supportive environment where individuals can learn, teach, and collaborate on all things related to these powerful tools. Whether you're an experienced user or just starting out, we welcome members from any part of the globe to join us in our mission to promote and develop this community.
+            <br><br>Learn more about us.</p>
+            <div class="main-button"><a rel="nofollow" href="https://www.linkedin.com/company/365-connect-community" target="_parent">LinkedIn</a></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <article class="video-item">
+            <div class="video-caption">
+              <h4>Introduction</h4>
+            </div>
+            <figure>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/iy8knAr4coo?si=4aHIHkiynP1a8vba" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+            </figure>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" data-section="section6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Let’s Keep In Touch</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+        
+        <!-- Do you need a working HTML contact-form script?
+                	
+                    Please visit https://templatemo.com/contact page -->
+                    
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                  <fieldset>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="First Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <fieldset>
+                    <input name="name1" type="text" class="form-control" id="lastname" placeholder="Last Name" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <fieldset>
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
+                  </fieldset>
+                </div>
+              <div class="col-md-12">
+                <fieldset>
+                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                </fieldset>
+              </div>
+              <div class="col-md-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="button">Send Message Now</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+        <div class="col-md-6">
+          <div id="map">
+           <!-- <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="422px" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p><i class="fa fa-copyright"></i> Copyright 2023 by 365Connect Community
+          
+           | Design: <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" rel="sponsored" target="_parent">Shaheer Ahmad</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
     <script>
-        const email = sessionStorage.getItem("email");
-        const fullname = sessionStorage.getItem("name");
-        const sidesDiv = document.querySelector(".sides");
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
 
-        // Create a new anchor element
-        const anchorElement = document.createElement("a");
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
 
-        // Set the anchor's attributes
-        anchorElement.href = "./login.html";
-        anchorElement.className = "logo";
-        anchorElement.style.marginTop = "0px";
-        anchorElement.style.height = "50px";
-        const anchorElement1 = document.createElement("a");
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
 
-        // Set the anchor's attributes
-        anchorElement1.href = "./login.html";
-        anchorElement1.className = "logo";
-        anchorElement1.style.marginTop = "0px";
-        anchorElement1.style.height = "50px";
-        anchorElement1.textContent = "Sign Out";
-        anchorElement1.addEventListener("click", function (event) {
-            event.preventDefault();
-            sessionStorage.setItem("name", null);
-            sessionStorage.setItem("email", null);
-            sessionStorage.setItem("image", null);
-            window.location.href = "./index.html";
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+          if($(e.target).hasClass('external')) {
+            return;
+          }
+          e.preventDefault();
+          $('#menu').removeClass('active');
+          showSection($(this).attr('href'), true);
         });
-        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
-            anchorElement.textContent = "Sign In to View Your Registrations";
-            sidesDiv.appendChild(anchorElement);
 
-        }
-        else {
-            anchorElement.textContent = fullname.split(' ')[0] + ", View Your Registrations";
-            sidesDiv.appendChild(anchorElement);
-            sidesDiv.appendChild(anchorElement1)
-        }
-
-
-
-        // Append the anchor to the parent element
-
-
-        document.getElementById("search").addEventListener("keypress", function onEvent(event) {
-            if (event.key === "Enter") {
-                // Do something better
-                find(document.getElementById("search").value)
-            }
+        $(window).scroll(function () {
+          checkSection();
         });
-        // Replace with your API endpoint URL
-        var myHeaders1 = new Headers();
-        myHeaders1.append("type", "Past");
-
-        var requestOptions1 = {
-            method: 'GET',
-            headers: myHeaders1,
-            redirect: 'follow'
-        };
-        const apiUrl1 = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
-
-        var myHeaders = new Headers();
-        myHeaders.append("type", "UpComing");
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-        const apiUrl = "https://prod-40.southeastasia.logic.azure.com:443/workflows/133ffc3632e14b338c946ead39b702bf/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cAmOD1oq-z3We3B9lZe8LBvkPJSOgf9yYiKMC8r3Jfk";
-
-        // Function to fetch event data from the API
-        async function fetchEventData() {
-            try {
-                const response = await fetch(apiUrl, requestOptions);
-
-                if (response.status === 200) {
-                    const data = await response.json();
-                    return data;
-                } else {
-                    showError("No Upcoming Events", "warning");
-                    return [];
-                }
-            } catch (error) {
-                showError("No Upcoming Events", "warning");
-                return [];
-            }
-        }
-        function showError(alert, alertType) {
-            var message = document.getElementById("message");
-            var messagetext = document.createElement("div");
-            messagetext.classList.add("alert")
-            messagetext.classList.add("alert-" + alertType)
-            messagetext.textContent = alert;
-            message.appendChild(messagetext);
-        }
-        function showError1(alert, alertType) {
-            var message = document.getElementById("message1");
-            var messagetext = document.createElement("div");
-            messagetext.classList.add("alert")
-            messagetext.classList.add("alert-" + alertType)
-            messagetext.textContent = alert;
-            message.appendChild(messagetext);
-        }
-
-        // Function to create and display the event list
-        async function displayEventList() {
-            document.getElementById("loading").style.display = "block";
-            const eventList = document.getElementById("event-list");
-
-            try {
-                const events = await fetchEventData();
-
-                events.forEach(event => {
-                    const listItem = document.createElement("li");
-                    listItem.className = "event-item";
-                    listItem.innerHTML = `<h1>${event.sa_name}</h1>
-                <p> ${event.sa_description}</p><br>
-                <p><strong>Speaker:</strong> ${event["_sa_host_value@OData.Community.Display.V1.FormattedValue"]}</p>
-                <p><strong>Start Date:</strong> ${event["sa_start@OData.Community.Display.V1.FormattedValue"]}</p>
-                <p><strong>Duration:</strong> ${hoursToDays(event.sa_duration)}</p>
-                <p><strong>Registration Open:</strong> ${event["sa_registrationopen@OData.Community.Display.V1.FormattedValue"]}</p><br><br>
-                <button class="view-details">View Details</button>
-            `;
-
-                    if (event.sa_registrationopen && event.statuscode === 126380003) {
-                        listItem.innerHTML += `<a href="${'./register.html?id=' + event.sa_eventid}" target="_blank"><button class="register-now">Register Now</button></a>`;
-                    }
-
-                    listItem.querySelector(".view-details").addEventListener("click", () => openPopup(event));
-                    eventList.appendChild(listItem);
-                });
-
-                document.getElementById("loading").style.display = "none";
-            } catch (error) {
-                console.error("Error displaying event list:", error);
-            }
-        }
-        ////////////////////
-        function hoursToDays(hours) {
-            if (hours >= 24) {
-                const days = Math.floor(hours / 24); // Calculate the whole number of days
-                const remainingHours = hours % 24;  // Calculate the remaining hours
-                if (remainingHours != 0)
-                    return `${days} days and ${remainingHours} hours`;
-                else
-                    return `${days} days`;
-            } else {
-                return `${hours} hours`; // Less than 24 hours, return hours only
-            }
-        }
-        ////////////////////
-
-        // Function to open the popup with event details
-        function openPopup(event) {
-            const overlay = document.getElementById("overlay");
-            const popup = document.getElementById("popup");
-            const eventName = document.getElementById("event-name");
-            const eventStart = document.getElementById("event-start");
-            const eventEnd = document.getElementById("event-end");
-            const eventDescription = document.getElementById("event-description");
-            const eventStatus = document.getElementById("event-status");
-            const registerNowLink = document.getElementById("register-now-link");
-            const eventType = document.getElementById("event-type");
-            const eventDuration = document.getElementById("event-duration");
-            const eventreistration = document.getElementById("event-registration");
-            const eventHost = document.getElementById("event-host");
-
-            eventName.textContent = event.sa_name;
-            eventStart.textContent = event["sa_start@OData.Community.Display.V1.FormattedValue"];
-            eventEnd.textContent = event["sa_end@OData.Community.Display.V1.FormattedValue"];
-            eventDescription.textContent = event.sa_description;
-            eventreistration.textContent = event["sa_registrationopen@OData.Community.Display.V1.FormattedValue"];
-            eventStatus.textContent = event["statuscode@OData.Community.Display.V1.FormattedValue"];
-            eventType.textContent = event["sa_eventtype@OData.Community.Display.V1.FormattedValue"];
-            eventDuration.textContent = hoursToDays(event.sa_duration);
-            eventHost.textContent = event["_sa_host_value@OData.Community.Display.V1.FormattedValue"]
-
-            if (event.statuscode === 126380003 && event.sa_registrationopen) {
-                registerNowLink.href = "./register.html?id=" + event.sa_eventid;
-                registerNowLink.style.display = "block";
-            } else {
-                registerNowLink.style.display = "none";
-            }
-
-            overlay.style.display = "block";
-            popup.style.display = "block";
-            // close popup
-            document.getElementById("close-popup").addEventListener("click", () => {
-                overlay.style.display = "none";
-                popup.style.display = "none";
-            });
-        };
-        // Initialize the page
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("loading").style.display = "none";
-            displayEventList();
-
-            displayEventList1();
-        })
-        async function displayEventList1() {
-            document.getElementById("loading").style.display = "block";
-            const comp_eventList = document.getElementById("event-list1");
-            const comp_events = await fetchEventData1();
-
-            comp_events.forEach(comp_event => {
-                const parentElement = document.querySelector('.row');
-                const colSm6 = createColSm6(comp_event);
-                parentElement.appendChild(colSm6);
-
-            });
-            document.getElementById("loading").style.display = "none";
-        };
-
-        async function fetchEventData1() {
-            try {
-                const response1 = await fetch(apiUrl1, requestOptions1);
-                if (response1.status === 200) {
-                    const data1 = await response1.json();
-                    return data1;
-                } else {
-                    showError1("No Past Events", "warning");
-                    return [];
-                }
-            } catch (error) {
-                showError1("No Past Events", "warning");
-                return [];
-            }
-        }
-
-
-
-
-
-        ///////////////////
-
-        // Function to create a col-sm-6 with nested items
-        function createColSm6(thisevent) {
-            // Create a div element with the "col-sm-6" class
-            const colDiv = document.createElement('div');
-            colDiv.classList.add('col-sm-6');
-
-            // Create a div element with the "card" class
-            const cardDiv = document.createElement('div');
-            cardDiv.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
-            cardDiv.classList.add('card', 'd-flex', 'flex-column');
-            cardDiv.style.minHeight = '350px';
-            cardDiv.style.margin = '10px';
-            cardDiv.style.marginBottom = "20px";
-            
-
-            // Create a div element with the "card-body" class
-            const cardBodyDiv = document.createElement('div');
-            cardBodyDiv.classList.add('card-body');
-
-            // Create a title element
-            const titleElement = document.createElement('h2');
-            titleElement.classList.add('card-title');
-            titleElement.style.backgroundColor = "#1ab394";
-            titleElement.style.color = "white";
-            titleElement.style.height = "170px";
-            titleElement.textContent = thisevent.sa_name;
-
-            // Create a paragraph element for text
-            const textElement = document.createElement('p');
-            textElement.classList.add('card-text');
-            textElement.style.height = "150px";
-            textElement.textContent = thisevent.sa_description;
-
-            // Create a button element
-            const buttonElement = document.createElement('p');
-            buttonElement.classList.add('view-details');
-            buttonElement.style.backgroundColor = "#343a40";
-            buttonElement.style.textAlign = "center"
-            buttonElement.textContent = 'View Event';
-
-            // Add a click event listener to the button
-            buttonElement.addEventListener("click", () => {
-                openPopup(thisevent);
-            });
-
-            // Append the button element to the card body
-            cardBodyDiv.appendChild(buttonElement);
-
-            // Append elements to build the structure
-            cardBodyDiv.appendChild(titleElement);
-            cardBodyDiv.appendChild(textElement);
-            cardBodyDiv.appendChild(buttonElement);
-            cardDiv.appendChild(cardBodyDiv);
-            colDiv.appendChild(cardDiv);
-
-            // Return the created col-sm-6 element
-            return colDiv;
-        }
-
-// Get the parent element where you want to append the col-sm-6
-
-
     </script>
-
-
 </body>
-
 </html>
