@@ -98,16 +98,16 @@
 
     <section class="content">
         <center>
-            <h2 style="color: black !important;">Upcoming Event Registrations</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
+            <h2 style="color: white !important;">Upcoming Event Registrations</h2>
+            <hr style=" border: 2px solid white; border-radius: 20px;">
         </center>
         <ul id="event-list"></ul><br>
         <div class="message" id="message">
         </div>
         <br>
         <center>
-            <h2 style="color: black !important;">Past Event Registrations</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
+            <h2 style="color: white !important;">Past Event Registrations</h2>
+            <hr style=" border: 2px solid white; border-radius: 20px;">
         </center>
         <ul id="event-list1"></ul><br>
         <div class="row"></div>
@@ -342,6 +342,8 @@ sidesDiv.appendChild(anchorElement1);
             // Create a div element with the "card-body" class
             const cardBodyDiv = document.createElement('div');
             cardBodyDiv.classList.add('card-body');
+            cardBodyDiv.style.backgroundColor = "#202124";
+            cardBodyDiv.style.borderColor = "#202124 !important";
 
             // Create a title element
             const titleElement = document.createElement('h2');
