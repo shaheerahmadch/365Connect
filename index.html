@@ -801,7 +801,7 @@ https://templatemo.com/tm-557-grad-school
         fetch("https://prod-45.southeastasia.logic.azure.com:443/workflows/0515a79772ea4bea8491cc9ed53c5492/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6hC7eTNLsiXD3NkmOBEDaeUiP9GhVTifo-rAYXqcmdk", requestOptions)
           .then(response => console.log("Error"))
           .then(result => {
-            showError1("You have been registered", "success")
+            showError1("You have been registered. You can now login using your email.", "success")
             reg_firstname.style.display = "none";
             reg_lastname.style.display = "none";
             reg_email.style.display = "none";
@@ -810,7 +810,7 @@ https://templatemo.com/tm-557-grad-school
             document.getElementById("register-button").style.display = "none";
           })
           .catch(error => {
-            showError1("Registration failed", "danger")
+            showError1("Registration failed. Try again.", "danger")
             document.getElementById("loading").style.display = "none";
           });
 
