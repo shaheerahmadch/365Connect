@@ -9,7 +9,7 @@
  h1 {
      text-align: center;
      padding: 20px;
-     background-color: #1ab394;
+     background-color: #222d43;
      color: white !important;
  }
 
@@ -57,7 +57,7 @@
  }
 
  .view-details {
-     background-color: #1ab394;
+     background-color: #222d43;
      color: white;
      border: none;
      padding: 10px 20px;
