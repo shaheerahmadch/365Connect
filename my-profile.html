@@ -64,7 +64,7 @@
             <h2>Change Profile Picture</h2>
             <label class="file-label" for="file-fileInput">Select File</label>
             <input type="file" id="file-fileInput" class="file-input" accept="image/jpeg, image/png, image/gif" />
-            <p id="file-selectedFileName"></p>
+            <p id="file-selectedFileName" style="color: black !important;"></p>
             <button id="file-uploadButton" class="file-btn">Upload</button>
             <button id="file-closePopup" class="file-btn cancel">Cancel</button>
         </div>
@@ -452,9 +452,8 @@ uploadButton.addEventListener('click', () => {
             document.getElementById("loading").style.display = "none";
         })
         .then(data => {
-            let newimage_url = crmUrl +data.body.entityimage_url;
-            sessionStorage.setItem("image",data.body.entityimage_url);
-            window.location.reload();
+            let newimage_url = data.body.entityimage;
+            authorElement.style.background = `url(data:image/png;base64,${data.body.entityimage}) center no-repeat`
             fileUploadPopup.style.display = 'none';
             document.getElementById("loading").style.display = "none";
         })
