@@ -52,7 +52,6 @@
             <!-- <li><a href="#section5">Video</a></li> -->
             <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
             <li><a style="text-decoration: none !important;" href="./support.html" class="external">Support</a></li>
-            <li><a style="text-decoration: none !important;" href="#section6">Sign Out</a></li>
           </ul>
         </nav>
       </header>
@@ -132,6 +131,43 @@
         </div>
       </footer>
     <script>
+        
+        const sidesDiv1 = document.querySelector(".main-menu");
+         const link = document.createElement("a");
+        link.style.textDecoration = "none";
+        var listItem = document.createElement("li");
+        
+        var listItem1     = document.createElement("li");
+        // Set the anchor's attributes
+        link.href = "./login.html";
+        link.className = "external";
+        const link1 = document.createElement("a");
+
+        // Set the anchor's attributes
+        link1.href = "./login.html";
+        link1.className = "external";
+        link1.style.textDecoration = "none";
+        link1.textContent = "Sign Out";
+        link1.addEventListener("click", function (event) {
+            event.preventDefault();
+            sessionStorage.setItem("name", null);
+            sessionStorage.setItem("email", null);
+            sessionStorage.setItem("image", null);
+            window.location.href = "./index.html";
+        });
+        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
+            link.textContent = "Sign-In";
+            listItem.appendChild(link);
+            sidesDiv1.appendChild(listItem);
+
+        }
+        else {
+            link.textContent = sessionStorage.name.split(' ')[0] + ", Profile";
+            listItem.appendChild(link);
+            sidesDiv1.appendChild(listItem);
+            listItem1.appendChild(link1);
+            sidesDiv1.appendChild(listItem1)
+        }
         // Get the elements
 const openPopupButton = document.getElementById('file-openPopup1');
 const popup = document.getElementById('imagePopup');
@@ -205,7 +241,7 @@ sidesDiv.appendChild(anchorElement1);
             const text = document.createElement("h2");
             const textsds = document.createElement("p");
             text.textContent = "Welcome, " + fullname;
-            text.innerHTML = `Welcome, ${fullname} <i class="fa fa-pencil" style="font-size:20px;" id="file-openPopup1"></i>`;
+            text.innerHTML = ` ${fullname} <i class="fa fa-pencil" style="font-size:20px;" id="file-openPopup1"></i>`;
             textsds.textContent = email;
             text.style.padding = "0px"
             heading.appendChild(text);
