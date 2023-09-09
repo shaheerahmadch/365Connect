@@ -51,7 +51,6 @@
             <!-- <li><a href="#section5">Video</a></li> -->
             <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
             <li><a style="text-decoration: none !important;" href="./support.html" class="external">Support</a></li>
-            <li><a style="text-decoration: none !important;" href="#section6">Sign Out</a></li>
           </ul>
         </nav>
       </header>
@@ -212,6 +211,47 @@
       </footer>
 
     <script>
+        const sidesDiv = document.querySelector(".main-menu");
+
+// Create a new anchor element
+const link = document.createElement("a");
+link.style.textDecoration = "none";
+var listItem = document.createElement("li");
+
+var listItem1     = document.createElement("li");
+// Set the anchor's attributes
+link.href = "./login.html";
+link.className = "external";
+const link1 = document.createElement("a");
+
+// Set the anchor's attributes
+link1.href = "./login.html";
+link1.className = "external";
+link1.style.textDecoration = "none";
+link1.textContent = "Sign Out";
+link1.addEventListener("click", function (event) {
+    event.preventDefault();
+    sessionStorage.setItem("name", null);
+    sessionStorage.setItem("email", null);
+    sessionStorage.setItem("image", null);
+    window.location.href = "./index.html";
+});
+if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
+    link.textContent = "Sign-In";
+    listItem.appendChild(link);
+    sidesDiv.appendChild(listItem);
+
+}
+else {
+    link.textContent = fullname.split(' ')[0] + ", Profile";
+    listItem.appendChild(link);
+    sidesDiv.appendChild(listItem);
+    listItem1.appendChild(link1);
+    sidesDiv.appendChild(listItem1)
+}
+
+
+
         
         document.getElementById("loading").style.display = "none";
         var url_string = window.location.href;
