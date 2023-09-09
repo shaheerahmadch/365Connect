@@ -1,9 +1,12 @@
  /* Stylish CSS for the event list and popup */
  body {
      font-family: Arial, sans-serif;
-     background-color: #f5f5f5;
+     background-color: #172238 !important;
      margin: 0;
      padding: 0;
+ }
+ p{
+    color: white !important;
  }
 
  h1 {
@@ -37,8 +40,8 @@
  }
 
  .event-item {
-     background-color: white;
-     border: 1px solid #ddd;
+     background-color: #202124;
+     border: 1px solid #202124;
      border-radius: 5px;
      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
      margin: 30px;
@@ -49,7 +52,7 @@
 
  .event-item strong {
      font-size: 17px;
-     color: #333;
+     color: white;
  }
 
  .event-item p {
@@ -134,6 +137,7 @@
  }
 
  .popup {
+    color: black !important;
      display: none;
      position: fixed;
      top: 50%;
@@ -145,6 +149,9 @@
      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
      z-index: 1000;
      text-align: left;
+ }
+ .popup p{
+    color: black !important;
  }
 
  /* Styling for the close button */

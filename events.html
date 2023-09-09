@@ -93,15 +93,15 @@
 
     <section class="content" data-section="section1">
         <center>
-            <h2 style="color: black !important;">Upcomming Events</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
+            <h2 style="color: white !important;">Upcomming Events</h2>
+            <hr style=" border: 2px solid white; border-radius: 20px;">
         </center>
         <ul id="event-list"></ul><br>
         <div class="message" id="message">
         </div>
         <center>
-            <h2 style="color: black !important;">Past Events</h2>
-            <hr style=" border: 2px solid black; border-radius: 20px;">
+            <h2 style="color: white !important;">Past Events</h2>
+            <hr style=" border: 2px solid white; border-radius: 20px;">
         </center>
         <!-- Inside your HTML file -->
         <ul id="event-list1"></ul>
@@ -398,11 +398,14 @@
             // Create a div element with the "card-body" class
             const cardBodyDiv = document.createElement('div');
             cardBodyDiv.classList.add('card-body');
+            cardBodyDiv.style.backgroundColor = "#202124";
+            cardBodyDiv.style.borderColor = "#202124 !important";
+            
 
             // Create a title element
             const titleElement = document.createElement('h2');
             titleElement.classList.add('card-title');
-            titleElement.style.backgroundColor = "#1ab394";
+            titleElement.style.backgroundColor = "#131e32";
             titleElement.style.color = "white";
             titleElement.style.height = "170px";
             titleElement.textContent = thisevent.sa_name;
