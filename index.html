@@ -11,6 +11,7 @@
 
     <title>365Connect Community</title>
     
+    <link rel="stylesheet" href="styles.css">
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,11 +31,11 @@ https://templatemo.com/tm-557-grad-school
 
 <body>
 
-   
+  <div class="loading" id="loading">Loading&#8230;</div>
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="#"><em>365</em>Connect Community</a>
+      <a href="#" style=" font-size: 29px !important;"><em>365</em>Connect Community</a>
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
@@ -620,6 +621,7 @@ https://templatemo.com/tm-557-grad-school
         $(window).scroll(function () {
           checkSection();
         });
+        document.getElementById("loading").style.display = "none";
     </script>
 </body>
 </html>
