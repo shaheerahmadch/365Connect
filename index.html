@@ -467,7 +467,7 @@ https://templatemo.com/tm-557-grad-school
             <div class="row">
               <div class="col-md-6">
                   <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="First Name" required="">
+                    <input name="name" type="text" class="form-control" id="firstname" placeholder="First Name" required="">
                   </fieldset>
                 </div>
                 <div class="col-md-6">
@@ -477,23 +477,25 @@ https://templatemo.com/tm-557-grad-school
                 </div>
                 <div class="col-md-6">
                   <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required="">
+                    <input name="email" type="text" class="form-control" id="email1" placeholder="Your Email" required="">
                   </fieldset>
                 </div>
                 <div class="col-md-6">
                   <fieldset>
-                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone" required="">
+                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Your Subject" required="">
                   </fieldset>
                 </div>
               <div class="col-md-12">
                 <fieldset>
-                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                  <textarea name="message" rows="6" class="form-control" id="message1" placeholder="Your message..." required=""></textarea>
                 </fieldset>
               </div>
               <div class="col-md-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="button">Send Message Now</button>
+                  <p class="btn" id="submit-button" onclick="submitForm();">Submit</p>
                 </fieldset>
+              </div>
+              <div class="message" id="message">
               </div>
             </div>
           </form>
@@ -624,6 +626,109 @@ https://templatemo.com/tm-557-grad-school
         document.getElementById("loading").style.display = "none";
         if(screen.height > screen.width)
         document.querySelector(".video-item").hidden = true;
+
+
+        function submitForm() {
+            document.getElementById("loading").style.display = "block";
+            var myDiv = document.getElementById("message");
+            while(document.querySelector(".alert")){
+              myDiv.removeChild(document.querySelector(".alert"));
+            }
+
+            var firstname = document.getElementById("firstname").value
+            var lastname = document.getElementById("lastname").value
+            var email = document.getElementById("email1").value
+            var subject = document.getElementById("subject").value
+            var message = document.getElementById("message1").value
+
+            if (firstname == '') {
+                showError("First Name is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (lastname == '') {
+                showError("Last Name is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (email == '') {
+                showError("Email is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (subject == '') {
+                showError("Subject is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (message == '') {
+                showError("Message is Required", "danger")
+                document.getElementById("loading").style.display = "none";
+
+            }
+            if (firstname != '' && firstname != ''&& email != '' && message != '' && subject != '') {
+                document.getElementById("loading").style.display = "block";
+
+                var myHeaders = new Headers();
+                myHeaders.append("firstname", firstname);
+                myHeaders.append("lastname", lastname);
+                myHeaders.append("email", email);
+                myHeaders.append("subject", subject);
+                myHeaders.append("message", message);
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                fetch("https://prod-47.southeastasia.logic.azure.com:443/workflows/46b0074054a84e919e0c6ed8c656aa76/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dx3YJpOrWCsYEZp_53p8uUFz1xZjLf4wz4DKGzwiH1o", requestOptions)
+                    .then(response => {
+                        if (response.status === 200) {
+                            // Registration was successful
+                            showError("Success. Your request has been sent. You'll recieve an email shortly", "success");
+                            
+                            document.getElementById("loading").style.display = "none";
+                        } else {
+                            // Handle other response codes (e.g., display an error message)
+                            showError("Error.", "danger")
+                            document.getElementById("loading").style.display = "none";
+                        }
+                    })
+                    .then(result => {
+                        document.getElementById("loading").style.display = "none";
+                        // Do something with the result (e.g., display a success message)
+                        console.log('Registration Successful:', result);
+                    })
+                    .catch(error => {
+                        // Handle errors here (e.g., display an error message)
+                        console.error('Error:', error.message);
+                        showError("Error: " +error.message, "danger");
+                        document.getElementById("loading").style.display = "none";
+                    });
+
+
+
+                document.getElementById("firstname").style.display = "none";
+                document.getElementById("lastname").style.display = "none";
+                document.getElementById("email1").style.display = "none";
+                document.getElementById("subject").style.display = "none";
+                document.getElementById("message1").style.display = "none";
+                document.getElementById("submit-button").style.display = "none";
+
+            }
+
+
+
+        };
+        function showError(alert, alertType) {
+            var message = document.getElementById("message");
+            var messagetext = document.createElement("div");
+            messagetext.classList.add("alert")
+            messagetext.classList.add("alert-" + alertType)
+            messagetext.textContent = alert;
+            message.appendChild(messagetext);
+        }
     </script>
 </body>
 </html>

@@ -417,7 +417,7 @@
  /* Absolute Center Spinner */
  .loading {
      position: fixed;
-     z-index: 999099;
+     z-index: 999099999;
      height: 2em;
      width: 2em;
      overflow: show;
