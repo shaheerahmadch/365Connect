@@ -73,7 +73,7 @@
  }
 
  .register-now {
-     background-color: #007bff;
+     background-color: orange;
      color: white;
      border: none;
      padding: 10px 20px;
@@ -323,7 +323,7 @@
 /* Style for the buttons */
 .file-btn {
     margin-top: 10px;
-    background-color: #007bff;
+    background-color: orange;
     color: #fff;
     border: none;
     padding: 10px 20px;
