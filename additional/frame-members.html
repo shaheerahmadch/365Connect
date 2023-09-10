@@ -162,7 +162,7 @@
                         <div class="d-flex flex-row-reverse">
                             <input class="form-control" style=" width: 30% !important;" type="text" id="search"
                                 placeholder="Search by name or email">
-                            <button class="btn btn-primary"
+                            <button class="btn btn-primary" id="search"
                                 style="margin-right: 10px; background-color: orange !important;border-color: orange !important;"
                                 onclick="performSearch()">Search</button>
 
@@ -254,7 +254,7 @@
         function performSearch() {
             var searchQuery = document.getElementById("search").value.toLowerCase();
             filteredData = jsonResponse.filter(item =>
-                item.fullname.toLowerCase().includes(searchQuery) || item.emailaddress1.toLowerCase().includes(searchQuery)
+                item.fullname.toLowerCase().includes(searchQuery)
             );
             currentPage = 1; // Reset to the first page after search
             populateTable(currentPage);
