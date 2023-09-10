@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="365Connect is a community dedicated to promoting and advancing the adoption of Microsoft D365 and Power Platform technologies. Our primary goal is to foster a supportive environment where individuals can learn, teach, and collaborate on all things related to these powerful tools. Whether you're an experienced user or just starting out, we welcome members from any part of the globe to join us in our mission to promote and develop this community.">
+    <meta name="author" content="Shaheer Ahmad">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet">
+
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs | 365Connect Community</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .blog-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .blog-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header clearfix" role="header">
+        <div class="logo">
+            <img style="height: 50px; margin-right: 20px;;" src="./favicon.ico">
+            <a href="#" style="text-decoration: none; font-size: 29px !important;"><em></em><span
+                    style="color: #feb70c;">3</span><span style="color: #5ea904;">6</span><span
+                    style="color: #04a0ed;">5</span><span style="color: white;">C</span><span
+                    style="text-transform: lowercase;">onnect</span></a><!--#ce392c;-->
+        </div>
+        <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+        <nav id="menu" class="main-nav" role="navigation">
+            <ul class="main-menu">
+                <li class="active"><a style="text-decoration: none !important;" href="#">Blogs</a></li>
+                <li><a style="text-decoration: none !important;" href="./index.html">Home</a></li>
+                <!--
+            <li class="has-submenu"><a href="#section2">About Us</a>
+              <ul class="sub-menu">
+                <li><a href="#section2">Who we are?</a></li>
+                <li><a href="#section3">What we do?</a></li>
+                <li><a href="#section3">How it works?</a></li>
+                <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
+              </ul>
+            </li>-->
+                <!-- <li><a href="#section5">Video</a></li> -->
+                <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
+                <li><a style="text-decoration: none !important;" href="./support.html" class="external">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="header" style="height: 50vh !important;">
+
+
+        <div class="sides">
+            <!-- search-->
+            <a href="./index.html" class="logo">🔙 </a>
+            <!-- search end-->
+            <a href="#" class="logo" style="display: none;">Events</a>
+        </div>
+
+
+        <div class="sides">
+            <a href="#" class="menu" style=" display: none;"> </a>
+
+
+        </div>
+        <div class="info" style="padding: 0 !important;">
+            <h4><a href="https://www.linkedin.com/in/shaheer-ahmad-ch/"></a></h4>
+            <h2>365Connect Community</h2>
+            <div class="meta">
+                <a href="https://www.linkedin.com/company/365-connect-community" target="_b" class="author"></a><br>
+                <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b"></a>
+            </div>
+        </div>
+    </div>
+    <center>
+        <br>
+        <h2 style="color: white !important;">Blogs</h2>
+        <hr style=" border: 2px solid white; border-radius: 20px; width: 60%;">
+        <br>
+    </center>
+    <center>
+        <div class="container mt-4">
+            <div class="row" id="blog-posts">
+                <!-- Blog posts will be displayed here -->
+            </div>
+        </div>
+    </center>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i class="fa fa-copyright"></i> Copyright 2023 by 365Connect Community
+
+                        | Design: <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" rel="sponsored"
+                            target="_parent">Shaheer Ahmad</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        // Your existing code here...
+
+        function displayToc2() {
+            var blogPosts = document.getElementById("blog-posts");
+
+            for (var a = 0; a < postTitle.length; a++) {
+                var cardHTML = '<div class="col-md-4 mb-4">';
+                cardHTML += '<div class="card" style="border:none;">';
+                cardHTML += '<div class="card-body position-relative" style="border:none; background-color: #202124; height:300px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">';
+                cardHTML += '<h1 class="card-title" style="font-size:20px; color:white !important;"><a href="' + postUrl[a] + '" style="color:white !important; text-decoration:none;" >' + postTitle[a] + '</a></h1>';
+                cardHTML += '<br>';
+                cardHTML += '<p class="card-text">Date: ' +postDate[a]+' '+ postYearMonth[a] + '</p>';
+                cardHTML += '<p class="card-text">Month: '+ postYearMonth[a] + '</p>';
+                cardHTML += '<a href="' + postUrl[a] + '" class="btn btn-primary" style="bottom:20px !important; position:absolute; margin-left:-12%;">Visit Blog</a>';
+                cardHTML += '</div>';
+                cardHTML += '</div>';
+                cardHTML += '</div>';
+
+                blogPosts.innerHTML += cardHTML;
+            }
+        }
+        var postTitle = new Array();
+        var postUrl = new Array();
+        var postMp3 = new Array();
+        var postDate = new Array();
+        var postYear = new Array();
+        var postMonth = new Array();
+        var postYearMonth = new Array();
+        var postYearMonth2 = new Array();
+        var postTanggal = new Array();
+        var postLabels = new Array();
+        var postBaru = new Array();
+        var sortBy = "titleasc";
+        var tocLoaded = false;
+        var numChars = 250;
+        var postFilter = "";
+        var numberfeed = 0;
+        var month2 = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        function loadtoc(a) {
+            function b() {
+                if ("entry" in a.feed) {
+                    var d = a.feed.entry.length;
+                    numberfeed = d; ii = 0;
+                    for (var h = 0; h < d; h++) {
+                        var m = a.feed.entry[h];
+                        var e = m.title.$t;
+                        var l = m.published.$t.substring(0, 10);
+                        var p = m.published.$t.substring(5, 7);
+                        var g = m.published.$t.substring(8, 10);
+                        var n = month2[parseInt(p, 10) - 1] + " " + m.published.$t.substring(0, 4);
+                        var c = "/" + m.published.$t.substring(0, 4) + "_" + p + "_01_archive.html";
+                        var j;
+                        for (var f = 0; f < m.link.length; f++) {
+                            if (m.link[f].rel == "alternate") {
+                                j = m.link[f].href;
+                                break
+                            }
+                        }
+                        var o = "";
+                        for (var f = 0; f < m.link.length; f++) {
+                            if (m.link[f].rel == "enclosure") {
+                                o = m.link[f].href;
+                                break
+                            }
+                        }
+                        postTitle.push(e);
+                        postDate.push(l);
+                        postUrl.push(j);
+                        postYearMonth.push(n);
+                        postYearMonth2.push(c);
+                        postTanggal.push(g)
+                    }
+                }
+            }
+            b();
+            displayToc2();
+        }
+    // function displayToc2() {
+    //     var a = 0;
+    //     var b = 0;
+    //     while (b < postTitle.length) {
+    //         temp1 = postYearMonth[b];
+    //         document.write("<p/>");
+    //         document.write('<p><a href="' + postYearMonth2[b] + '">' + temp1 + "</a></p><ul>");
+    //         firsti = a; do { document.write("<li>");
+    //         document.write("[" + postTanggal[a] + '] <a href="' + postUrl[a] + '">' +
+    //         postTitle[a] + "</a>");
+    //         document.write("</li>"); a = a + 1 }
+    //         while (postYearMonth[a] == temp1);
+    //         b = a;
+    //         document.write("</ul>");
+    //         if (b > postTitle.length) { break } } };
+    </script>
+    <script
+        src="http://shaheer365.blogspot.com/feeds/posts/default?max-results=500&alt=json-in-script&callback=loadtoc"></script>
