@@ -94,8 +94,19 @@
         </div>
         <center>
             <h2 style="color: white !important;">Past Events</h2>
-            <hr style=" border: 2px solid white; border-radius: 20px;">
-        </center>
+            
+        <div class="container mt-4" style="width:100%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="event-search" style="width: 50%;" placeholder="Search Past Events...">
+                    <br>
+        <hr style=" border: 2px solid white; border-radius: 20px;"><br><br>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+    </center>
         <!-- Inside your HTML file -->
         <ul id="event-list1"></ul>
 
@@ -134,6 +145,27 @@
         </div>
       </footer>
     <script>
+        // Function to filter and display past events based on search input
+function filterPastEvents() {
+    const searchInput = document.getElementById("event-search").value.toLowerCase();
+    const eventList1 = document.getElementById("event-list1");
+    const events = document.querySelectorAll(".col-sm-6");
+
+    events.forEach(event => {
+        const eventName = event.querySelector(".card-title").textContent.toLowerCase();
+        const eventDescription = event.querySelector(".card-text").textContent.toLowerCase();
+
+        if (eventName.includes(searchInput) || eventDescription.includes(searchInput)) {
+            event.style.display = "block";
+        } else {
+            event.style.display = "none";
+        }
+    });
+}
+
+// Attach an event listener to the search input
+document.getElementById("event-search").addEventListener("input", filterPastEvents);
+
         
         const email = sessionStorage.getItem("email");
         const fullname = sessionStorage.getItem("name");
@@ -437,56 +469,6 @@
             // Return the created col-sm-6 element
             return colDiv;
         }
-
-        // $('.nav li:first').addClass('active');
-
-        // var showSection = function showSection(section, isAnimate) {
-        //   var
-        //   direction = section.replace(/#/, ''),
-        //   reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-        //   reqSectionPos = reqSection.offset().top - 0;
-
-        //   if (isAnimate) {
-        //     $('body, html').animate({
-        //       scrollTop: reqSectionPos },
-        //     800);
-        //   } else {
-        //     $('body, html').scrollTop(reqSectionPos);
-        //   }
-
-        // };
-
-        // var checkSection = function checkSection() {
-        //   $('.section').each(function () {
-        //     var
-        //     $this = $(this),
-        //     topEdge = $this.offset().top - 80,
-        //     bottomEdge = topEdge + $this.height(),
-        //     wScroll = $(window).scrollTop();
-        //     if (topEdge < wScroll && bottomEdge > wScroll) {
-        //       var
-        //       currentId = $this.data('section'),
-        //       reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-        //       reqLink.closest('li').addClass('active').
-        //       siblings().removeClass('active');
-        //     }
-        //   });
-        // };
-
-        // $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
-        //   if($(e.target).hasClass('external')) {
-        //     return;
-        //   }
-        //   e.preventDefault();
-        //   $('#menu').removeClass('active');
-        //   showSection($(this).attr('href'), true);
-        // });
-
-        // $(window).scroll(function () {
-        //   checkSection();
-        // });
-
-// Get the parent element where you want to append the col-sm-6
 
 
     </script>
