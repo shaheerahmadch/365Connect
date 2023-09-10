@@ -50,33 +50,33 @@
       </header>
 
     <div class="loading" id="loading">Loading&#8230;</div>
-    <div class="header">
+    <div class="header" style="height: 50vh;">
 
 
         <div class="sides">
             
-            <a href="./index.html" class="logo">🔙 </a>
+            <!-- <a href="./index.html" class="logo">🔙 </a> -->
             <!-- search-->
-            <div class="box">
+            <!-- <div class="box">
                 <div class="container-2">
                     <span class="icon">
                         <i class="fa fa-search"></i>
                     </span>
                     <input type="search" id="search" placeholder="Search...">
                 </div>
-            </div>
+            </div> -->
             <!-- search-->
         </div>
 
 
-        <div class="sides">
+        <!-- <div class="sides">
             <a href="#" class="menu" style=" display: none;"> </a>
 
 
-        </div>
+        </div> -->
         <div class="info">
             <!--<h4><a href="https://www.linkedin.com/in/shaheer-ahmad-ch/">Shaheer Ahmad</a></h4> -->
-            <h2 style=" margin-top: -30px !important;">365Connect Community</h2>
+            <h2 style=" margin-top: 30px !important;">365Connect Community</h2>
             <div class="meta">
                 <a href="https://www.linkedin.com/company/365-connect-community" target="_b" class="author"></a><br>
                 <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" target="_b"></a>
@@ -213,12 +213,12 @@ document.getElementById("event-search").addEventListener("input", filterPastEven
         // Append the anchor to the parent element
 
 
-        document.getElementById("search").addEventListener("keypress", function onEvent(event) {
-            if (event.key === "Enter") {
-                // Do something better
-                find(document.getElementById("search").value)
-            }
-        });
+        // document.getElementById("search").addEventListener("keypress", function onEvent(event) {
+        //     if (event.key === "Enter") {
+        //         // Do something better
+        //         find(document.getElementById("search").value)
+        //     }
+        // });
         // Replace with your API endpoint URL
         var myHeaders1 = new Headers();
         myHeaders1.append("type", "Past");

@@ -229,7 +229,7 @@
      backface-visibility: hidden;
      scale:(1.0, 1.0);
      transform: translateZ(0);
-     background: #1B2030 url(https://kpmglearningmalta.com/wp-content/uploads/2022/03/slide28.png) 50% 0 no-repeat;
+     background: #1B2030 url(./assets/images/contact-bg.jpg) 50% 0 no-repeat;
      background-size: 100%;
      background-attachment: fixed;
      animation: grow 360s linear 10ms infinite;
