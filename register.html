@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="365Connect is a community dedicated to promoting and advancing the adoption of Microsoft D365 and Power Platform technologies. Our primary goal is to foster a supportive environment where individuals can learn, teach, and collaborate on all things related to these powerful tools. Whether you're an experienced user or just starting out, we welcome members from any part of the globe to join us in our mission to promote and develop this community.">
+    <meta name="description"
+        content="365Connect is a community dedicated to promoting and advancing the adoption of Microsoft D365 and Power Platform technologies. Our primary goal is to foster a supportive environment where individuals can learn, teach, and collaborate on all things related to these powerful tools. Whether you're an experienced user or just starting out, we welcome members from any part of the globe to join us in our mission to promote and develop this community.">
     <meta name="author" content="Shaheer Ahmad">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet">
 
-    
+
     <!-- Bootstrap core CSS -->
 
     <!-- Additional CSS Files -->
@@ -20,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | 365Connect Community</title>
     <link rel="stylesheet" href="styles.css">
-    
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
@@ -34,13 +36,17 @@
     <header class="main-header clearfix" role="header">
         <div class="logo">
             <img style="height: 50px; margin-right: 20px;;" src="./favicon.ico">
-            <a href="#" style="text-decoration: none; font-size: 29px !important;"><em></em><span style="color: #feb70c;">3</span><span style="color: #5ea904;">6</span><span style="color: #04a0ed;">5</span><span style="color: white;">C</span><span style="text-transform: lowercase;">onnect</span></a><!--#ce392c;-->
+            <a href="#" style="text-decoration: none; font-size: 29px !important;"><em></em><span
+                    style="color: #feb70c;">3</span><span style="color: #5ea904;">6</span><span
+                    style="color: #04a0ed;">5</span><span style="color: white;">C</span><span
+                    style="text-transform: lowercase;">onnect</span></a><!--#ce392c;-->
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
-          <ul class="main-menu">
-            <li><a style="text-decoration: none !important;" href="./index.html">Home</a></li>
-            <!--
+            <ul class="main-menu">
+                <li class="active"><a style="text-decoration: none !important;" href="#">Register</a></li>
+                <li><a style="text-decoration: none !important;" href="./index.html">Home</a></li>
+                <!--
             <li class="has-submenu"><a href="#section2">About Us</a>
               <ul class="sub-menu">
                 <li><a href="#section2">Who we are?</a></li>
@@ -49,12 +55,12 @@
                 <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
               </ul>
             </li>-->
-            <!-- <li><a href="#section5">Video</a></li> -->
-            <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
-            <li><a style="text-decoration: none !important;" href="./support.html" class="external">Support</a></li>
-          </ul>
+                <!-- <li><a href="#section5">Video</a></li> -->
+                <li><a style="text-decoration: none !important;" href="./events.html" class="external">Events</a></li>
+                <li><a style="text-decoration: none !important;" href="./support.html" class="external">Support</a></li>
+            </ul>
         </nav>
-      </header>
+    </header>
 
     <div class="loading" id="loading">Loading&#8230;</div>
     <div class="header" style="height: 50vh !important;">
@@ -109,7 +115,7 @@
                     <!-- Text input-->
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label"
+                        <label class="col-md-4 control-label" id="lbl-firstname"
                             style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;color: white !important;">First
                             Name</label>
                         <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
@@ -123,7 +129,7 @@
                     <!-- Text input-->
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label"
+                        <label class="col-md-4 control-label" id="lbl-lastname"
                             style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;color: white !important;">Last
                             Name</label>
                         <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
@@ -136,7 +142,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label"
+                        <label class="col-md-4 control-label" id="lbl-email"
                             style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;color: white !important;">E-Mail</label>
                         <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
                             <div class="input-group" style="height: 50px !important; margin-bottom:10px !important;">
@@ -150,7 +156,7 @@
                     <!-- Text input-->
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label"
+                        <label class="col-md-4 control-label" id="lbl-phone"
                             style="margin-bottom:10px !important; margin-top: 10px !important; font-weight: 600;color: white !important;">Phone
                             (Optional)</label>
                         <div class="col-md-4 inputGroupContainer" style="width: 100% !important;">
@@ -201,59 +207,72 @@
     <!-- Site footer -->
     <footer>
         <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <p><i class="fa fa-copyright"></i> Copyright 2023 by 365Connect Community
-              
-               | Design: <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" rel="sponsored" target="_parent">Shaheer Ahmad</a></p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i class="fa fa-copyright"></i> Copyright 2023 by 365Connect Community
+
+                        | Design: <a href="https://www.linkedin.com/in/shaheer-ahmad-ch" rel="sponsored"
+                            target="_parent">Shaheer Ahmad</a></p>
+                </div>
             </div>
-          </div>
         </div>
-      </footer>
+    </footer>
 
     <script>
         const sidesDiv = document.querySelector(".main-menu");
 
-// Create a new anchor element
-const link = document.createElement("a");
-link.style.textDecoration = "none";
-var listItem = document.createElement("li");
+        // Create a new anchor element
+        const link = document.createElement("a");
+        link.style.textDecoration = "none";
+        var listItem = document.createElement("li");
 
-var listItem1     = document.createElement("li");
-// Set the anchor's attributes
-link.href = "./login.html";
-link.className = "external";
-const link1 = document.createElement("a");
+        var listItem1 = document.createElement("li");
+        // Set the anchor's attributes
+        link.href = "./login.html";
+        link.className = "external";
+        const link1 = document.createElement("a");
 
-// Set the anchor's attributes
-link1.href = "./login.html";
-link1.className = "external";
-link1.style.textDecoration = "none";
-link1.textContent = "Sign Out";
-link1.addEventListener("click", function (event) {
-    event.preventDefault();
-    sessionStorage.setItem("name", null);
-    sessionStorage.setItem("email", null);
-    sessionStorage.setItem("image", null);
-    window.location.href = "./index.html";
-});
-if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
-    link.textContent = "Sign-In";
-    listItem.appendChild(link);
-    sidesDiv.appendChild(listItem);
+        // Set the anchor's attributes
+        link1.href = "./login.html";
+        link1.className = "external";
+        link1.style.textDecoration = "none";
+        link1.textContent = "Sign Out";
+        link1.addEventListener("click", function (event) {
+            event.preventDefault();
+            sessionStorage.setItem("name", null);
+            sessionStorage.setItem("email", null);
+            sessionStorage.setItem("image", null);
+            window.location.href = "./index.html";
+        });
+        if (sessionStorage.getItem("name") == null || sessionStorage.getItem("email") == null || sessionStorage.getItem("email") == 'null' || sessionStorage.getItem("name") == 'null' || sessionStorage.getItem("email") == '' || sessionStorage.getItem("name") == '') {
+            link.textContent = "Sign-In";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
 
-}
-else {
-    link.textContent = fullname.split(' ')[0] + ", Profile";
-    listItem.appendChild(link);
-    sidesDiv.appendChild(listItem);
-    listItem1.appendChild(link1);
-    sidesDiv.appendChild(listItem1)
-}
+        }
+        else {
+            link.textContent = sessionStorage.name.split(' ')[0] + ", Profile";
+            listItem.appendChild(link);
+            sidesDiv.appendChild(listItem);
+            listItem1.appendChild(link1);
+            sidesDiv.appendChild(listItem1)
+            document.getElementById("firstname").value = "   ";
+            document.getElementById("firstname").style.display = "none";
+            document.getElementById("lbl-firstname").style.display = "none";
+            document.getElementById("lastname").value = "   ";
+            document.getElementById("lastname").style.display = "none";
+            document.getElementById("lbl-lastname").style.display = "none";
+            
+            document.getElementById("email").value = sessionStorage.email;
+            document.getElementById("lbl-email").innerText = "Signed-In as:"
+            document.getElementById("email").disabled = true;
+            document.getElementById("phone").style.display="none";
+            document.getElementById("lbl-phone").style.display="none";
+        }
 
 
 
-        
+
         document.getElementById("loading").style.display = "none";
         var url_string = window.location.href;
         var url = new URL(url_string);
@@ -310,13 +329,13 @@ else {
                 fragment.appendChild(listItem); // Append to the fragment
 
                 eventList.appendChild(fragment); // Append the fragment to the DOM
-                if(!event.sa_registrationopen){
+                if (!event.sa_registrationopen) {
                     document.getElementById("container").style.display = "none";
-                    showError1("Registration Closed","warning")
+                    showError1("Registration Closed", "warning")
                 }
-                if( showReg == 'false'){
+                if (showReg == 'false') {
                     document.getElementById("container").style.display = "none";
-                    showError1("Already Registered","success")
+                    showError1("Already Registered", "success")
                 }
             }
         }
@@ -433,10 +452,10 @@ else {
             if (hours >= 24) {
                 const days = Math.floor(hours / 24); // Calculate the whole number of days
                 const remainingHours = hours % 24;  // Calculate the remaining hours
-                if(remainingHours != 0)
-                return `${days} days and ${remainingHours} hours`;
+                if (remainingHours != 0)
+                    return `${days} days and ${remainingHours} hours`;
                 else
-                return `${days} days`;
+                    return `${days} days`;
             } else {
                 return `${hours} hours`; // Less than 24 hours, return hours only
             }
