@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Our Team Page HTML Template" name="keywords">
+        <meta content="Our Team Page HTML Template" name="description">
+
+        <!-- Favicon -->
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+        
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Template Style sheet -->
+        <link href="css/style1.css" rel="stylesheet">
+    </head>
+    <style>
+        body{
+            background-color: #172238;
+        }
+    </style>
+
+    <body>
+        
+        <!-- Team #6 Start -->
+        <div class="container">
+            <div class="section-title">
+                <h1 style="color:white !important;">Meet Our Team</h1>
+            </div>
+            
+            <div class="row">
+            </div> 
+        
+        </div>
+        <!-- Team #6 End -->
+        
+    </body>
+    <!-- Add this script just before </body> tag -->
+    <!-- Add this script just before </body> tag -->
+    <script>
+        // Define a function to create a team member card
+        function createTeamMemberCard(member) {
+          const teamMemberCard = document.createElement("div");
+          teamMemberCard.className = "column";
+          teamMemberCard.style.backgroundColor = "#202124";
+          teamMemberCard.style.margin = "10px";
+          teamMemberCard.style.padding = "10px";
+          teamMemberCard.style.boxShadow = "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+          teamMemberCard.style.borderRadius = "10px";
+          if(member.sa_imageurl == '' || member.sa_imageurl == null){
+            member.sa_imageurl = "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg";
+          }
+          teamMemberCard.innerHTML = `
+            <div class="team-6">
+                <div class="team-img">
+                  <img src="${member.sa_imageurl}" alt="Team Image">
+                </div>
+                <div class="team-content">
+                  <h2 style="color:white !important;">${member.sa_firstname} ${member.sa_lastname}</h2>
+                  <h3 style="color:white !important;">${member.sa_designation}</h3>
+                  <div class="team-social">
+                    <a class="social-fb" href="${member.sa_facebook}"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-li" href="${member.sa_linkedin}"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-in" href="${member.sa_instagram}"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+            </div>
+          `;
+          return teamMemberCard;
+        }
+  
+        // Fetch the JSON data
+        fetch("https://prod-07.southeastasia.logic.azure.com:443/workflows/024ae8f1f73646b08229349634f4d430/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JB7ul8vwAU7mhwpUmucWvg5VZyfaUT1JLmRbgLrcAgw")
+          .then((response) => response.json()) // Parse JSON from the response body
+          .then((responseData) => {
+            if (Array.isArray(responseData)) { // Check if responseData is an array
+              const container = document.querySelector(".row"); // Get the container element
+  
+              // Loop through the responseData and create team member cards
+              responseData.forEach((member) => {
+                const teamMemberCard = createTeamMemberCard(member);
+                container.appendChild(teamMemberCard);
+              });
+            } else {
+              console.error("Data is not an array:", responseData);
+            }
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      </script>
+  
+  
+</html>

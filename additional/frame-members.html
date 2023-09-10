@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<style>
+	body{
+		background-color: #172238;
+	}
+</style>
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                 <center>
+                    <br>
+                    <h2 style="color: white !important;">Our Family</h2>
+                    <hr style=" border: 2px solid white; border-radius: 20px; width: 500px;">
+                    <br>
+                </center>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <!-- Search input field -->
+                        <div class="d-flex flex-row">
+                            <p style="color: white;" id="total_members_count">Total Members: 3434</p>
+                        </div>
+                        <div class="d-flex flex-row-reverse">
+                            <input class="form-control" style=" width: 30% !important;" type="text" id="search" placeholder="Search by name or email">
+                            <button class="btn btn-primary" style="background-color: orange !important;border-color: orange !important;" onclick="performSearch()">Search</button>
+                            
+                        </div>
+                        <table class="table table-bordered table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Table rows will be added here dynamically -->
+                            </tbody>
+                        </table>
+                        <div id="pagination" class="text-center">
+                            <button class="btn btn-primary" style="background-color: orange !important;border-color: orange !important;"  id="prev" onclick="prevPage()">Previous</button>
+                            <button class="btn btn-primary" style="background-color: orange !important;border-color: orange !important;"  id="next" onclick="nextPage()">Next</button>
+                        </div>
+						<br><Br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        var jsonResponse = []; // Initialize an empty array to hold your JSON response
+        var filteredData = []; // Initialize an array to hold filtered data
+
+        var pageSize = 10; // Number of rows per page
+        var currentPage = 1; // Current page number
+
+        var tableBody = document.getElementById("table-body");
+        var prevButton = document.getElementById("prev");
+        var nextButton = document.getElementById("next");
+
+        // Function to populate the table with a specific page of data
+        function populateTable(page) {
+            tableBody.innerHTML = "";
+
+            // Calculate start and end index for the current page
+            var startIndex = (page - 1) * pageSize;
+            var endIndex = startIndex + pageSize;
+
+            for (var i = startIndex; i < endIndex && i < filteredData.length; i++) {
+                var item = filteredData[i];
+                var row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <th scope="row">${i + 1}</th>
+                    <td>${item.fullname}</td>
+                `;
+
+                tableBody.appendChild(row);
+            }
+
+            // Update pagination controls
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === Math.ceil(filteredData.length / pageSize);
+        }
+
+        // Function to go to the previous page
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                populateTable(currentPage);
+            }
+        }
+
+        // Function to go to the next page
+        function nextPage() {
+            if (currentPage < Math.ceil(filteredData.length / pageSize)) {
+                currentPage++;
+                populateTable(currentPage);
+            }
+        }
+
+        // Function to perform search
+        function performSearch() {
+            var searchQuery = document.getElementById("search").value.toLowerCase();
+            filteredData = jsonResponse.filter(item =>
+                item.fullname.toLowerCase().includes(searchQuery) || item.emailaddress1.toLowerCase().includes(searchQuery)
+            );
+            currentPage = 1; // Reset to the first page after search
+            populateTable(currentPage);
+        }
+
+        // Sample JSON response (Replace this with your actual data)
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://prod-43.southeastasia.logic.azure.com:443/workflows/9cbe8062e150427caadf65f61c9c4b9a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mQoYIY9NWlE-6BAKK3ODx8lEw2XUabjHt885roy77Rs", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                jsonResponse = result; // Store the JSON response in the jsonResponse array
+                document.getElementById("total_members_count").textContent = "Total Members: "+result.length;
+                filteredData = jsonResponse; // Initialize filtered data with the full data
+                populateTable(currentPage); // Populate the initial page
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+
+</html>
