@@ -469,7 +469,22 @@ document.getElementById("event-search").addEventListener("input", filterPastEven
             // Return the created col-sm-6 element
             return colDiv;
         }
-
+        if (screen.height > screen.width){
+        document.querySelector(".menu-link").classList.remove("active");
+        document.querySelector(".main-nav").classList.remove("active");
+        document.querySelector(".fa").addEventListener("click", function () {
+            if(document.querySelector(".menu-link").classList.value.includes("active")){
+                document.querySelector(".menu-link").classList.remove("active");
+                document.querySelector(".main-nav").classList.remove("active");
+                document.querySelector(".main-menu").hidden = false;
+            }
+            else{
+            document.querySelector(".menu-link").classList.add("active");
+            document.querySelector(".main-nav").classList.add("active");
+            document.querySelector(".main-menu").hidden = true;
+            }
+        })
+    }
 
     </script>
 
