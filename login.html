@@ -197,6 +197,8 @@
                         // Extract the necessary information from the data
                         const email = data.emailaddress1;
                         const name = data.fullname;
+                        const firstname = data.firstname;
+                        const lastname = data.lastname;
                         const image = data.entityimage;
                         console.log(image)
 
@@ -204,6 +206,8 @@
                         const url = `./login-varify.html`;
                         sessionStorage.setItem("email", email);
                         sessionStorage.setItem("name",name);
+                        sessionStorage.setItem("firstname",firstname);
+                        sessionStorage.setItem("lastname",lastname);
                         sessionStorage.setItem("image",image);
                         // Navigate to the desired URL
                         window.location.href = url;

@@ -65,6 +65,18 @@
         <span class="image-close" onclick="closePopup()">&times;</span>
         <img src="" alt="Profile Picture" id="previewImage">
     </div>
+    <!-- name popup -->
+    <div id="name-namePopup" class="file-popup-overlay" style="display: none;">
+        <div class="file-popup-container">
+            <h2>Update Name</h2>
+            <label class="name-label" for="name-firstNameInput">First Name:</label>
+            <input type="text" id="name-firstNameInput" class="form-control" />
+            <label class="name-label" for="name-lastNameInput">Last Name:</label>
+            <input type="text" id="name-lastNameInput" class="form-control" /><br>
+            <button id="name-updateNameButton" class="file-btn">Update</button>
+            <button id="name-closeNamePopup" class="file-btn cancel">Close</button>
+        </div>
+    </div>
     <!-- The file upload popup -->
     <div id="file-fileUploadPopup" class="file-popup-overlay" style="display: none;">
         <div class="file-popup-container">
@@ -167,7 +179,7 @@
             link.textContent = "Sign-In";
             listItem.appendChild(link);
             sidesDiv1.appendChild(listItem);
-            
+
             window.location.href = "./login.html"
 
         }
@@ -251,7 +263,8 @@
             const text = document.createElement("h2");
             const textsds = document.createElement("p");
             text.textContent = "Welcome, " + fullname;
-            text.innerHTML = ` ${fullname} <i class="fa fa-pencil" style="font-size:20px;" id="file-openPopup1"></i>`;
+            text.id = "element-fullname";
+            text.innerHTML = ` ${fullname} <i class="fa fa-pencil" style="font-size:20px;" id="name-openPopup"></i>`;
             textsds.textContent = email;
             text.style.padding = "0px"
             heading.appendChild(text);
@@ -517,53 +530,135 @@
             }
         });
 
-// $('.nav li:first').addClass('active');
+        // $('.nav li:first').addClass('active');
 
-//         var showSection = function showSection(section, isAnimate) {
-//           var
-//           direction = section.replace(/#/, ''),
-//           reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-//           reqSectionPos = reqSection.offset().top - 0;
+        //         var showSection = function showSection(section, isAnimate) {
+        //           var
+        //           direction = section.replace(/#/, ''),
+        //           reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        //           reqSectionPos = reqSection.offset().top - 0;
 
-//           if (isAnimate) {
-//             $('body, html').animate({
-//               scrollTop: reqSectionPos },
-//             800);
-//           } else {
-//             $('body, html').scrollTop(reqSectionPos);
-//           }
+        //           if (isAnimate) {
+        //             $('body, html').animate({
+        //               scrollTop: reqSectionPos },
+        //             800);
+        //           } else {
+        //             $('body, html').scrollTop(reqSectionPos);
+        //           }
 
-//         };
+        //         };
 
-//         var checkSection = function checkSection() {
-//           $('.section').each(function () {
-//             var
-//             $this = $(this),
-//             topEdge = $this.offset().top - 80,
-//             bottomEdge = topEdge + $this.height(),
-//             wScroll = $(window).scrollTop();
-//             if (topEdge < wScroll && bottomEdge > wScroll) {
-//               var
-//               currentId = $this.data('section'),
-//               reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-//               reqLink.closest('li').addClass('active').
-//               siblings().removeClass('active');
-//             }
-//           });
-//         };
+        //         var checkSection = function checkSection() {
+        //           $('.section').each(function () {
+        //             var
+        //             $this = $(this),
+        //             topEdge = $this.offset().top - 80,
+        //             bottomEdge = topEdge + $this.height(),
+        //             wScroll = $(window).scrollTop();
+        //             if (topEdge < wScroll && bottomEdge > wScroll) {
+        //               var
+        //               currentId = $this.data('section'),
+        //               reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+        //               reqLink.closest('li').addClass('active').
+        //               siblings().removeClass('active');
+        //             }
+        //           });
+        //         };
 
-//         $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
-//           if($(e.target).hasClass('external')) {
-//             return;
-//           }
-//           e.preventDefault();
-//           $('#menu').removeClass('active');
-//           showSection($(this).attr('href'), true);
-//         });
+        //         $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+        //           if($(e.target).hasClass('external')) {
+        //             return;
+        //           }
+        //           e.preventDefault();
+        //           $('#menu').removeClass('active');
+        //           showSection($(this).attr('href'), true);
+        //         });
 
-//         $(window).scroll(function () {
-//           checkSection();
-//         });
+        //         $(window).scroll(function () {
+        //           checkSection();
+        //         });
+
+        const nameOpenPopupButton = document.getElementById('name-openPopup');
+        const namePopup = document.getElementById('name-namePopup');
+        const firstNameInput = document.getElementById('name-firstNameInput');
+        const lastNameInput = document.getElementById('name-lastNameInput');
+        const updateNameButton = document.getElementById('name-updateNameButton');
+        const closeNamePopupButton = document.getElementById('name-closeNamePopup');
+        updateNameButton.style.display = "none";
+
+        // Prevent default navigation behavior
+        nameOpenPopupButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            namePopup.style.display = 'flex';
+            document.getElementById("name-firstNameInput").value = sessionStorage.firstname;
+            document.getElementById("name-lastNameInput").value = sessionStorage.lastname;
+        });
+
+        firstNameInput.addEventListener('change', () => {
+            // This function will be called when the First Name input value changes
+            if (firstNameInput.value == sessionStorage.firstname && lastNameInput.value == sessionStorage.lastname) {
+                updateNameButton.style.display = "none";
+            }
+            else if (firstNameInput.value != sessionStorage.firstname) {
+                updateNameButton.style.display = "inline";
+            }
+            else if (firstNameInput.value != sessionStorage.lastname) {
+                updateNameButton.style.display = "inline";
+            }
+
+        });
+
+        lastNameInput.addEventListener('change', () => {
+            // This function will be called when the Last Name input value changes
+            if (firstNameInput.value == sessionStorage.firstname && lastNameInput.value == sessionStorage.lastname) {
+                updateNameButton.style.display = "none";
+            }
+            else if (firstNameInput.value != sessionStorage.firstname) {
+                updateNameButton.style.display = "inline";
+            }
+            else if (firstNameInput.value != sessionStorage.lastname) {
+                updateNameButton.style.display = "inline";
+            }
+        });
+
+        closeNamePopupButton.addEventListener('click', () => {
+            namePopup.style.display = 'none';
+        });
+
+        updateNameButton.addEventListener('click', () => {
+
+            document.getElementById("loading").style.display = "block";
+            const firstName = firstNameInput.value;
+            const lastName = lastNameInput.value;
+            if (firstNameInput.value != sessionStorage.firstname || lastNameInput.value != sessionStorage.lastname) {
+                document.getElementById("element-fullname").innerHTML = ` ${firstName + " " + lastName} <i class="fa fa-pencil" style="font-size:20px;" id="name-openPopup"></i>`
+
+                var myHeaders = new Headers();
+                myHeaders.append("email", "shaheer.ashraf@live.com");
+                myHeaders.append("firstname", firstName);
+                myHeaders.append("lastname", lastName);
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                fetch("https://prod-24.southeastasia.logic.azure.com:443/workflows/9f94741feb99422cb5eb88bdeeebe231/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Vo07Armmh2xofcQLWzQxncRaKS4zi00UKsZ86BGUDMY", requestOptions)
+                    .then(response => response.text())
+                    .then(result => {
+                        namePopup.style.display = 'none';
+                        document.getElementById("loading").style.display = "none";
+                        sessionStorage.getItem("firstname", firstName);
+                        sessionStorage.getItem("lastname", lastName);
+                    })
+                    .catch(error => console.log('error', error));
+                // Close the popup
+            } else {
+                updateNameButton.style.display = 'none';
+                document.getElementById("loading").style.display = "none";
+            }
+        });
     </script>
 
 
