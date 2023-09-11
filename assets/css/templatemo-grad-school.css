@@ -316,6 +316,7 @@ a.menu-link { display: none; }
     left: 0;
     bottom: 7px;
     width: 100%;
+    backdrop-filter: blur(5px);
 }
 
 .main-banner .caption {
