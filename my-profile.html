@@ -192,6 +192,7 @@
         }
         // Get the elements
         const openPopupButton = document.getElementById('file-openPopup1');
+        openPopupButton.style.border = "5px solid orange";
         const popup = document.getElementById('imagePopup');
         const previewImage = document.getElementById('previewImage');
 
@@ -516,7 +517,8 @@
                     })
                     .then(data => {
                         let newimage_url = data.body.entityimage;
-                        authorElement.style.background = `url(data:image/png;base64,${data.body.entityimage}) center no-repeat`
+                        authorElement.style.background = `url(data:image/png;base64,${data.body.entityimage}) center no-repeat`;
+                        sessionStorage.setItem("image",data.body.entityimage)
                         fileUploadPopup.style.display = 'none';
                         document.getElementById("loading").style.display = "none";
                     })
