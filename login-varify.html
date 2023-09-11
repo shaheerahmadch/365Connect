@@ -123,7 +123,7 @@
 <body>
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <img style="height: 50px; margin-right: 20px;;" src="./favicon.ico">
+            <img id="header-logo" style="height: 50px; margin-right: 20px;" src="./favicon.ico">
             <a href="#" style="text-decoration: none; font-size: 29px !important;"><em></em><span
                     style="color: #feb70c;">3</span><span style="color: #5ea904;">6</span><span
                     style="color: #04a0ed;">5</span><span style="color: white;">C</span><span
@@ -255,8 +255,10 @@
     }
 
     if (screen.height > screen.width){
+        document.getElementById("header-logo").hidden = true;
         document.querySelector(".menu-link").classList.remove("active");
         document.querySelector(".main-nav").classList.remove("active");
+        document.querySelector(".main-menu").hidden = true;
         document.querySelector(".fa").addEventListener("click", function () {
             if(document.querySelector(".menu-link").classList.value.includes("active")){
                 document.querySelector(".menu-link").classList.remove("active");
